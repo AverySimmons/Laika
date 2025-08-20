@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://dic3vnabysmkh"]
+[gd_scene load_steps=5 format=3 uid="uid://dic3vnabysmkh"]
 
-[node name="PlayerSpace" type="Node2D"]
+[ext_resource type="Script" uid="uid://cavc2jjs13k2k" path="res://01_Source/03_Space/01_Player/player_space.gd" id="1_bfx4b"]
+[ext_resource type="Texture2D" uid="uid://cwqu368tk0pah" path="res://icon.svg" id="2_goidg"]
+[ext_resource type="PackedScene" uid="uid://d8be01isfnsc" path="res://01_Source/03_Space/01_Player/00_Guns/gun.tscn" id="3_goidg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfx4b"]
+size = Vector2(10, 20)
+
+[node name="PlayerSpace" type="CharacterBody2D"]
+script = ExtResource("1_bfx4b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_goidg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bfx4b")
+
+[node name="LeftGun" parent="." instance=ExtResource("3_goidg")]
+
+[node name="RightGun" parent="." instance=ExtResource("3_goidg")]

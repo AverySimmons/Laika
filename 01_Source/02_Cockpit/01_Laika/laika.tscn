@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://svdfbsla1dl5"]
+[gd_scene load_steps=2 format=3 uid="uid://svdfbsla1dl5"]
 
-[node name="Laika" type="Node2D"]
+[ext_resource type="Script" uid="uid://ctkdk0eu8nxqi" path="res://01_Source/02_Cockpit/01_Laika/laika.gd" id="1_31nkf"]
+
+[node name="Laika" type="Sprite2D"]
+script = ExtResource("1_31nkf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

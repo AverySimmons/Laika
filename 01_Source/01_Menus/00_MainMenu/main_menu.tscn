@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://cwm7mkowj1ken"]
+[gd_scene load_steps=2 format=3 uid="uid://cwm7mkowj1ken"]
+
+[ext_resource type="Script" uid="uid://b7oq3oq5158xi" path="res://01_Source/01_Menus/00_MainMenu/main_menu.gd" id="1_ifppw"]
 
 [node name="MainMenu" type="Node2D"]
+script = ExtResource("1_ifppw")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 294.0
+offset_top = 153.0
+offset_right = 534.0
+offset_bottom = 321.0
+text = "Start"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

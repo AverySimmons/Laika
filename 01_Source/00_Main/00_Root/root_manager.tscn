@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://cf0gmeg6xtgv7"]
+[gd_scene load_steps=3 format=3 uid="uid://cf0gmeg6xtgv7"]
+
+[ext_resource type="Script" uid="uid://dayr77a62l8hq" path="res://01_Source/00_Main/00_Root/root_manager.gd" id="1_5i30j"]
+[ext_resource type="PackedScene" uid="uid://b3puxswcx2kae" path="res://01_Source/00_Main/00_Root/Mouse/mouse.tscn" id="2_lunfn"]
 
 [node name="RootManager" type="Node"]
+script = ExtResource("1_5i30j")
+
+[node name="Mouse" parent="." instance=ExtResource("2_lunfn")]
