@@ -6,6 +6,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xye4g"]
 shader = ExtResource("1_r8aci")
 shader_parameter/size = Vector2(1280, 720)
+shader_parameter/boost = false
 
 [node name="SpaceLevel" type="Node2D"]
 
