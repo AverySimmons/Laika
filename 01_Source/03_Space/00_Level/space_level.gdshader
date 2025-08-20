@@ -1,7 +1,7 @@
 shader_type canvas_item;
 uniform vec2 size;
 uniform bool boost;
-const float STAR_DENSITY = 0.06;
+const float STAR_DENSITY = .07;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -32,7 +32,7 @@ vec3 render_star(vec2 tile, vec2 uv) {
 void fragment() {
 	vec3 col = vec3(0);
 
-	vec2 nuv = vec2(UV.x * (size.x/size.y), UV.y); // new uv where 1,1 is always square
+	vec2 nuv = vec2(UV.x * (size.x/size.y), UV.y); // new uv where 1,1 is always square in relation to 0,0
 
 	vec2 uv1 = vec2(nuv.x, nuv.y - TIME)*8.;
 	vec2 uv2 = vec2(nuv.x, nuv.y - TIME*.5)*12.;
