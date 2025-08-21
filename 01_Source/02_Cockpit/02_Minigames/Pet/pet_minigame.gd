@@ -23,7 +23,7 @@ func handle_mouse(local_mouse_pos, is_click, is_held) -> void:
 		_last_mouse_position = local_mouse_pos
 		return
 	
-	if is_held and (Data.LIVING_SPACE_SIZE / 2.).distance_to(local_mouse_pos) < 300:
+	if is_held:
 		if not animation_player.is_playing():
 			if _petting_started:
 				animation_player.play("petting")

@@ -35,3 +35,7 @@ func update_position() -> void:
 	sprite.position = offset
 	gun.position = offset
 	return
+
+func _on_area_entered(area) -> void:
+	super._on_area_entered(area)
+	pass

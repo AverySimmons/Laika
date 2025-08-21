@@ -1,19 +1,133 @@
-[gd_scene load_steps=4 format=3 uid="uid://svdfbsla1dl5"]
+[gd_scene load_steps=10 format=3 uid="uid://svdfbsla1dl5"]
 
 [ext_resource type="Script" uid="uid://ctkdk0eu8nxqi" path="res://01_Source/02_Cockpit/01_Laika/laika.gd" id="1_31nkf"]
+[ext_resource type="Texture2D" uid="uid://dw8ybldhj1rs" path="res://00_Assets/00_Sprites/cockpit sprites/laika_spritesheet.png" id="2_f0hr4"]
 
-[sub_resource type="Gradient" id="Gradient_31nkf"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
+[sub_resource type="Animation" id="Animation_i7vui"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f0hr4"]
-gradient = SubResource("Gradient_31nkf")
+[sub_resource type="Animation" id="Animation_2b557"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
 
-[node name="Laika" type="Sprite2D"]
+[sub_resource type="Animation" id="Animation_utoxg"]
+resource_name = "run"
+length = 0.3
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_kuadw"]
+resource_name = "needs_attention"
+length = 3.0
+loop_mode = 1
+step = 0.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2, 2.25, 2.5, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 2, 3, 2, 3, 4, 5, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_oh3tk"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_f0hr4"]
+resource_name = "sleep"
+length = 1.4
+loop_mode = 1
+step = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2b557"]
+_data = {
+&"RESET": SubResource("Animation_i7vui"),
+&"idle": SubResource("Animation_oh3tk"),
+&"needs_attention": SubResource("Animation_kuadw"),
+&"run": SubResource("Animation_utoxg"),
+&"sleep": SubResource("Animation_f0hr4"),
+&"walk": SubResource("Animation_2b557")
+}
+
+[node name="Laika" type="Node2D"]
 script = ExtResource("1_31nkf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2b557")
+}
+autoplay = "walk"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.3655, 1, 0.19, 1)
-texture = SubResource("GradientTexture2D_f0hr4")
+texture = ExtResource("2_f0hr4")
+hframes = 8
+frame = 2
