@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2ders55qaf3f"
-path="res://.godot/imported/hand_cursor_normal.png-528b4f6579184bbe83fa0642df91e158.ctex"
+uid="uid://cjh6krpt7bg56"
+path="res://.godot/imported/petting_hand_spritesheet.png-6980274d6fd68c3e74198e76ad9d170c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://00_Assets/00_Sprites/cursor sprites/hand_cursor_normal.png"
-dest_files=["res://.godot/imported/hand_cursor_normal.png-528b4f6579184bbe83fa0642df91e158.ctex"]
+source_file="res://00_Assets/00_Sprites/cockpit sprites/petting_hand_spritesheet.png"
+dest_files=["res://.godot/imported/petting_hand_spritesheet.png-6980274d6fd68c3e74198e76ad9d170c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2ders55qaf3f"
-path="res://.godot/imported/hand_cursor_normal.png-528b4f6579184bbe83fa0642df91e158.ctex"
+uid="uid://d1hq07ynjkdmw"
+path="res://.godot/imported/laika_eat_treat_spritesheet.png-e37026d2a49020b6d20de0fe2fd99d8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://00_Assets/00_Sprites/cursor sprites/hand_cursor_normal.png"
-dest_files=["res://.godot/imported/hand_cursor_normal.png-528b4f6579184bbe83fa0642df91e158.ctex"]
+source_file="res://00_Assets/00_Sprites/cockpit sprites/laika_eat_treat_spritesheet.png"
+dest_files=["res://.godot/imported/laika_eat_treat_spritesheet.png-e37026d2a49020b6d20de0fe2fd99d8e.ctex"]
 
 [params]
 

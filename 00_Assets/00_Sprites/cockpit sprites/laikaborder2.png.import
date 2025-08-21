@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2ders55qaf3f"
-path="res://.godot/imported/hand_cursor_normal.png-528b4f6579184bbe83fa0642df91e158.ctex"
+uid="uid://ceoslyiduqoro"
+path="res://.godot/imported/laikaborder2.png-2d09ee19eb3f597b2d7eab2703704e3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://00_Assets/00_Sprites/cursor sprites/hand_cursor_normal.png"
-dest_files=["res://.godot/imported/hand_cursor_normal.png-528b4f6579184bbe83fa0642df91e158.ctex"]
+source_file="res://00_Assets/00_Sprites/cockpit sprites/laikaborder2.png"
+dest_files=["res://.godot/imported/laikaborder2.png-2d09ee19eb3f597b2d7eab2703704e3e.ctex"]
 
 [params]
 

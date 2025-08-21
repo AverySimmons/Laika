@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2ders55qaf3f"
-path="res://.godot/imported/hand_cursor_normal.png-528b4f6579184bbe83fa0642df91e158.ctex"
+uid="uid://csov164kd7jv8"
+path="res://.godot/imported/boulder.png-4d54282763637fdc4ab786216e4e11b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://00_Assets/00_Sprites/cursor sprites/hand_cursor_normal.png"
-dest_files=["res://.godot/imported/hand_cursor_normal.png-528b4f6579184bbe83fa0642df91e158.ctex"]
+source_file="res://00_Assets/00_Sprites/space sprites/boulder.png"
+dest_files=["res://.godot/imported/boulder.png-4d54282763637fdc4ab786216e4e11b5.ctex"]
 
 [params]
 
