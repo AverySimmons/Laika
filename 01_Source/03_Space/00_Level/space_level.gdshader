@@ -1,7 +1,10 @@
 shader_type canvas_item;
+
 uniform vec2 size;
 uniform bool boost;
-const float STAR_DENSITY = .07;
+uniform bool flickering_stars = true;
+
+const float STAR_DENSITY = .1;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -16,14 +19,19 @@ vec3 render_star(vec2 tile, vec2 uv) {
 	vec3 col = vec3(0);
 	vec2 h1 = hash(tile);
 	vec2 h2 = hash(h1);
+	
 	if (h1.x > 1.-STAR_DENSITY) {
-		vec2 cuv = 2.*(uv - vec2(0.5,0.5));
+		float t = TIME * h2.x * 2. + h2.y;
+		vec2 cuv = 2.*(uv - vec2(0.5,0.5)); // centred uv (-1 to 1 instead of 0 to 1)
 		cuv += vec2(-.5) + h2;
 
 		float star = smoothstep(0, 1.0, 0.05/sin(length(cuv)));
 		float flare = smoothstep(0.96,1.,.99-(abs(cuv).x*abs(cuv.y)))*(.8-length(cuv)*1.2);
 
-		col += smoothstep(0,1.,(vec3(flare) + vec3(star))*.7);
+		float flicker = 1.;
+		if (flickering_stars) flicker = smoothstep(0,1.,sin(t));
+
+		col += smoothstep(0,1.,(vec3(flare) + vec3(star))*.7) * flicker;
 	}
 
 	return col;
