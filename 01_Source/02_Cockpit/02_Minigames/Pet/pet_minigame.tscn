@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://khuwf1q2rsfc"]
+
+[ext_resource type="Script" uid="uid://byivn76cqvp7v" path="res://01_Source/02_Cockpit/02_Minigames/Pet/pet_minigame.gd" id="1_cw6iq"]
+
+[node name="PetMinigame" type="Node2D"]
+script = ExtResource("1_cw6iq")

@@ -19,7 +19,8 @@ const _IDLE_SPEED = 200
 const _RUNNING_SPEED = 400
 const _NEW_TASK_TIME_RANGE = Vector2(5, 10)
 const _IDLE_TIME_RANGE = Vector2(1, 2)
-
+const _GLOBAL_SIZE = Vector2(100, 20)
+const _LOCAL_SIZE = Vector2(100, 100)
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 

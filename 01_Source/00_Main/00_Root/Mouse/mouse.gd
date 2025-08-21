@@ -1,9 +1,7 @@
 class_name Mouse
-extends Node2D
+extends Node
 
-enum {MENU, COCKPIT, SPACE}
-
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+enum {MENU, COCKPIT, COCKPIT_HOVER, SPACE}
 
 var _timer: float = 0
 var _cursor_type: int = MENU
@@ -32,6 +30,10 @@ func _set_to_cockpit() -> void:
 	_cursor_type = COCKPIT
 	_speed = 1.25
 
+func _set_to_cockpit_hover() -> void:
+	_cursor_type = COCKPIT_HOVER
+	_speed = 1.25
+
 func _set_to_space() -> void:
 	_cursor_type = SPACE
 	_speed = 2
@@ -45,6 +47,11 @@ func _set_cursor() -> void:
 			else:
 				pass
 		COCKPIT:
+			if _timer > 0.5:
+				pass
+			else:
+				pass
+		COCKPIT_HOVER:
 			if _timer > 0.5:
 				pass
 			else:

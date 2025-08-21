@@ -3,7 +3,7 @@ extends Node
 @onready var main_menu_scene = preload("res://01_Source/01_Menus/00_MainMenu/main_menu.tscn")
 @onready var game_manager_scene = preload("res://01_Source/00_Main/01_Game/game_manager.tscn")
 
-@onready var mouse: Node2D = $Mouse
+@onready var mouse: Node = $Mouse
 
 var current_scene : Node
 

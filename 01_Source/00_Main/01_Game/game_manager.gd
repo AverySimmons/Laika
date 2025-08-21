@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var cockpit_container: VBoxContainer = $HBoxContainer/CockpitContainer
-@onready var living_space_container: SubViewportContainer = $HBoxContainer/CockpitContainer/LivingSpaceContainer
-@onready var control_panel_container: SubViewportContainer = $HBoxContainer/CockpitContainer/ControlPanelContainer
-@onready var space_container: SubViewportContainer = $HBoxContainer/SpaceContainer
+@onready var cockpit_container: VBoxContainer = $ScreenContainer/CockpitContainer
+@onready var living_space_container: SubViewportContainer = $ScreenContainer/CockpitContainer/LivingSpaceContainer
+@onready var control_panel_container: SubViewportContainer = $ScreenContainer/CockpitContainer/ControlPanelContainer
+@onready var space_container: SubViewportContainer = $ScreenContainer/SpaceContainer
 @onready var living_space
 @onready var control_panel
 @onready var space
@@ -32,16 +32,19 @@ func _space_mouse_entered() -> void:
 
 func _handle_click() -> void:
 	if current_focus == SPACE:
-		if Input.is_action_pressed("click"):
-			if living_space.laika_blocking:
-				pass
-			else:
-				var mouse_pos = get_global_mouse_position()
-				var local_mouse_pos = mouse_pos - space_container.global_position
-				space.handle_click(local_mouse_pos)
+		var is_click = Input.is_action_just_pressed("click")
+		var is_held = Input.is_action_pressed("click")
+		is_click = is_click and not living_space.laika_blocking
+		is_held = is_held and not living_space.laika_blocking
+		
+		var mouse_pos = get_global_mouse_position()
+		var local_mouse_pos = mouse_pos - space_container.global_position
+		#space.handle_mouse(local_mouse_pos, is_click, is_held)
 	
 	else:
-		if Input.is_action_just_pressed("click"):
-			var mouse_pos = get_global_mouse_position()
-			var local_mouse_pos = mouse_pos - living_space_container.global_position
-			living_space.handle_click(local_mouse_pos)
+		var is_click = Input.is_action_just_pressed("click")
+		var is_held = Input.is_action_pressed("click")
+		
+		var mouse_pos = get_global_mouse_position()
+		var local_mouse_pos = mouse_pos - living_space_container.global_position
+		#living_space.handle_click(local_mouse_pos, is_click, is_held)
