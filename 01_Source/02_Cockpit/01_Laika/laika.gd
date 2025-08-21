@@ -7,14 +7,14 @@ signal blocking(minigame: PackedScene)
 ## RUNNING: run to chosen task
 ## BLOCKING: block at chosen task until clicked
 
-enum {IDLE, RUNNING, BLOCKING}
+enum {IDLE, RUNNING, BLOCKING, SLEEPING}
 
 const _TASKS: Dictionary[PackedScene, Vector2] = {
 	preload("res://01_Source/02_Cockpit/02_Minigames/Pet/pet_minigame.tscn") : Vector2(50,50),
 }
 
 const _IDLE_SPEED = 20
-const _RUNNING_SPEED = 150
+const _RUNNING_SPEED = 30
 const _NEW_TASK_TIME_RANGE = Vector2(13, 17)
 const _IDLE_TIME_RANGE = Vector2(5, 8)
 const _GLOBAL_SIZE = Vector2(480, 190)
@@ -24,10 +24,14 @@ const _BASE_SPRITE_HEIGHT = 100
 const _SPRITE_RESCALE = Vector2(1.3,1.3)
 const _ANCHOR_POINT_GLOBAL = Vector2(90, 460)
 
+const _SLEEP_POSITION = Vector2(26,90)
+const _SLEEP_TIME_RANGE = Vector2(10, 12)
+const _SLEEP_COOLDOWN_RANGE = Vector2(30, 40)
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-var _local_position = Vector2(50,100)
+var _local_position = Vector2(50,50)
 var _state = IDLE
 var _current_task: PackedScene
 var _new_task_timer = 15
@@ -35,6 +39,9 @@ var _new_task_timer = 15
 var _idle_timer = 0
 var _idle_is_moving = false
 var _idle_target_position = Vector2.ZERO
+
+var _sleep_timer = 0
+var _sleep_cooldown_timer = 0
 
 func minigame_complete() -> void:
 	_state = IDLE
@@ -52,6 +59,8 @@ func _process(delta: float) -> void:
 			_process_running(delta)
 		BLOCKING:
 			_process_blocking(delta)
+		SLEEPING:
+			_process_sleeping(delta)
 	
 	_update_sprite()
 
@@ -97,6 +106,10 @@ func _process_idle(delta: float) -> void:
 	else:
 		_idle_timer -= delta
 		if _idle_timer <= 0:
+			if _sleep_cooldown_timer <= 0:
+				_state = SLEEPING
+				return
+			
 			_idle_is_moving = true
 			_idle_target_position = _get_random_point()
 			
@@ -107,6 +120,8 @@ func _process_idle(delta: float) -> void:
 	if _new_task_timer <= 0:
 		_state = RUNNING
 		_enter_running()
+	
+	_sleep_cooldown_timer -= delta
 
 func _process_running(delta: float) -> void:
 	var task_position = _TASKS[_current_task]
@@ -117,6 +132,25 @@ func _process_running(delta: float) -> void:
 
 func _process_blocking(delta: float) -> void:
 	pass
+
+func _process_sleeping(delta: float) -> void:
+	if _local_position.distance_to(_SLEEP_POSITION) > 1:
+		if animation_player.current_animation != "walk":
+			animation_player.play("walk")
+			_flip_sprite_to_point(_SLEEP_POSITION)
+		
+		_local_position = _local_position.move_toward(_SLEEP_POSITION, _IDLE_SPEED * delta)
+		return
+	
+	if animation_player.current_animation != "sleep":
+		animation_player.play("sleep")
+		_sleep_timer = randf_range(_SLEEP_TIME_RANGE.x,_SLEEP_TIME_RANGE.y)
+	
+	_sleep_timer -= delta
+	if _sleep_timer <= 0:
+		_state = IDLE
+		_enter_idle()
+		_sleep_cooldown_timer = randf_range(_SLEEP_COOLDOWN_RANGE.x,_SLEEP_COOLDOWN_RANGE.y)
 
 func _get_random_point() -> Vector2:
 	var it = 0

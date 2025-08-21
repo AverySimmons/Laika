@@ -36,7 +36,7 @@ func _handle_click() -> void:
 		is_click = is_click and not living_space.laika_blocking
 		is_held = is_held and not living_space.laika_blocking
 		
-		var mouse_pos = get_global_mouse_position() - Vector2(16,16)
+		var mouse_pos = get_global_mouse_position() + Vector2(16,16)
 		var local_mouse_pos = mouse_pos - space_container.global_position
 		#space.handle_mouse(local_mouse_pos, is_click, is_held)
 	
@@ -44,6 +44,6 @@ func _handle_click() -> void:
 		var is_click = Input.is_action_just_pressed("click")
 		var is_held = Input.is_action_pressed("click")
 		
-		var mouse_pos = get_global_mouse_position() - Vector2(16,16)
+		var mouse_pos = get_global_mouse_position() + Vector2(16,16)
 		var local_mouse_pos = mouse_pos - living_space_container.global_position
 		living_space.handle_mouse(local_mouse_pos, is_click, is_held)
