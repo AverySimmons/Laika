@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d00cxx6be72xg"]
+
+[ext_resource type="Script" uid="uid://dhyuq66760pca" path="res://01_Source/02_Cockpit/02_Minigames/00_Letters/letter_lock.gd" id="1_ub6yc"]
+
+[sub_resource type="Animation" id="Animation_ub6yc"]
+resource_name = "Enter"
+
+[sub_resource type="Animation" id="Animation_5xews"]
+resource_name = "Exit"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x4yht"]
+_data = {
+&"Enter": SubResource("Animation_ub6yc"),
+&"Exit": SubResource("Animation_5xews")
+}
+
+[node name="LetterLock" type="Node2D"]
+script = ExtResource("1_ub6yc")
+
+[node name="Label" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(500, 200)
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[color=#bababa90]G[/color][shake rate=25.0 level=40 connected=0]O[/shake]OD GIRL!"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x4yht")
+}

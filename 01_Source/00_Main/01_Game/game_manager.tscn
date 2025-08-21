@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dessid8kik7r8"]
+[gd_scene load_steps=3 format=3 uid="uid://dessid8kik7r8"]
 
 [ext_resource type="Script" uid="uid://v3dj5mt8ovw0" path="res://01_Source/00_Main/01_Game/game_manager.gd" id="1_gu7u4"]
 [ext_resource type="PackedScene" uid="uid://c31iito6ph7xe" path="res://01_Source/02_Cockpit/00_Level/cockpit_level.tscn" id="2_kcsw3"]
-[ext_resource type="Texture2D" uid="uid://c7i71lns6i3vf" path="res://00_Assets/00_Sprites/space sprites/laika_spaceship.png" id="2_xao3e"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_gu7u4")
@@ -73,11 +72,6 @@ handle_input_locally = false
 size = Vector2i(675, 230)
 render_target_update_mode = 4
 
-[node name="ColorRect" type="ColorRect" parent="Control/ScreenContainer/CockpitContainer/ControlPanelContainer"]
-custom_minimum_size = Vector2(675, 230)
-layout_mode = 2
-color = Color(0.17, 0.0714, 0.0730433, 1)
-
 [node name="BorderVert" type="TextureRect" parent="Control/ScreenContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
@@ -98,13 +92,3 @@ layout_mode = 2
 handle_input_locally = false
 size = Vector2i(585, 720)
 render_target_update_mode = 4
-
-[node name="ColorRect" type="ColorRect" parent="Control/ScreenContainer/SpaceContainer"]
-custom_minimum_size = Vector2(585, 720)
-layout_mode = 2
-color = Color(0, 0, 0, 1)
-
-[node name="LaikaSpaceship" type="Sprite2D" parent="Control/ScreenContainer/SpaceContainer"]
-position = Vector2(299, 585)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_xao3e")

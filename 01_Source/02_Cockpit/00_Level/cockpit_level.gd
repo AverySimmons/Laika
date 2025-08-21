@@ -36,3 +36,8 @@ func handle_mouse(mouse_position, is_click, is_held) -> void:
 		if laika_mouse_dist < _LAIKA_CLICK_RADIUS:
 			in_minigame = true
 			# enter minigame
+	
+	if is_held:
+		Data.custom_mouse.cursor_type = Mouse.GRAB
+	else:
+		Data.custom_mouse.cursor_type = Mouse.NORMAL
