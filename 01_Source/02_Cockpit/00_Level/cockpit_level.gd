@@ -2,7 +2,7 @@ extends Node2D
 
 signal minigame_complete()
 
-const _LAIKA_CLICK_RADIUS = 100
+const _LAIKA_CLICK_RADIUS = 50
 
 @onready var laika: Laika = $Laika
 
@@ -36,7 +36,7 @@ func handle_mouse(mouse_position, is_click, is_held) -> void:
 	if is_held:
 		Data.custom_mouse.cursor_type = Mouse.GRAB
 	else:
-		Data.custom_mouse.cursor_type = Mouse.NORMAL
+		Data.custom_mouse.cursor_type = Mouse.INTERACT
 	
 	if in_minigame:
 		_current_minigame.handle_mouse(mouse_position, is_click, is_held)
@@ -50,6 +50,6 @@ func handle_mouse(mouse_position, is_click, is_held) -> void:
 				in_minigame = true
 				_enter_minigame()
 			else:
-				Data.custom_mouse.cursor_type = Mouse.INTERACT
+				Data.custom_mouse.cursor_type = Mouse.NORMAL
 	
 	

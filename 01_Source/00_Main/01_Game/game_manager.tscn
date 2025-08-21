@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dessid8kik7r8"]
+[gd_scene load_steps=4 format=3 uid="uid://dessid8kik7r8"]
 
 [ext_resource type="Script" uid="uid://v3dj5mt8ovw0" path="res://01_Source/00_Main/01_Game/game_manager.gd" id="1_gu7u4"]
 [ext_resource type="PackedScene" uid="uid://c31iito6ph7xe" path="res://01_Source/02_Cockpit/00_Level/cockpit_level.tscn" id="2_kcsw3"]
+[ext_resource type="PackedScene" uid="uid://dkr0c766kjsno" path="res://01_Source/03_Space/00_Level/space_level.tscn" id="3_kcsw3"]
 
 [node name="GameManager" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_gu7u4")
 
 [node name="Control" type="Control" parent="."]
@@ -43,12 +45,6 @@ size = Vector2i(675, 470)
 render_target_update_mode = 4
 
 [node name="CockpitLevel" parent="Control/ScreenContainer/CockpitContainer/LivingSpaceContainer/SubViewport" instance=ExtResource("2_kcsw3")]
-
-[node name="ColorRect" type="ColorRect" parent="Control/ScreenContainer/CockpitContainer/LivingSpaceContainer"]
-visible = false
-custom_minimum_size = Vector2(675, 470)
-layout_mode = 2
-color = Color(0.62544, 0.249444, 0.254865, 1)
 
 [node name="BorderHorz" type="TextureRect" parent="Control/ScreenContainer/CockpitContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -92,3 +88,5 @@ layout_mode = 2
 handle_input_locally = false
 size = Vector2i(585, 720)
 render_target_update_mode = 4
+
+[node name="SpaceLevel" parent="Control/ScreenContainer/SpaceContainer/SubViewport" instance=ExtResource("3_kcsw3")]
