@@ -69,4 +69,7 @@ func _progress_queue() -> void:
 	_update_text()
 
 func _complete() -> void:
+	animation_player.play("Exit")
+	await animation_player.animation_finished
 	success.emit()
+	queue_free()

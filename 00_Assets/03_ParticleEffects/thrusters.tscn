@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cey7y43jwwnff"]
+
+[sub_resource type="Curve" id="Curve_rto3v"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.494382), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_3k3ha"]
+offsets = PackedFloat32Array(0, 0.233333, 0.746667, 0.986667)
+colors = PackedColorArray(0.171687, 0.40397, 1, 1, 0.52, 0.52, 1, 1, 1, 0.380392, 1, 1, 1, 1, 1, 0)
+
+[node name="Thrusters" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(51, 42)
+amount = 500
+lifetime = 0.3
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 500.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_rto3v")
+color_ramp = SubResource("Gradient_3k3ha")
