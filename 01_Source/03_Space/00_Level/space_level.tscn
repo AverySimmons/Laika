@@ -7,7 +7,6 @@
 shader = ExtResource("1_r8aci")
 shader_parameter/size = Vector2(640, 720)
 shader_parameter/boost = false
-shader_parameter/flickering_stars = true
 
 [node name="SpaceLevel" type="Node2D"]
 
