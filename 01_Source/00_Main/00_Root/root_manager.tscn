@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b3puxswcx2kae" path="res://01_Source/00_Main/00_Root/Mouse/mouse.tscn" id="2_lunfn"]
 
 [node name="RootManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_5i30j")
 
 [node name="Mouse" parent="." instance=ExtResource("2_lunfn")]

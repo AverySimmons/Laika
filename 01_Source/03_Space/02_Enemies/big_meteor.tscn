@@ -1,7 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwb2ypiyxmi8l"]
+[gd_scene load_steps=5 format=3 uid="uid://bwb2ypiyxmi8l"]
 
 [ext_resource type="Script" uid="uid://b38enkw0ulank" path="res://01_Source/03_Space/02_Enemies/big_meteor.gd" id="1_15cq6"]
+[ext_resource type="Texture2D" uid="uid://cwqu368tk0pah" path="res://icon.svg" id="2_1p6kw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_15cq6"]
+radius = 130.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1p6kw"]
 
 [node name="BigMeteor" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("1_15cq6")
 metadata/_custom_type_script = "uid://dhaw8kkdbem5y"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1p6kw")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_15cq6")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_1p6kw")

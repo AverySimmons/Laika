@@ -13,10 +13,10 @@ const _TASKS: Dictionary[PackedScene, Vector2] = {
 	preload("res://01_Source/02_Cockpit/02_Minigames/Pet/pet_minigame.tscn") : Vector2(50,50),
 }
 
-const _IDLE_SPEED = 100
-const _RUNNING_SPEED = 100
+const _IDLE_SPEED = 20
+const _RUNNING_SPEED = 150
 const _NEW_TASK_TIME_RANGE = Vector2(13, 17)
-const _IDLE_TIME_RANGE = Vector2(0, 0.1)
+const _IDLE_TIME_RANGE = Vector2(5, 8)
 const _GLOBAL_SIZE = Vector2(480, 190)
 const _LOCAL_SIZE = Vector2(100, 100)
 const _TO_LOCAL_X_DIF = 230

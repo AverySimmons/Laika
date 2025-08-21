@@ -16,8 +16,11 @@ func _spawn_letter_lock(letters: String) -> void:
 
 func _open_lock() -> void:
 	_locks -= 1
-	if _locks <= 0:
-		success.emit()
+	if _locks == 0:
+		_win()
+
+func _win() -> void:
+	pass
 
 func handle_mouse(local_mouse_pos, is_click, is_held) -> void:
 	pass

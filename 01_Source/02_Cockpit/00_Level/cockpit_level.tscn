@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c31iito6ph7xe"]
 
 [ext_resource type="Script" uid="uid://bpygrfhgqxqm" path="res://01_Source/02_Cockpit/00_Level/cockpit_level.gd" id="1_nmxi6"]
-[ext_resource type="Texture2D" uid="uid://c13se1mvu02y1" path="res://00_Assets/00_Sprites/cockpit sprites/cockpit_main_area.png" id="2_lb307"]
+[ext_resource type="Texture2D" uid="uid://b67kpv7deakol" path="res://00_Assets/00_Sprites/cockpit sprites/cockpit_main_area.png" id="2_lb307"]
 [ext_resource type="PackedScene" uid="uid://svdfbsla1dl5" path="res://01_Source/02_Cockpit/01_Laika/laika.tscn" id="2_qbmuc"]
 
 [node name="CockpitLevel" type="Node2D"]
@@ -13,12 +13,3 @@ texture = ExtResource("2_lb307")
 
 [node name="Laika" parent="." instance=ExtResource("2_qbmuc")]
 position = Vector2(253, 279)
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(79, 470)
-
-[node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(250, 231)
-
-[node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(598, 471)

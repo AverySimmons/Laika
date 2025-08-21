@@ -5,9 +5,28 @@ var radius: float
 var hp: int
 var velocity: Vector2
 
+@onready var bounds: Rect2 = Rect2(Vector2.ZERO-sprite_offset/2, Data.SPACE_SIZE-sprite_offset/2)
+var sprite_offset: Vector2
+
+@onready var hitbox: CollisionShape2D = $Hitbox
+@onready var hurtbox: CollisionShape2D = $Hurtbox.get_node("CollisionShape2D")
+@onready var sprite: Sprite2D = $Sprite2D
+
+func _ready() -> void:
+	pass
+
 func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
+	if !bounds.has_point(global_position):
+		die()
 	pass
+
+func _on_area_entered(area) -> void:
+	var player = area.owner
+	if player is SpacePlayer:
+		player.take_damage()
+	pass
+
 
 func take_damage(damage: int) -> void:
 	hp -= damage
