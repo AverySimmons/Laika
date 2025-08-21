@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwb2ypiyxmi8l"]
+
+[ext_resource type="Script" uid="uid://b38enkw0ulank" path="res://01_Source/03_Space/02_Enemies/big_meteor.gd" id="1_15cq6"]
+
+[node name="BigMeteor" type="Area2D"]
+script = ExtResource("1_15cq6")
+metadata/_custom_type_script = "uid://dhaw8kkdbem5y"

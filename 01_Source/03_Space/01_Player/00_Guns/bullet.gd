@@ -19,9 +19,9 @@ func shoot(position: Vector2) -> void:
 
 func _on_area_entered(area) -> void:
 	var obstacle = area.owner
-	#if obstacle is Obstacle:
-		#obstacle.take_damage(1)
-		#despawn()
+	if obstacle is Obstacle:
+		obstacle.take_damage(1)
+		despawn()
 	pass
 
 func despawn() -> void:
