@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 
 func _spawn_letter() -> void:
 	_current_letter = _letter_scene.instantiate()
-	_current_letter.global_position = Vector2(675.0, 435.0) / 2.
+	_current_letter.global_position = Data.LIVING_SPACE_SIZE / 2.
 	_current_letter.letter = _letter_queue[0]
 	add_child(_current_letter)
 	

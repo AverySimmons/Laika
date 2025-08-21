@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var cockpit_container: VBoxContainer = $ScreenContainer/CockpitContainer
-@onready var living_space_container: SubViewportContainer = $ScreenContainer/CockpitContainer/LivingSpaceContainer
-@onready var control_panel_container: SubViewportContainer = $ScreenContainer/CockpitContainer/ControlPanelContainer
-@onready var space_container: SubViewportContainer = $ScreenContainer/SpaceContainer
+@onready var cockpit_container: VBoxContainer = $Control/ScreenContainer/CockpitContainer
+@onready var living_space_container: SubViewportContainer = $Control/ScreenContainer/CockpitContainer/LivingSpaceContainer
+@onready var control_panel_container: SubViewportContainer = $Control/ScreenContainer/CockpitContainer/ControlPanelContainer
+@onready var space_container: SubViewportContainer = $Control/ScreenContainer/SpaceContainer
 @onready var living_space
 @onready var control_panel
 @onready var space
@@ -15,7 +15,7 @@ var current_focus = COCKPIT
 func _ready() -> void:
 	_connect_signals()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_handle_click()
 
 func _connect_signals() -> void:
