@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0j4flnplaxwp"]
+
+[ext_resource type="Script" uid="uid://c1e7mwa26e84f" path="res://01_Source/03_Space/02_Enemies/melee_enemy.gd" id="1_ognmw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7igh7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hciok"]
+
+[node name="MeleeEnemy" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_ognmw")
+metadata/_custom_type_script = "uid://cnmnmhklqj8i2"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_7igh7")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hciok")
