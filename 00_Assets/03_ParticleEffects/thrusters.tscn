@@ -11,7 +11,7 @@ colors = PackedColorArray(0.171687, 0.40397, 1, 1, 0.52, 0.52, 1, 1, 1, 0.380392
 [node name="Thrusters" type="Node2D"]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(51, 35)
+position = Vector2(38, 39)
 amount = 500
 lifetime = 0.3
 emission_shape = 1
