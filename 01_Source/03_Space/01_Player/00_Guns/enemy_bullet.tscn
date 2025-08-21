@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://djtx42gjnsh6"]
+
+[ext_resource type="Script" uid="uid://dpcfunj7ed6et" path="res://01_Source/03_Space/01_Player/00_Guns/enemy_bullet.gd" id="1_kktpg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v773x"]
+
+[node name="EnemyBullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_kktpg")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v773x")

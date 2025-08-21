@@ -1,5 +1,5 @@
 class_name Laika
-extends Sprite2D
+extends Node2D
 
 signal blocking(minigame: PackedScene)
 
@@ -19,13 +19,13 @@ const _NEW_TASK_TIME_RANGE = Vector2(13, 17)
 const _IDLE_TIME_RANGE = Vector2(5, 8)
 const _GLOBAL_SIZE = Vector2(480, 190)
 const _LOCAL_SIZE = Vector2(100, 100)
-const _TO_LOCAL_X_DIF = 230
-const _BASE_SPRITE_HEIGHT = 64
-const _SPRITE_RESCALE = Vector2(1,1)
+const _TO_LOCAL_X_DIF = 240
+const _BASE_SPRITE_HEIGHT = 100
+const _SPRITE_RESCALE = Vector2(1.3,1.3)
 const _ANCHOR_POINT_GLOBAL = Vector2(90, 460)
 
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 var _local_position = Vector2(50,100)
 var _state = IDLE
@@ -63,19 +63,27 @@ func _update_sprite() -> void:
 	
 	
 	
-	scale = _SPRITE_RESCALE * (1 - norm_coord.y * 0.5)
+	scale = _SPRITE_RESCALE / ((norm_coord.y + 1.5))
 	global_position = _ANCHOR_POINT_GLOBAL + sprite_offset
 	global_position.y -= _BASE_SPRITE_HEIGHT * scale.y
 
 func _enter_idle() -> void:
 	_idle_is_moving = true
 	_idle_target_position = _get_random_point()
+	
+	animation_player.play("walk")
+	_flip_sprite_to_point(_idle_target_position)
 
 func _enter_running() -> void:
 	_current_task = _TASKS.keys().pick_random()
+	
+	animation_player.play("run")
+	_flip_sprite_to_point(_TASKS[_current_task])
 
 func _enter_blocking() -> void:
 	blocking.emit(_current_task)
+	
+	animation_player.play("needs_attention")
 
 func _process_idle(delta: float) -> void:
 	if _idle_is_moving:
@@ -83,12 +91,17 @@ func _process_idle(delta: float) -> void:
 		if _local_position.distance_to(_idle_target_position) < 1:
 			_idle_is_moving = false
 			_idle_timer = randf_range(_IDLE_TIME_RANGE.x, _IDLE_TIME_RANGE.y)
+			
+			animation_player.play("idle")
 	
 	else:
 		_idle_timer -= delta
 		if _idle_timer <= 0:
 			_idle_is_moving = true
 			_idle_target_position = _get_random_point()
+			
+			animation_player.play("walk")
+			_flip_sprite_to_point(_idle_target_position)
 	
 	_new_task_timer -= delta
 	if _new_task_timer <= 0:
@@ -114,3 +127,8 @@ func _get_random_point() -> Vector2:
 			break
 	
 	return new_point
+
+func _flip_sprite_to_point(point: Vector2) -> void:
+	var flip = -sign(_local_position.direction_to(point).x)
+	if flip:
+		sprite_2d.scale.x = flip
