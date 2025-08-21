@@ -1,30 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://c31iito6ph7xe"]
+[gd_scene load_steps=4 format=3 uid="uid://c31iito6ph7xe"]
 
 [ext_resource type="Script" uid="uid://bpygrfhgqxqm" path="res://01_Source/02_Cockpit/00_Level/cockpit_level.gd" id="1_nmxi6"]
+[ext_resource type="Texture2D" uid="uid://c13se1mvu02y1" path="res://00_Assets/00_Sprites/cockpit sprites/cockpit_main_area.png" id="2_lb307"]
 [ext_resource type="PackedScene" uid="uid://svdfbsla1dl5" path="res://01_Source/02_Cockpit/01_Laika/laika.tscn" id="2_qbmuc"]
-
-[sub_resource type="Gradient" id="Gradient_qbmuc"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_lb307"]
-gradient = SubResource("Gradient_qbmuc")
-width = 675
-height = 470
-
-[sub_resource type="Gradient" id="Gradient_lb307"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_a3fho"]
-gradient = SubResource("Gradient_lb307")
 
 [node name="CockpitLevel" type="Node2D"]
 script = ExtResource("1_nmxi6")
 
-[node name="Laika" parent="." instance=ExtResource("2_qbmuc")]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(337.5, 235)
-texture = SubResource("GradientTexture2D_lb307")
+texture = ExtResource("2_lb307")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(337.5, 235)
-texture = SubResource("GradientTexture2D_a3fho")
+[node name="Laika" parent="." instance=ExtResource("2_qbmuc")]
+position = Vector2(253, 279)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(79, 470)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(250, 231)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(598, 471)
