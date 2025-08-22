@@ -1,6 +1,7 @@
 extends Node2D
 
 var meteors: Node
+var particles: Node
 # Small Meteor Spawning ============================================================================
 var small_meteor_spawn_speed: float = 1.0
 var small_meteor_spawn_timer: float = 1.0
@@ -36,6 +37,7 @@ func spawn_small_meteor() -> void:
 	var spawn_point: Vector2 = Vector2(spawn_point_x, spawn_point_y)
 	var meteor: Obstacle = small_meteor_scene.instantiate()
 	meteor.global_position = spawn_point
+	meteor.particles = particles
 	meteors.add_child(meteor)
 	meteor.despawnable = true
 	pass
@@ -45,6 +47,7 @@ func spawn_big_meteor() -> void:
 	var spawn_point: Vector2 = Vector2(randf_range(0, 585), 0)
 	var meteor: Obstacle = large_meteor_scene.instantiate()
 	meteor.global_position = spawn_point
+	meteor.particles = particles
 	meteors.add_child(meteor)
 	meteor.despawnable = true
 	pass

@@ -5,12 +5,19 @@ var acceleration: Vector2 = Vector2(600, 900)
 var cur_velocity: Vector2
 
 @onready var player: SpacePlayer = Data.space_player
+@onready var thrusters: Node2D = $Thrusters
 
 
 func _ready() -> void:
 	super._ready()
 	hp = 6
 	type = 0
+	thruster_trail.change_length(0.3)
+	pass
+
+func _process(delta: float) -> void:
+	thruster_trail.change_emission_dir(Vector2(0, -1).rotated(cur_velocity.angle()))
+	thruster_trail.global_position = thrusters.global_position
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -26,5 +33,5 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(area) -> void:
 	super._on_area_entered(area)
 	# Explosion effect?
-	queue_free()
+	die()
 	pass

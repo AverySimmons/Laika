@@ -2,6 +2,7 @@ extends Node2D
 
 var enemies: Node
 var projectiles: Node
+var particles: Node
 
 # Wave Spawning ====================================================================================
 var wave_size: int = 2
@@ -34,6 +35,7 @@ func spawn_wave() -> void:
 		var location: Vector2 = Vector2(randf_range(85, 500), 0)
 		enemy.global_position = location
 		enemy.projectiles = projectiles
+		enemy.particles = particles
 		enemies.add_child(enemy)
 		await get_tree().create_timer(time_between_enemies).timeout
 		

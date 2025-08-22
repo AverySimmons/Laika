@@ -15,17 +15,18 @@ var particle_rad: float = 4
 @onready var hurtbox: CollisionShape2D = $Hurtbox.get_node("CollisionShape2D")
 @onready var sprite: Sprite2D = $Sprite2D
 var trail: Node2D
+@onready var particles: Node
 @onready var trail_scene: PackedScene = preload("res://00_Assets/03_ParticleEffects/rocktrail.tscn")
 
 func _ready() -> void:
 	connect("area_entered", Callable(self, "_on_area_entered"))
 	trail = trail_scene.instantiate()
-	get_parent().add_child(trail)
+	particles.add_child(trail)
 	trail.global_position = global_position
 	pass
 
 func _process(delta: float) -> void:
-	trail.global_position = global_position - Vector2(radius+particle_rad, 0).rotated(velocity.angle())
+	trail.global_position = global_position #- Vector2(radius+particle_rad, 0).rotated(velocity.angle())
 	pass
 
 func _physics_process(delta: float) -> void:

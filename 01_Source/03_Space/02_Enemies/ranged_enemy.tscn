@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6yqsg222gbp3"]
 
-[ext_resource type="Script" path="res://01_Source/03_Space/02_Enemies/ranged_enemy.gd" id="1_kp05j"]
-[ext_resource type="Script" path="res://01_Source/03_Space/02_Enemies/movement_point.gd" id="2_dbusx"]
+[ext_resource type="Script" uid="uid://bwp6eemrbbpqo" path="res://01_Source/03_Space/02_Enemies/ranged_enemy.gd" id="1_kp05j"]
+[ext_resource type="Script" uid="uid://dnsj3bd6sm46l" path="res://01_Source/03_Space/02_Enemies/movement_point.gd" id="2_dbusx"]
 [ext_resource type="Texture2D" uid="uid://bh8jnrexbinkk" path="res://00_Assets/00_Sprites/space sprites/enemyship1.png" id="3_5cal0"]
-[ext_resource type="Script" path="res://01_Source/03_Space/02_Enemies/gun.gd" id="5_ts1jd"]
+[ext_resource type="Script" uid="uid://jjlqwh7dh2o5" path="res://01_Source/03_Space/02_Enemies/gun.gd" id="5_ts1jd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cal0"]
 
@@ -34,3 +34,6 @@ texture = ExtResource("3_5cal0")
 
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("5_ts1jd")
+
+[node name="Thruster" type="Node2D" parent="."]
+position = Vector2(0, -23)

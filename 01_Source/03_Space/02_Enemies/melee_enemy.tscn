@@ -30,3 +30,6 @@ shape = SubResource("RectangleShape2D_7igh7")
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_hciok")
+
+[node name="Thrusters" type="Node2D" parent="."]
+position = Vector2(-0.3, -17)

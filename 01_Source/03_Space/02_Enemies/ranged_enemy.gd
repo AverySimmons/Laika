@@ -13,6 +13,7 @@ var shooting_timer: float = 3
 @onready var hurtbox: CollisionShape2D = $Hurtbox.get_node("CollisionShape2D")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var gun: Node2D = $Gun
+@onready var thrusters: Node2D = $Thruster
 
 func _ready() -> void:
 	super._ready()
@@ -31,6 +32,10 @@ func _physics_process(delta: float) -> void:
 		shooting_timer = shooting_time
 	pass
 
+func _process(delta: float) -> void:
+	thruster_trail.global_position = thrusters.global_position
+	pass
+
 func update_position() -> void:
 	var offset: Vector2 = oval_radius.rotated(current_angle)
 	offset.y *= 40./75.
@@ -38,6 +43,7 @@ func update_position() -> void:
 	hurtbox.position = offset
 	sprite.position = offset
 	gun.position = offset
+	thrusters.position = offset + Vector2(0, -23)
 	return
 
 func _on_area_entered(area) -> void:

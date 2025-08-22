@@ -87,6 +87,8 @@ scale_amount_min = 5.0
 scale_amount_max = 7.5
 color_initial_ramp = SubResource("Gradient_xye4g")
 
+[node name="Particles" type="Node" parent="."]
+
 [node name="Meteors" type="Node" parent="."]
 
 [node name="Enemies" type="Node" parent="."]
