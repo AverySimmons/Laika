@@ -11,7 +11,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 0.668893, 0.389162, 1, 1, 0.0313726, 0,
 [node name="Explosion" type="Node2D"]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(74, 68)
+position = Vector2(256, 101)
 emitting = false
 amount = 12
 lifetime = 0.25

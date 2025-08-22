@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://cwm7mkowj1ken"]
 
 [ext_resource type="Script" uid="uid://b7oq3oq5158xi" path="res://01_Source/01_Menus/00_MainMenu/main_menu.gd" id="1_ifppw"]
-[ext_resource type="Texture2D" uid="uid://6mla5slhi8e1" path="res://00_Assets/00_Sprites/menu sprites/title_text_spritesheet.png" id="2_mk2xf"]
-[ext_resource type="Texture2D" uid="uid://c0osmkvnmmrvu" path="res://00_Assets/00_Sprites/menu sprites/title_screen_button_spritesheet.png" id="3_mkv7l"]
+[ext_resource type="Texture2D" uid="uid://bkr4a8it5qtay" path="res://00_Assets/00_Sprites/menu sprites/title_text_spritesheet.png" id="2_mk2xf"]
+[ext_resource type="Texture2D" uid="uid://dvql2dm161fy3" path="res://00_Assets/00_Sprites/menu sprites/title_screen_button_spritesheet.png" id="3_mkv7l"]
 
 [sub_resource type="Animation" id="Animation_pbh7x"]
 length = 0.001
