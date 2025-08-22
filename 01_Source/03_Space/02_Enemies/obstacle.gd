@@ -15,6 +15,7 @@ var despawnable_timer: float = 0.5
 @onready var sprite: Sprite2D = $Sprite2D
 
 func _ready() -> void:
+	connect("area_entered", Callable(self, "_on_area_entered"))
 	pass
 
 func _physics_process(delta: float) -> void:

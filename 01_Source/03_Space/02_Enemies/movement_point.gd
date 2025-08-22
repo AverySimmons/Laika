@@ -1,7 +1,7 @@
 extends Node2D
 
 var speed: float = 40
-var halfway: float = 360
+var halfway: float = 220
 var reached: bool = false
 @onready var parent = get_parent()
 

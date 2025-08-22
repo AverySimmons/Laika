@@ -1,8 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://djtx42gjnsh6"]
+[gd_scene load_steps=7 format=3 uid="uid://djtx42gjnsh6"]
 
 [ext_resource type="Script" uid="uid://dpcfunj7ed6et" path="res://01_Source/03_Space/01_Player/00_Guns/enemy_bullet.gd" id="1_kktpg"]
+[ext_resource type="Texture2D" uid="uid://dafjr8bobpqv7" path="res://00_Assets/00_Sprites/space sprites/enemy_projectile_spritesheet.png" id="2_v773x"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v773x"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_v773x"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_204uj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gqwa5"]
+resource_name = "move"
+length = 0.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tse2b"]
+_data = {
+&"RESET": SubResource("Animation_204uj"),
+&"move": SubResource("Animation_gqwa5")
+}
 
 [node name="EnemyBullet" type="Area2D"]
 collision_layer = 0
@@ -10,4 +50,14 @@ collision_mask = 8
 script = ExtResource("1_kktpg")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_v773x")
+shape = SubResource("CircleShape2D_v773x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_v773x")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tse2b")
+}

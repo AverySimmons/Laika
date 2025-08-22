@@ -1,6 +1,38 @@
 extends Node2D
 
 var enemies: Node
+var projectiles: Node
 
 # Wave Spawning ====================================================================================
 var wave_size: int = 2
+var wave_spawn_time: float = 8
+var wave_spawn_timer: float = 2
+var time_between_enemies: float = 0.5
+
+@onready var ranged_enemy: PackedScene = preload("res://01_Source/03_Space/02_Enemies/ranged_enemy.tscn")
+@onready var melee_enemy: PackedScene = preload("res://01_Source/03_Space/02_Enemies/melee_enemy.tscn")
+@onready var enemy_list: Array
+
+func _ready() -> void:
+	enemy_list.append(melee_enemy)
+	enemy_list.append(ranged_enemy)
+	pass
+
+func _physics_process(delta: float) -> void:
+	wave_spawn_timer -= delta
+	if wave_spawn_timer <= 0:
+		spawn_wave()
+	pass
+
+func spawn_wave() -> void:
+	wave_spawn_timer = wave_spawn_time + time_between_enemies*wave_size
+	for num in range(wave_size):
+		var enemy_type = randi_range(0, 1)
+		var enemy: Enemy = enemy_list[enemy_type].instantiate()
+		var location: Vector2 = Vector2(randf_range(85, 500), 0)
+		enemy.global_position = location
+		enemy.projectiles = projectiles
+		enemies.add_child(enemy)
+		await get_tree().create_timer(time_between_enemies).timeout
+		
+	pass
