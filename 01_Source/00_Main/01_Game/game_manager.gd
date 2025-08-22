@@ -48,7 +48,7 @@ func _handle_click() -> void:
 		
 		var mouse_pos = get_global_mouse_position()
 		var local_mouse_pos = mouse_pos - space_container.global_position
-		#space.handle_mouse(local_mouse_pos, is_click, is_held)
+		space.handle_mouse(local_mouse_pos, is_click, is_held)
 	
 	else:
 		var is_click = Input.is_action_just_pressed("click")

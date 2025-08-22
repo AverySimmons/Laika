@@ -19,3 +19,6 @@ func _ready() -> void:
 	player.global_position = Vector2(292.5, 500)
 	player.projectiles = projectiles
 	pass
+
+func handle_mouse(local_mouse_pos, is_click, is_held) -> void:
+	pass
