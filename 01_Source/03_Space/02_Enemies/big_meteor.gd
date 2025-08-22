@@ -9,6 +9,7 @@ func _ready() -> void:
 	hurtbox.shape.radius = radius
 	sprite.scale = Vector2(radius/173., radius/173.)
 	trail.change_size(radius)
+	trail.change_lifetime(1.8)
 	particle_rad = radius/2.
 	pass
 

@@ -32,6 +32,7 @@ var paused = true
 @onready var enemies: Node = $Enemies
 @onready var meteors: Node = $Meteors
 @onready var projectiles: Node = $Projectiles
+@onready var particles: Node = $Particles
 @onready var player_scene = preload("res://01_Source/03_Space/01_Player/player_space.tscn")
 
 var player: SpacePlayer
@@ -53,8 +54,10 @@ func _ready() -> void:
 	
 	
 	meteor_spawner.meteors = meteors
+	meteor_spawner.particles = particles
 	enemy_spawner.enemies = enemies
 	enemy_spawner.projectiles = projectiles
+	enemy_spawner.particles = particles
 
 func start_level() -> void:
 	player = player_scene.instantiate()

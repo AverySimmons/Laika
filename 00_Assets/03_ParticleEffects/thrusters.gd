@@ -12,10 +12,10 @@ func stop() -> void:
 	queue_free()
 	pass
 
-func change_size(rad: float) -> void:
-	particles.emission_sphere_radius = rad
+func change_emission_dir(dir: Vector2) -> void:
+	particles.direction = dir
 	pass
 
-func change_lifetime(lt: float) -> void:
-	particles.lifetime = lt
+func change_length(length: float) -> void:
+	particles.lifetime = length
 	pass
