@@ -11,8 +11,8 @@ enum {IDLE, RUNNING, BLOCKING, SLEEPING}
 
 const _TASKS: Dictionary[PackedScene, Vector2] = {
 	preload("res://01_Source/02_Cockpit/02_Minigames/Pet/pet_minigame.tscn") : Vector2(50,50),
-	preload("res://01_Source/02_Cockpit/02_Minigames/Feed/feed_minigame.tscn") : Vector2(50, 90),
-	preload("res://01_Source/02_Cockpit/02_Minigames/Fetch/fetch_minigame.tscn") : Vector2(10, 10)
+	#preload("res://01_Source/02_Cockpit/02_Minigames/Feed/feed_minigame.tscn") : Vector2(50, 90),
+	#preload("res://01_Source/02_Cockpit/02_Minigames/Fetch/fetch_minigame.tscn") : Vector2(10, 10)
 }
 
 const _IDLE_SPEED = 25

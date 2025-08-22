@@ -14,15 +14,12 @@ var _grab_cursor = preload("res://00_Assets/00_Sprites/cursor sprites/hand_curso
 var _aim1_cursor = preload("res://00_Assets/00_Sprites/cursor sprites/spaceship_aim_cusor_1.png").get_image()
 var _aim2_cursor = preload("res://00_Assets/00_Sprites/cursor sprites/spaceship_aim_cusor_2.png").get_image()
 
-var _timer: float = 0
 var _last_cursor_image: Image
 
 func _process(delta: float) -> void:
 	_set_cursor()
 	heart_particles.emitting = emit_hearts
 	heart_particles.global_position = heart_particles.get_global_mouse_position()
-	
-	_timer = fmod(_timer + delta * 2., 1.)
 
 func _set_cursor() -> void:
 	var cursor_image: Image

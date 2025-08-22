@@ -5,7 +5,8 @@ extends Node2D
 @onready var control_panel: TextureRect = $Control/ScreenContainer/CockpitContainer/ControlPanel
 @onready var space_container: SubViewportContainer = $Control/ScreenContainer/SpaceContainer
 @onready var living_space: Node2D = $Control/ScreenContainer/CockpitContainer/LivingSpaceContainer/SubViewport/CockpitLevel
-@onready var space
+@onready var space: Node2D = $Control/ScreenContainer/SpaceContainer/SubViewport/SpaceLevel
+
 
 @onready var control_panel_ap: AnimationPlayer = $Control/ScreenContainer/CockpitContainer/ControlPanel/ControlPanelAP
 

@@ -1,10 +1,8 @@
 extends Minigame
 
-## hearts more pink or more trans
-## space dark purple
-## stars more pink
-## burst hearts for lots of stuff
-## dog interactions should have been reloading (?)
+## intro cutscene
+## sound effects
+## music
 
 const _NEEDED_MOUSE_DIST = 2000
 
@@ -37,12 +35,15 @@ func handle_mouse(local_mouse_pos, is_click, is_held) -> void:
 				animation_player.play("start_petting")
 				_petting_started = true
 				Data.custom_mouse.emit_hearts = true
+				$Pant.play()
+				$Pet.play()
 		
 		_mouse_dist += _last_mouse_position.distance_to(local_mouse_pos)
 		if _mouse_dist > _NEEDED_MOUSE_DIST:
 			_open_lock()
 			_spawn_letter_lock("GOOD GIRL!")
 			Data.custom_mouse.emit_hearts = false
+			$Pant.stop()
 			
 			var t = create_tween()
 			t.tween_property($PetLabel, "modulate:a", 0., 0.2)
@@ -52,6 +53,9 @@ func handle_mouse(local_mouse_pos, is_click, is_held) -> void:
 		animation_player.play("not_petting")
 		Data.custom_mouse.emit_hearts = false
 		_mouse_dist = 0
+		
+		$Pant.stop()
+		$Pet.stop()
 	
 	_last_mouse_position = local_mouse_pos
 

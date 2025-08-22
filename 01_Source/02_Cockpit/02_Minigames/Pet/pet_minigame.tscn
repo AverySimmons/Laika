@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://khuwf1q2rsfc"]
+[gd_scene load_steps=19 format=3 uid="uid://khuwf1q2rsfc"]
 
 [ext_resource type="Script" uid="uid://byivn76cqvp7v" path="res://01_Source/02_Cockpit/02_Minigames/Pet/pet_minigame.gd" id="1_cw6iq"]
 [ext_resource type="Texture2D" uid="uid://cc56fei441713" path="res://00_Assets/00_Sprites/cockpit sprites/laika_pet_spritesheet.png" id="2_3gkwe"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cecyp3461darl" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder1.png" id="4_3kv2w"]
 [ext_resource type="Texture2D" uid="uid://ceoslyiduqoro" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder2.png" id="5_baxod"]
 [ext_resource type="FontFile" uid="uid://c60li4pcu0xe0" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="6_baxod"]
+[ext_resource type="AudioStream" uid="uid://mcrdl6evtpj5" path="res://00_Assets/01_SoundEffects/panting.mp3" id="7_f2p6p"]
+[ext_resource type="AudioStream" uid="uid://1v7i3gp2um74" path="res://00_Assets/01_SoundEffects/for the petting minigame.mp3" id="8_uogrn"]
 
 [sub_resource type="Animation" id="Animation_3kv2w"]
 length = 0.001
@@ -358,3 +360,10 @@ bbcode_enabled = true
 text = "[wave](Mouse)"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Pant" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_f2p6p")
+pitch_scale = 1.3
+
+[node name="Pet" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_uogrn")
