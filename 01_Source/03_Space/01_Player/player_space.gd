@@ -61,14 +61,15 @@ func _physics_process(delta: float) -> void:
 	
 	if is_moving == true && !animation_player.is_playing():
 		animation_player.play("trail")
-	
-	if Input.is_action_pressed("click"):
-		handle_click(get_global_mouse_position())
-	pass
 
-func handle_click(position: Vector2) -> void:
+func handle_mouse(local_mouse_pos: Vector2, is_click: bool, is_held: bool) -> void:
+	if is_held:
+		handle_click(local_mouse_pos)
+		
+
+func handle_click(pos: Vector2) -> void:
 	for gun in guns:
-		gun.handle_click(position, projectiles)
+		gun.handle_click(pos, projectiles)
 	pass
 
 func take_damage() -> void:

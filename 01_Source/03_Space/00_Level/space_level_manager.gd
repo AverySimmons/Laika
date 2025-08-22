@@ -20,5 +20,10 @@ func _ready() -> void:
 	player.projectiles = projectiles
 	pass
 
-func handle_mouse(local_mouse_pos, is_click, is_held) -> void:
-	pass
+func handle_mouse(local_mouse_pos: Vector2, is_click: bool, is_held: bool) -> void:
+	if is_held:
+		Data.custom_mouse.cursor_type = Mouse.AIM
+	else:
+		Data.custom_mouse.cursor_type = Mouse.AIM2
+	
+	player.handle_mouse(local_mouse_pos, is_click, is_held)
