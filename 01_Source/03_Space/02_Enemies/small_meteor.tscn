@@ -4,9 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://b4fj1v5evlcah" path="res://00_Assets/00_Sprites/space sprites/smallrock.png" id="2_ilrt4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ilrt4"]
+resource_local_to_scene = true
 radius = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o65il"]
+resource_local_to_scene = true
 
 [node name="SmallMeteor" type="Area2D"]
 collision_layer = 0

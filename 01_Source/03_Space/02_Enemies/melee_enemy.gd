@@ -13,6 +13,8 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	if player == null:
+		return
 	var dir_to_player = player.global_position - global_position
 	cur_velocity += dir_to_player*acceleration*delta
 	cur_velocity.clamp(-top_speed, top_speed)

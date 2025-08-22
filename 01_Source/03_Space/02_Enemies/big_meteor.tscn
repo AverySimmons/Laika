@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://csov164kd7jv8" path="res://00_Assets/00_Sprites/space sprites/boulder.png" id="2_1p6kw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_15cq6"]
+resource_local_to_scene = true
 radius = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1p6kw"]
