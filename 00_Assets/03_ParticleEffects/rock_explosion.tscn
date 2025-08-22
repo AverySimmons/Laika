@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmdkt6pr5ym8m"]
+
+[sub_resource type="Curve" id="Curve_7bfbp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_w5xmf"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.733333)
+
+[sub_resource type="Gradient" id="Gradient_xlwro"]
+colors = PackedColorArray(0.359069, 0.359069, 0.359069, 1, 0.834614, 0.834614, 0.834614, 1)
+
+[node name="RockExplosion" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(62, 86)
+emitting = false
+amount = 45
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 500.0
+angular_velocity_max = 360.0
+damping_max = 100.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_7bfbp")
+color_ramp = SubResource("Gradient_w5xmf")
+color_initial_ramp = SubResource("Gradient_xlwro")
