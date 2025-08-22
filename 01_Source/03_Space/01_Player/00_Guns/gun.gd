@@ -12,6 +12,7 @@ func _physics_process(delta: float) -> void:
 func handle_click(position: Vector2) -> void:
 	if cooldown_timer != 0:
 		return
+	cooldown_timer = 0.5
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = global_position
 	bullet.shoot(position)

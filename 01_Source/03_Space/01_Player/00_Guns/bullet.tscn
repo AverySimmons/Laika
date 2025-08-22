@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhf4jk4u8ek0h"]
+[gd_scene load_steps=4 format=3 uid="uid://dhf4jk4u8ek0h"]
 
 [ext_resource type="Script" uid="uid://b652ct4ep1wfm" path="res://01_Source/03_Space/01_Player/00_Guns/bullet.gd" id="1_pxro5"]
+[ext_resource type="Texture2D" uid="uid://b4fj1v5evlcah" path="res://00_Assets/00_Sprites/space sprites/smallrock.png" id="2_3pfcu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pfcu"]
 size = Vector2(4, 8)
@@ -12,3 +13,8 @@ script = ExtResource("1_pxro5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3pfcu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -6)
+scale = Vector2(0.301667, 0.315)
+texture = ExtResource("2_3pfcu")

@@ -1,7 +1,7 @@
 extends Enemy
 
 var top_speed: Vector2 = Vector2(300, 450)
-var acceleration: Vector2 = Vector2(100, 150)
+var acceleration: Vector2 = Vector2(150, 225)
 var cur_velocity: Vector2
 
 @onready var player: SpacePlayer = Data.space_player
