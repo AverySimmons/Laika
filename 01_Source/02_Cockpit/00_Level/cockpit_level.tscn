@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c31iito6ph7xe"]
 
 [ext_resource type="Script" uid="uid://bpygrfhgqxqm" path="res://01_Source/02_Cockpit/00_Level/cockpit_level.gd" id="1_nmxi6"]
-[ext_resource type="Texture2D" uid="uid://b67kpv7deakol" path="res://00_Assets/00_Sprites/cockpit sprites/cockpit_main_area.png" id="2_lb307"]
+[ext_resource type="Texture2D" uid="uid://824ouy8ddbxx" path="res://00_Assets/00_Sprites/cockpit sprites/cockpit_main_area_tableless.png" id="2_lb307"]
 [ext_resource type="PackedScene" uid="uid://svdfbsla1dl5" path="res://01_Source/02_Cockpit/01_Laika/laika.tscn" id="2_qbmuc"]
 
 [node name="CockpitLevel" type="Node2D"]

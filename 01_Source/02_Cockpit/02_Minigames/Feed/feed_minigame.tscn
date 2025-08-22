@@ -1,0 +1,343 @@
+[gd_scene load_steps=17 format=3 uid="uid://c68c0l4yow5k3"]
+
+[ext_resource type="Script" uid="uid://civdtmf0gkp3k" path="res://01_Source/02_Cockpit/02_Minigames/Feed/feed_minigame.gd" id="1_lehn0"]
+[ext_resource type="Texture2D" uid="uid://d1hq07ynjkdmw" path="res://00_Assets/00_Sprites/cockpit sprites/laika_eat_treat_spritesheet.png" id="2_fxajo"]
+[ext_resource type="Texture2D" uid="uid://cgwxkewwahsn6" path="res://00_Assets/00_Sprites/cockpit sprites/feeding_hand_sprite.png" id="3_ynsru"]
+[ext_resource type="Texture2D" uid="uid://cecyp3461darl" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder1.png" id="4_3s0gl"]
+[ext_resource type="Texture2D" uid="uid://ceoslyiduqoro" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder2.png" id="5_478vo"]
+[ext_resource type="FontFile" uid="uid://c60li4pcu0xe0" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="6_ynsru"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1rbg1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3s0gl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_478vo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="Animation" id="Animation_ll65j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laika:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0awec"]
+resource_name = "eating"
+length = 0.3
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laika:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_fxajo"]
+resource_name = "start_waiting"
+length = 0.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laika:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_waiting_animation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_lcqxp"]
+resource_name = "waiting"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laika:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tf6u6"]
+_data = {
+&"RESET": SubResource("Animation_ll65j"),
+&"eating": SubResource("Animation_0awec"),
+&"start_waiting": SubResource("Animation_fxajo"),
+&"waiting": SubResource("Animation_lcqxp")
+}
+
+[sub_resource type="Animation" id="Animation_ynsru"]
+resource_name = "enter"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Laika:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FeedLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3s0gl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Laika:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FeedLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_478vo"]
+resource_name = "exit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Laika:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FeedLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_478vo"]
+_data = {
+&"RESET": SubResource("Animation_3s0gl"),
+&"enter": SubResource("Animation_ynsru"),
+&"exit": SubResource("Animation_478vo")
+}
+
+[node name="FeedMinigame" type="Node2D"]
+script = ExtResource("1_lehn0")
+
+[node name="Laika" type="Sprite2D" parent="."]
+position = Vector2(337.5, 235)
+texture = ExtResource("2_fxajo")
+hframes = 6
+
+[node name="MouthMarker" type="Marker2D" parent="Laika"]
+position = Vector2(-8, 38)
+
+[node name="Hand" type="Sprite2D" parent="."]
+position = Vector2(194, 542)
+texture = ExtResource("3_ynsru")
+
+[node name="FoodMarker" type="Marker2D" parent="Hand"]
+position = Vector2(0, -101)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.831373, 0.827451, 1, 1)
+position = Vector2(337.5, 235)
+sprite_frames = SubResource("SpriteFrames_1rbg1")
+autoplay = "default"
+frame_progress = 0.273953
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tf6u6")
+}
+autoplay = "start_waiting"
+
+[node name="FadePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_478vo")
+}
+
+[node name="FeedLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(400, 200)
+offset_left = 137.5
+offset_top = -29.0
+offset_right = 537.5
+offset_bottom = 171.0
+theme_override_colors/default_color = Color(0.964706, 0.188235, 0.686275, 1)
+theme_override_colors/font_outline_color = Color(0.270588, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("6_ynsru")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[wave]Feed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionsLabel" type="RichTextLabel" parent="FeedLabel"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 200.0
+theme_override_colors/default_color = Color(0.964706, 0.188235, 0.686275, 1)
+theme_override_colors/font_outline_color = Color(0.270588, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("6_ynsru")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[wave](Arrow keys)"
+horizontal_alignment = 1
+vertical_alignment = 1

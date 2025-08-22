@@ -28,7 +28,8 @@ func _input(event: InputEvent) -> void:
 	if _frame_used: return
 	if not _letter_queue: return
 	
-	var correct_input = event.as_text() == _letter_queue[0] or \
+	var correct_input = (event.as_text() == _letter_queue[0] or \
+		event.as_text() == "Shift+"+_letter_queue[0]) or \
 		(_letter_queue[0] == '!' and event.as_text() == "Shift+1")
 	
 	if correct_input and not event.is_released() \
@@ -39,7 +40,7 @@ func _input(event: InputEvent) -> void:
 			_complete()
 
 func _update_text() -> void:
-	var new_text = "[color=#bababa90]"
+	var new_text = "[color=#ffc0ffc0]"
 	var ind = letters.length() - _letter_queue.size() - _spaces
 	var close_shake = false
 	for l in letters:

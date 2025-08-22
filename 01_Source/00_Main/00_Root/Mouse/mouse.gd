@@ -21,19 +21,24 @@ func _process(delta: float) -> void:
 
 func _set_cursor() -> void:
 	var cursor_image: Image
+	var hotspot: Vector2
 	match cursor_type:
 		NORMAL:
 			cursor_image = _normal_cursor
+			hotspot = Vector2(16, 16)
 		INTERACT:
 			cursor_image = _interact_cursor
+			hotspot = Vector2(12, 0)
 		GRAB:
 			cursor_image = _grab_cursor
+			hotspot = Vector2(16, 16)
 		AIM:
 			if _timer > 0.5:
 				cursor_image = _aim1_cursor
 			else:
 				cursor_image = _aim2_cursor
+			hotspot = Vector2(16, 16)
 	
 	if cursor_image != _last_cursor_image:
-		Input.set_custom_mouse_cursor(cursor_image)
+		Input.set_custom_mouse_cursor(cursor_image, 0, hotspot)
 		_last_cursor_image = cursor_image

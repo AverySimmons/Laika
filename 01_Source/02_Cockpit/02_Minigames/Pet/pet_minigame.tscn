@@ -1,50 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://khuwf1q2rsfc"]
+[gd_scene load_steps=17 format=3 uid="uid://khuwf1q2rsfc"]
 
 [ext_resource type="Script" uid="uid://byivn76cqvp7v" path="res://01_Source/02_Cockpit/02_Minigames/Pet/pet_minigame.gd" id="1_cw6iq"]
 [ext_resource type="Texture2D" uid="uid://cc56fei441713" path="res://00_Assets/00_Sprites/cockpit sprites/laika_pet_spritesheet.png" id="2_3gkwe"]
 [ext_resource type="Texture2D" uid="uid://cjh6krpt7bg56" path="res://00_Assets/00_Sprites/cockpit sprites/petting_hand_spritesheet.png" id="3_qv5u2"]
-
-[sub_resource type="Animation" id="Animation_xv2gg"]
-resource_name = "petting"
-length = 0.3
-loop_mode = 1
-step = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Laika:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [2, 3, 4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hand:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.142857),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hand:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(266, 157)]
-}
+[ext_resource type="Texture2D" uid="uid://cecyp3461darl" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder1.png" id="4_3kv2w"]
+[ext_resource type="Texture2D" uid="uid://ceoslyiduqoro" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder2.png" id="5_baxod"]
+[ext_resource type="FontFile" uid="uid://c60li4pcu0xe0" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="6_baxod"]
 
 [sub_resource type="Animation" id="Animation_3kv2w"]
 length = 0.001
@@ -114,6 +75,48 @@ tracks/1/keys = {
 "values": [Vector2(222, 88)]
 }
 
+[sub_resource type="Animation" id="Animation_xv2gg"]
+resource_name = "petting"
+length = 0.3
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laika:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.142857),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(266, 157)]
+}
+
 [sub_resource type="Animation" id="Animation_f2p6p"]
 resource_name = "start_petting"
 length = 0.1
@@ -151,41 +154,13 @@ _data = {
 &"start_petting": SubResource("Animation_f2p6p")
 }
 
-[sub_resource type="Animation" id="Animation_qv5u2"]
-resource_name = "exit"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hand:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.35, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Laika:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.35, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_uogrn"]
 resource_name = "enter"
 length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Laika:self_modulate")
+tracks/0/path = NodePath("Hand:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -197,7 +172,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hand:self_modulate")
+tracks/1/path = NodePath("Laika:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -206,13 +181,65 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_xtpxr"]
+resource_name = "exit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laika:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_36gxr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Laika:self_modulate")
+tracks/0/path = NodePath("Laika:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -224,7 +251,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hand:self_modulate")
+tracks/1/path = NodePath("Hand:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -233,19 +260,45 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_36gxr"]
-_data = {
-&"RESET": SubResource("Animation_xtpxr"),
-&"enter": SubResource("Animation_uogrn"),
-&"exit": SubResource("Animation_qv5u2")
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lvn15"]
+_data = {
+&"RESET": SubResource("Animation_36gxr"),
+&"enter": SubResource("Animation_uogrn"),
+&"exit": SubResource("Animation_xtpxr")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2p6p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3kv2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_baxod")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [node name="PetMinigame" type="Node2D"]
 script = ExtResource("1_cw6iq")
 
 [node name="Laika" type="Sprite2D" parent="."]
-position = Vector2(335, 235)
+position = Vector2(337.5, 235)
 texture = ExtResource("2_3gkwe")
 hframes = 5
 
@@ -262,6 +315,44 @@ autoplay = "not_petting"
 
 [node name="FadePlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_36gxr")
+&"": SubResource("AnimationLibrary_lvn15")
 }
-autoplay = "enter"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.831836, 0.828689, 1, 1)
+position = Vector2(337.5, 235)
+sprite_frames = SubResource("SpriteFrames_f2p6p")
+autoplay = "default"
+frame_progress = 0.68686
+
+[node name="PetLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(400, 200)
+offset_left = 137.5
+offset_top = -29.0
+offset_right = 537.5
+offset_bottom = 171.0
+theme_override_colors/default_color = Color(0.964706, 0.188235, 0.686275, 1)
+theme_override_colors/font_outline_color = Color(0.270588, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("6_baxod")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[wave]Pet"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionsLabel" type="RichTextLabel" parent="PetLabel"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 200.0
+theme_override_colors/default_color = Color(0.964706, 0.188235, 0.686275, 1)
+theme_override_colors/font_outline_color = Color(0.270588, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("6_baxod")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[wave](Mouse)"
+horizontal_alignment = 1
+vertical_alignment = 1

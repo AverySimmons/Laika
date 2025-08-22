@@ -1,6 +1,6 @@
 extends Minigame
 
-const _NEEDED_MOUSE_DIST = 1000
+const _NEEDED_MOUSE_DIST = 2000
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var fade_player: AnimationPlayer = $FadePlayer
@@ -23,7 +23,7 @@ func handle_mouse(local_mouse_pos, is_click, is_held) -> void:
 		_last_mouse_position = local_mouse_pos
 		return
 	
-	if is_held:
+	if is_held and not fade_player.is_playing():
 		if not animation_player.is_playing():
 			if _petting_started:
 				animation_player.play("petting")
@@ -35,6 +35,9 @@ func handle_mouse(local_mouse_pos, is_click, is_held) -> void:
 		if _mouse_dist > _NEEDED_MOUSE_DIST:
 			_open_lock()
 			_spawn_letter_lock("GOOD GIRL!")
+			
+			var t = create_tween()
+			t.tween_property($PetLabel, "modulate:a", 0, 0.2)
 	
 	else:
 		_petting_started = false

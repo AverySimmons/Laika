@@ -11,10 +11,11 @@ enum {IDLE, RUNNING, BLOCKING, SLEEPING}
 
 const _TASKS: Dictionary[PackedScene, Vector2] = {
 	preload("res://01_Source/02_Cockpit/02_Minigames/Pet/pet_minigame.tscn") : Vector2(50,50),
+	preload("res://01_Source/02_Cockpit/02_Minigames/Feed/feed_minigame.tscn") : Vector2(50, 90),
 }
 
-const _IDLE_SPEED = 20
-const _RUNNING_SPEED = 30
+const _IDLE_SPEED = 25
+const _RUNNING_SPEED = 35
 const _NEW_TASK_TIME_RANGE = Vector2(13, 17)
 const _IDLE_TIME_RANGE = Vector2(5, 8)
 const _GLOBAL_SIZE = Vector2(480, 190)
@@ -34,14 +35,14 @@ const _SLEEP_COOLDOWN_RANGE = Vector2(30, 40)
 var _local_position = Vector2(50,50)
 var _state = IDLE
 var _current_task: PackedScene
-var _new_task_timer = 15
+var _new_task_timer = 0
 
 var _idle_timer = 0
 var _idle_is_moving = false
 var _idle_target_position = Vector2.ZERO
 
 var _sleep_timer = 0
-var _sleep_cooldown_timer = 0
+var _sleep_cooldown_timer = 30
 
 func minigame_complete() -> void:
 	_state = IDLE
