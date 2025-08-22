@@ -167,3 +167,17 @@ func _flip_sprite_to_point(point: Vector2) -> void:
 	var flip = -sign(_local_position.direction_to(point).x)
 	if flip:
 		sprite_2d.scale.x = flip
+
+func pause() -> void:
+	animation_player.play("idle")
+	_stop_pant()
+
+func _play_bark() -> void:
+	$Bark.play()
+
+func _play_pant() -> void:
+	if not $Pant.playing:
+		$Pant.play()
+
+func _stop_pant() -> void:
+	$Pant.stop()

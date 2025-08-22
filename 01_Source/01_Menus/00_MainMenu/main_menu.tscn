@@ -1,15 +1,120 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwm7mkowj1ken"]
+[gd_scene load_steps=10 format=3 uid="uid://cwm7mkowj1ken"]
 
 [ext_resource type="Script" uid="uid://b7oq3oq5158xi" path="res://01_Source/01_Menus/00_MainMenu/main_menu.gd" id="1_ifppw"]
+[ext_resource type="Texture2D" uid="uid://6mla5slhi8e1" path="res://00_Assets/00_Sprites/menu sprites/title_text_spritesheet.png" id="2_mk2xf"]
+[ext_resource type="Texture2D" uid="uid://c0osmkvnmmrvu" path="res://00_Assets/00_Sprites/menu sprites/title_screen_button_spritesheet.png" id="3_mkv7l"]
+
+[sub_resource type="Animation" id="Animation_1timv"]
+resource_name = "default"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_pbh7x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y0dcv"]
+_data = {
+&"RESET": SubResource("Animation_pbh7x"),
+&"default": SubResource("Animation_1timv")
+}
+
+[sub_resource type="Animation" id="Animation_kpjxk"]
+resource_name = "default"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_fdvk0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6hbmy"]
+_data = {
+&"RESET": SubResource("Animation_fdvk0"),
+&"default": SubResource("Animation_kpjxk")
+}
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_ifppw")
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 294.0
-offset_top = 153.0
-offset_right = 534.0
-offset_bottom = 321.0
+modulate = Color(1, 1, 1, 0)
+offset_left = 482.0
+offset_top = 421.0
+offset_right = 722.0
+offset_bottom = 589.0
 text = "Start"
 
+[node name="TitleTextSpritesheet" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("2_mk2xf")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleTextSpritesheet"]
+libraries = {
+&"": SubResource("AnimationLibrary_y0dcv")
+}
+autoplay = "default"
+speed_scale = 0.6
+
+[node name="TitleScreenButtonSpritesheet" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("3_mkv7l")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleScreenButtonSpritesheet"]
+libraries = {
+&"": SubResource("AnimationLibrary_6hbmy")
+}
+autoplay = "default"
+speed_scale = 0.6
+
+[connection signal="mouse_entered" from="StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="StartButton" to="." method="_on_start_button_mouse_exited"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

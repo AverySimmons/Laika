@@ -2,11 +2,13 @@ extends Node2D
 
 @onready var cockpit_container: VBoxContainer = $Control/ScreenContainer/CockpitContainer
 @onready var living_space_container: SubViewportContainer = $Control/ScreenContainer/CockpitContainer/LivingSpaceContainer
-@onready var control_panel_container: SubViewportContainer = $Control/ScreenContainer/CockpitContainer/ControlPanelContainer
+@onready var control_panel: TextureRect = $Control/ScreenContainer/CockpitContainer/ControlPanel
 @onready var space_container: SubViewportContainer = $Control/ScreenContainer/SpaceContainer
 @onready var living_space: Node2D = $Control/ScreenContainer/CockpitContainer/LivingSpaceContainer/SubViewport/CockpitLevel
-@onready var control_panel
 @onready var space
+
+@onready var control_panel_ap: AnimationPlayer = $Control/ScreenContainer/CockpitContainer/ControlPanel/ControlPanelAP
+
 
 enum {COCKPIT, SPACE}
 
@@ -19,8 +21,16 @@ func _physics_process(_delta: float) -> void:
 	_handle_click()
 
 func _connect_signals() -> void:
+	living_space.laika_started_blocking.connect(_laika_start_blocking)
+	living_space.minigame_complete.connect(_minigame_won)
 	cockpit_container.mouse_entered.connect(_cockpit_mouse_entered)
 	space_container.mouse_entered.connect(_space_mouse_entered)
+
+func _laika_start_blocking() -> void:
+	control_panel_ap.play("error")
+
+func _minigame_won() -> void:
+	control_panel_ap.play("normal")
 
 func _cockpit_mouse_entered() -> void:
 	current_focus = COCKPIT

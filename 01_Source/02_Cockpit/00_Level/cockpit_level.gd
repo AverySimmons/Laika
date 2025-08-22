@@ -1,6 +1,7 @@
 extends Node2D
 
 signal minigame_complete()
+signal laika_started_blocking()
 
 const _LAIKA_CLICK_RADIUS = 50
 
@@ -21,8 +22,10 @@ func _connect_signals() -> void:
 func _set_minigame(minigame: PackedScene) -> void:
 	_minigame_scene = minigame
 	laika_blocking = true
+	laika_started_blocking.emit()
 
 func _enter_minigame() -> void:
+	laika.pause()
 	_current_minigame = _minigame_scene.instantiate()
 	_current_minigame.success.connect(_exit_minigame)
 	add_child(_current_minigame)
@@ -32,6 +35,7 @@ func _enter_minigame() -> void:
 
 func _exit_minigame() -> void:
 	laika.minigame_complete()
+	minigame_complete.emit()
 	in_minigame = false
 	laika_blocking = false
 	

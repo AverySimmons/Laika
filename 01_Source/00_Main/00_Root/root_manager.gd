@@ -5,14 +5,25 @@ extends Node
 @onready var _settings_scene = preload("res://01_Source/01_Menus/01_Settings/settings_menu.tscn")
 
 @onready var mouse: Node = $Mouse
+@onready var menu_music: AudioStreamPlayer = $MenuMusic
+@onready var game_music: AudioStreamPlayer = $GameMusic
 
 var _current_node : Node
 var _settings_node : Node
+
+var _current_music : AudioStreamPlayer
 
 func _ready() -> void:
 	_create_title_screen()
 	Data.custom_mouse = mouse
 	Data.custom_mouse.cursor_type = Mouse.INTERACT
+	
+	_current_music = menu_music
+	_current_music.volume_linear = 0
+	_current_music.play()
+	
+	var t = create_tween()
+	t.tween_property(_current_music, "volume_linear", 1, 0.5)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("settings"):
@@ -25,9 +36,15 @@ func _enter_settings() -> void:
 	_settings_node.settings_closed.connect(_exit_settings)
 	add_child(_settings_node)
 	get_tree().paused = true
+	
+	var t = create_tween()
+	t.tween_property(_current_music, "volume_linear", 0.5, 0.2)
 
 func _exit_settings() -> void:
 	get_tree().paused = false
+	
+	var t = create_tween()
+	t.tween_property(_current_music, "volume_linear", 1, 0.2)
 
 func _create_title_screen() -> void:
 	_current_node = _main_menu_scene.instantiate()

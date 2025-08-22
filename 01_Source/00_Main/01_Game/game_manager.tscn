@@ -1,8 +1,126 @@
-[gd_scene load_steps=4 format=3 uid="uid://dessid8kik7r8"]
+[gd_scene load_steps=10 format=3 uid="uid://dessid8kik7r8"]
 
 [ext_resource type="Script" uid="uid://v3dj5mt8ovw0" path="res://01_Source/00_Main/01_Game/game_manager.gd" id="1_gu7u4"]
 [ext_resource type="PackedScene" uid="uid://c31iito6ph7xe" path="res://01_Source/02_Cockpit/00_Level/cockpit_level.tscn" id="2_kcsw3"]
 [ext_resource type="PackedScene" uid="uid://dkr0c766kjsno" path="res://01_Source/03_Space/00_Level/space_level.tscn" id="3_kcsw3"]
+[ext_resource type="Texture2D" uid="uid://1nlclkyx5mch" path="res://00_Assets/00_Sprites/cockpit sprites/control_panel_default.png" id="3_pq62w"]
+[ext_resource type="Texture2D" uid="uid://cno1d0cmjxn5x" path="res://00_Assets/00_Sprites/cockpit sprites/control_panel_error_spritesheet.png" id="4_vfwyv"]
+
+[sub_resource type="Animation" id="Animation_pq62w"]
+resource_name = "normal"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vfwyv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7gnn8"]
+resource_name = "error"
+length = 0.3
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 0.286275), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yxsk6"]
+_data = {
+&"RESET": SubResource("Animation_vfwyv"),
+&"error": SubResource("Animation_7gnn8"),
+&"normal": SubResource("Animation_pq62w")
+}
 
 [node name="GameManager" type="Node2D"]
 process_mode = 1
@@ -57,16 +175,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.283736, 0.181753, 0.175551, 1)
+color = Color(0.752941, 0.752941, 0.752941, 1)
 
-[node name="ControlPanelContainer" type="SubViewportContainer" parent="Control/ScreenContainer/CockpitContainer"]
+[node name="ControlPanel" type="TextureRect" parent="Control/ScreenContainer/CockpitContainer"]
 layout_mode = 2
-size_flags_vertical = 4
+texture = ExtResource("3_pq62w")
 
-[node name="SubViewport" type="SubViewport" parent="Control/ScreenContainer/CockpitContainer/ControlPanelContainer"]
-handle_input_locally = false
-size = Vector2i(675, 230)
-render_target_update_mode = 4
+[node name="Sprite2D" type="Sprite2D" parent="Control/ScreenContainer/CockpitContainer/ControlPanel"]
+visible = false
+position = Vector2(337, 115)
+texture = ExtResource("4_vfwyv")
+vframes = 2
+
+[node name="ControlPanelAP" type="AnimationPlayer" parent="Control/ScreenContainer/CockpitContainer/ControlPanel"]
+libraries = {
+&"": SubResource("AnimationLibrary_yxsk6")
+}
+autoplay = "normal"
+speed_scale = 0.75
+
+[node name="ColorRect" type="ColorRect" parent="Control/ScreenContainer/CockpitContainer/ControlPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0)
 
 [node name="BorderVert" type="TextureRect" parent="Control/ScreenContainer"]
 custom_minimum_size = Vector2(20, 0)
@@ -79,7 +214,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.283736, 0.181753, 0.175551, 1)
+color = Color(0.752941, 0.752941, 0.752941, 1)
 
 [node name="SpaceContainer" type="SubViewportContainer" parent="Control/ScreenContainer"]
 layout_mode = 2
