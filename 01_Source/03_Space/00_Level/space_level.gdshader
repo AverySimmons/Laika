@@ -18,7 +18,7 @@ vec3 render_star(vec2 tile, vec2 uv, bool flickering) {
 	vec3 col = vec3(0);
 	vec2 h1 = hash(tile);
 	vec2 h2 = hash(h1);
-	
+
 	if (h1.x > 1.-STAR_DENSITY) {
 		float t = TIME * h2.x * 2. + h2.y;
 		vec2 cuv = (2. + h1.y - .5)*(uv - vec2(0.5,0.5)); // centred uv (-1 to 1 instead of 0 to 1)
@@ -62,7 +62,7 @@ void fragment() {
 	//col += render_star(tuv4, uv4, true);
 
 	//col += render_star(vec2(0),nuv);
-	
+
 	 col += vec3(0.1, 0, .1);
 
 	COLOR.rgb = col;

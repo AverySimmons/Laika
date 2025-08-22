@@ -12,6 +12,7 @@ enum {IDLE, RUNNING, BLOCKING, SLEEPING}
 const _TASKS: Dictionary[PackedScene, Vector2] = {
 	preload("res://01_Source/02_Cockpit/02_Minigames/Pet/pet_minigame.tscn") : Vector2(50,50),
 	preload("res://01_Source/02_Cockpit/02_Minigames/Feed/feed_minigame.tscn") : Vector2(50, 90),
+	preload("res://01_Source/02_Cockpit/02_Minigames/Fetch/fetch_minigame.tscn") : Vector2(10, 10)
 }
 
 const _IDLE_SPEED = 25
@@ -36,6 +37,7 @@ var _local_position = Vector2(50,50)
 var _state = IDLE
 var _current_task: PackedScene
 var _new_task_timer = 0
+var _last_task: PackedScene = null
 
 var _idle_timer = 0
 var _idle_is_moving = false
@@ -86,7 +88,10 @@ func _enter_idle() -> void:
 
 func _enter_running() -> void:
 	_current_task = _TASKS.keys().pick_random()
+	while _current_task == _last_task:
+		_current_task = _TASKS.keys().pick_random()
 	
+	_last_task = _current_task
 	animation_player.play("run")
 	_flip_sprite_to_point(_TASKS[_current_task])
 

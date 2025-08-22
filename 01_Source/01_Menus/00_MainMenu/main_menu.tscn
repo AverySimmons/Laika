@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://cwm7mkowj1ken"]
 
 [ext_resource type="Script" uid="uid://b7oq3oq5158xi" path="res://01_Source/01_Menus/00_MainMenu/main_menu.gd" id="1_ifppw"]
-[ext_resource type="Texture2D" uid="uid://bkr4a8it5qtay" path="res://00_Assets/00_Sprites/menu sprites/title_text_spritesheet.png" id="2_mk2xf"]
-[ext_resource type="Texture2D" uid="uid://dvql2dm161fy3" path="res://00_Assets/00_Sprites/menu sprites/title_screen_button_spritesheet.png" id="3_mkv7l"]
+[ext_resource type="Texture2D" uid="uid://6mla5slhi8e1" path="res://00_Assets/00_Sprites/menu sprites/title_text_spritesheet.png" id="2_mk2xf"]
+[ext_resource type="Texture2D" uid="uid://c0osmkvnmmrvu" path="res://00_Assets/00_Sprites/menu sprites/title_screen_button_spritesheet.png" id="3_mkv7l"]
 
 [sub_resource type="Animation" id="Animation_pbh7x"]
 length = 0.001
@@ -80,21 +80,6 @@ _data = {
 &"default": SubResource("Animation_kpjxk")
 }
 
-[sub_resource type="Animation" id="Animation_y0dcv"]
-resource_name = "start"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_6hbmy"]
 length = 0.001
 tracks/0/type = "value"
@@ -108,6 +93,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y0dcv"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s4wxq"]

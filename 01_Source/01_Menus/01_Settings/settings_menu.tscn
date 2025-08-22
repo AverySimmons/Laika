@@ -1,7 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbig1ghrfoor0"]
+[gd_scene load_steps=10 format=3 uid="uid://bbig1ghrfoor0"]
 
 [ext_resource type="Script" uid="uid://ql3pa7w6pbqh" path="res://01_Source/01_Menus/01_Settings/settings_menu.gd" id="1_g8r6c"]
+[ext_resource type="Texture2D" uid="uid://wsst3v73nd8a" path="res://00_Assets/00_Sprites/menu sprites/pause_menu.png" id="2_cildi"]
 [ext_resource type="PackedScene" uid="uid://dsasghw03na8q" path="res://01_Source/01_Menus/01_Settings/volume_slider.tscn" id="2_e8slt"]
+[ext_resource type="Texture2D" uid="uid://b2yjya0xfvjci" path="res://00_Assets/00_Sprites/menu sprites/sound_slider.png" id="3_prpdh"]
+[ext_resource type="Texture2D" uid="uid://diduumdhiu1mh" path="res://00_Assets/00_Sprites/menu sprites/sound_slider_node.png" id="5_lckh7"]
+
+[sub_resource type="Animation" id="Animation_oc2ec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_g8r6c"]
 resource_name = "enter"
@@ -35,33 +53,12 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_oc2ec"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oc2ec"]
 _data = {
 &"RESET": SubResource("Animation_oc2ec"),
 &"enter": SubResource("Animation_g8r6c"),
 &"exit": SubResource("Animation_e8slt")
 }
-
-[sub_resource type="LabelSettings" id="LabelSettings_oc2ec"]
-font_size = 40
-
-[sub_resource type="LabelSettings" id="LabelSettings_e8slt"]
-font_size = 80
 
 [node name="SettingsMenu" type="Node2D"]
 z_index = 1
@@ -76,30 +73,21 @@ autoplay = "enter"
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0.517647)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 490.0
-offset_top = 337.0
-offset_right = 790.0
-offset_bottom = 437.0
-text = "Volume"
-label_settings = SubResource("LabelSettings_oc2ec")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("2_cildi")
 
-[node name="Title" type="Label" parent="."]
-offset_left = 440.0
-offset_top = 100.0
-offset_right = 840.0
-offset_bottom = 250.0
-text = "Settings"
-label_settings = SubResource("LabelSettings_e8slt")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SoundSlider" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("3_prpdh")
 
 [node name="VolumeSlider" parent="." instance=ExtResource("2_e8slt")]
-offset_left = 390.0
-offset_top = 437.0
-offset_right = 890.0
-offset_bottom = 483.0
+offset_left = 284.0
+offset_top = 494.0
+offset_right = 984.0
+offset_bottom = 560.0
+theme_override_icons/grabber = ExtResource("5_lckh7")
+theme_override_icons/grabber_highlight = ExtResource("5_lckh7")
+theme_override_icons/grabber_disabled = ExtResource("5_lckh7")
