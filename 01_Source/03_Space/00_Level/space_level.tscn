@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dkr0c766kjsno"]
 
 [ext_resource type="Shader" uid="uid://dlobej71u6gd4" path="res://01_Source/03_Space/00_Level/space_level.gdshader" id="1_r8aci"]
-[ext_resource type="Script" uid="uid://dcwlegbikcokr" path="res://01_Source/03_Space/00_Level/space_level_manager.gd" id="1_s8qs4"]
+[ext_resource type="Script" path="res://01_Source/03_Space/00_Level/space_level_manager.gd" id="1_s8qs4"]
 [ext_resource type="Script" uid="uid://b2b0hxge0gw0m" path="res://01_Source/03_Space/00_Level/space_level.gd" id="1_xye4g"]
 [ext_resource type="Script" uid="uid://beugd3w1w232" path="res://01_Source/03_Space/00_Level/enemy_spawner.gd" id="3_viqam"]
 [ext_resource type="Script" uid="uid://cryhhxckvj0mx" path="res://01_Source/03_Space/00_Level/meteor_spawner.gd" id="5_403k3"]
