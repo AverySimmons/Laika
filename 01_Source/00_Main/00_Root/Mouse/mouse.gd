@@ -4,6 +4,9 @@ extends Node
 enum {NORMAL, INTERACT, GRAB, AIM}
 
 var cursor_type: int = NORMAL
+var emit_hearts = false
+
+@onready var heart_particles: CPUParticles2D = $HeartParticles
 
 var _normal_cursor = preload("res://00_Assets/00_Sprites/cursor sprites/hand_cursor_normal.png").get_image()
 var _interact_cursor = preload("res://00_Assets/00_Sprites/cursor sprites/hand_cursor_interact.png").get_image()
@@ -16,6 +19,8 @@ var _last_cursor_image: Image
 
 func _process(delta: float) -> void:
 	_set_cursor()
+	heart_particles.emitting = emit_hearts
+	heart_particles.global_position = heart_particles.get_global_mouse_position()
 	
 	_timer = fmod(_timer + delta * 2., 1.)
 

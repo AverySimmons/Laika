@@ -40,7 +40,7 @@ func _input(event: InputEvent) -> void:
 			_complete()
 
 func _update_text() -> void:
-	var new_text = "[color=#ffc0ffc0]"
+	var new_text = "[color=#ffc0ff50]"
 	var ind = letters.length() - _letter_queue.size() - _spaces
 	var close_shake = false
 	for l in letters:

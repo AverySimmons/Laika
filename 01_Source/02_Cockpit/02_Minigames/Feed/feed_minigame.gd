@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 		2:
 			hand.global_position = hand_pos.clamp(Vector2(dim.x-215,40), Vector2(dim.x+120,dim.y-40))
 	
-	if food_marker.global_position.distance_to(mouth_marker.global_position) < 100:
+	if food_marker.global_position.distance_to(mouth_marker.global_position) < 40:
 		_laika_fed()
 
 func _laika_fed() -> void:

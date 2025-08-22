@@ -26,11 +26,17 @@ func _enter_minigame() -> void:
 	_current_minigame = _minigame_scene.instantiate()
 	_current_minigame.success.connect(_exit_minigame)
 	add_child(_current_minigame)
+	
+	var t = create_tween()
+	t.tween_property(laika, "modulate:a", 0, 0.1)
 
 func _exit_minigame() -> void:
 	laika.minigame_complete()
 	in_minigame = false
 	laika_blocking = false
+	
+	var t = create_tween()
+	t.tween_property(laika, "modulate:a", 1, 0.1)
 
 func handle_mouse(mouse_position, is_click, is_held) -> void:
 	if is_held:

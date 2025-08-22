@@ -317,6 +317,8 @@ autoplay = "not_petting"
 libraries = {
 &"": SubResource("AnimationLibrary_lvn15")
 }
+autoplay = "enter"
+speed_scale = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(0.831836, 0.828689, 1, 1)
