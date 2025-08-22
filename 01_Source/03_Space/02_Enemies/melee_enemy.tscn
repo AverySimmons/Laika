@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0j4flnplaxwp"]
+[gd_scene load_steps=5 format=3 uid="uid://c0j4flnplaxwp"]
 
 [ext_resource type="Script" uid="uid://c1e7mwa26e84f" path="res://01_Source/03_Space/02_Enemies/melee_enemy.gd" id="1_ognmw"]
+[ext_resource type="Texture2D" uid="uid://b186kwha0humf" path="res://00_Assets/00_Sprites/space sprites/enemyship2.png" id="2_7igh7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7igh7"]
+size = Vector2(32, 42)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hciok"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hciok"]
+size = Vector2(33, 45)
 
 [node name="MeleeEnemy" type="Area2D"]
 collision_layer = 0
@@ -12,12 +15,18 @@ collision_mask = 8
 script = ExtResource("1_ognmw")
 metadata/_custom_type_script = "uid://cnmnmhklqj8i2"
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_7igh7")
+
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_7igh7")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_hciok")
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_hciok")

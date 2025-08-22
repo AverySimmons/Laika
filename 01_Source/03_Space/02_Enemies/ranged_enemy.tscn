@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://rjmisr4e85fi"]
+[gd_scene load_steps=7 format=3 uid="uid://rjmisr4e85fi"]
 
 [ext_resource type="Script" uid="uid://bwp6eemrbbpqo" path="res://01_Source/03_Space/02_Enemies/ranged_enemy.gd" id="1_kp05j"]
 [ext_resource type="Script" uid="uid://dnsj3bd6sm46l" path="res://01_Source/03_Space/02_Enemies/movement_point.gd" id="2_dbusx"]
-[ext_resource type="Texture2D" uid="uid://cwqu368tk0pah" path="res://icon.svg" id="3_5cal0"]
-[ext_resource type="Texture2D" uid="uid://c7i71lns6i3vf" path="res://00_Assets/00_Sprites/space sprites/laika_spaceship.png" id="3_dbusx"]
+[ext_resource type="Texture2D" uid="uid://bh8jnrexbinkk" path="res://00_Assets/00_Sprites/space sprites/enemyship1.png" id="3_5cal0"]
 [ext_resource type="Script" uid="uid://jjlqwh7dh2o5" path="res://01_Source/03_Space/02_Enemies/gun.gd" id="5_ts1jd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cal0"]
@@ -29,13 +28,9 @@ shape = SubResource("RectangleShape2D_ts1jd")
 [node name="MovementPoint" type="Node2D" parent="."]
 script = ExtResource("2_dbusx")
 
-[node name="Sprite2D" type="Sprite2D" parent="MovementPoint"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_5cal0")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_dbusx")
+texture = ExtResource("3_5cal0")
 
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("5_ts1jd")

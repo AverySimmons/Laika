@@ -7,7 +7,7 @@ func _ready() -> void:
 	radius = randf_range(40, 60)
 	hitbox.shape.radius = radius
 	hurtbox.shape.radius = radius
-	# Change sprite scale too
+	sprite.scale = Vector2(radius/40., radius/40.)
 	pass
 
 func _physics_process(delta: float) -> void:

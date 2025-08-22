@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 	var dir_to_player = player.global_position - global_position
 	cur_velocity += dir_to_player*acceleration*delta
 	cur_velocity.clamp(-top_speed, top_speed)
+	rotation = 3*TAU/4. + cur_velocity.angle()
 	global_position += cur_velocity*delta
 	pass
 

@@ -3,7 +3,11 @@ extends Enemy
 # Movement =========================================================================================
 var oval_radius: Vector2 = Vector2(75, 0) # 75, 40
 var current_angle: float = 0
-var fully_spawned: bool = false
+var fully_spawned: bool = true
+
+# Weapon stuff =====================================================================================
+var shooting_time: float = 3
+var shooting_timer: float = 3
 
 @onready var movement_point: Node2D = $MovementPoint
 @onready var hitbox: CollisionShape2D = $Hitbox
@@ -14,7 +18,7 @@ var fully_spawned: bool = false
 func _ready() -> void:
 	type = 1
 	hp = 4
-	#global_position.x += 200
+	global_position.x += 200
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -24,7 +28,10 @@ func _physics_process(delta: float) -> void:
 	current_angle = fmod(current_angle, TAU)
 	update_position()
 	
-	gun.shoot()
+	shooting_timer -= delta
+	if shooting_timer <= 0:
+		gun.shoot()
+		shooting_timer = shooting_time
 	pass
 
 func update_position() -> void:

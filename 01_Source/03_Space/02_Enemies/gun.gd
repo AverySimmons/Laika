@@ -6,12 +6,16 @@ var num_bullets: int = 3
 @onready var enemy_bullet = preload("res://01_Source/03_Space/01_Player/00_Guns/enemy_bullet.tscn")
 
 func shoot() -> void:
-	var dir_to_player: Vector2 = player.global_position - global_position
+	var dir_to_player: Vector2
+	if player == null:
+		dir_to_player = Vector2(0, 1)
+	else:
+		dir_to_player = player.global_position - global_position
 	var angle_to_player: float = dir_to_player.angle()
-	angle_to_player -= TAU/12.
+	angle_to_player -= TAU/16.
 	for bullet in range(num_bullets):
 		var new_bullet = enemy_bullet.instantiate()
 		new_bullet.shoot(Vector2.from_angle(angle_to_player))
 		get_tree().current_scene.add_child(new_bullet)
-		angle_to_player += TAU/12.
+		angle_to_player += TAU/16.
 	return
