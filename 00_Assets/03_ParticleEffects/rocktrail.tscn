@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpcddwbjshsnt"]
+[gd_scene load_steps=4 format=3 uid="uid://c11jbgufxcsxp"]
+
+[ext_resource type="Script" uid="uid://dcd7tonf472wa" path="res://00_Assets/03_ParticleEffects/rocktrail.gd" id="1_cf3it"]
 
 [sub_resource type="Gradient" id="Gradient_ao5gb"]
 offsets = PackedFloat32Array(0, 0.82, 1)
@@ -8,9 +10,10 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 colors = PackedColorArray(0.446777, 0.446777, 0.446777, 1, 0.847474, 0.847474, 0.847474, 1)
 
 [node name="Rocktrail" type="Node2D"]
+script = ExtResource("1_cf3it")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(44, 57)
+position = Vector2(1, 1)
 amount = 25
 lifetime = 1.2
 emission_shape = 1

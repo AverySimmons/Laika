@@ -16,8 +16,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_entered(area) -> void:
 	super._on_area_entered(area)
-	# Explosion animation? that ends with queue freeing
-	queue_free()
+	die()
 	pass
 
 func determine_velocity() -> Vector2:
