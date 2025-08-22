@@ -5,7 +5,7 @@ extends Node2D
 @onready var control_panel: TextureRect = $Control/ScreenContainer/CockpitContainer/ControlPanel
 @onready var space_container: SubViewportContainer = $Control/ScreenContainer/SpaceContainer
 @onready var living_space: Node2D = $Control/ScreenContainer/CockpitContainer/LivingSpaceContainer/SubViewport/CockpitLevel
-@onready var space: Node2D = $Control/ScreenContainer/SpaceContainer/SubViewport/SpaceLevel
+var space: Node2D
 
 
 @onready var control_panel_ap: AnimationPlayer = $Control/ScreenContainer/CockpitContainer/ControlPanel/ControlPanelAP
@@ -16,7 +16,13 @@ enum {COCKPIT, SPACE}
 var current_focus = COCKPIT
 
 func _ready() -> void:
+	space_container.get_children()[0].add_child(space)
+	space.start_level()
+	
 	_connect_signals()
+	
+	var t = create_tween()
+	t.tween_property(space, "space_scale", 585, 1)
 
 func _physics_process(_delta: float) -> void:
 	_handle_click()

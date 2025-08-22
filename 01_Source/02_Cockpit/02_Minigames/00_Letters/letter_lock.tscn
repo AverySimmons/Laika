@@ -165,6 +165,6 @@ text = "[wave]Type!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Laser" type="AudioStreamPlayer" parent="."]
+[node name="Type" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_nccqm")
 pitch_scale = 1.6

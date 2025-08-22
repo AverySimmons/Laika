@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c68c0l4yow5k3"]
+[gd_scene load_steps=19 format=3 uid="uid://c68c0l4yow5k3"]
 
 [ext_resource type="Script" uid="uid://civdtmf0gkp3k" path="res://01_Source/02_Cockpit/02_Minigames/Feed/feed_minigame.gd" id="1_lehn0"]
 [ext_resource type="Texture2D" uid="uid://d1hq07ynjkdmw" path="res://00_Assets/00_Sprites/cockpit sprites/laika_eat_treat_spritesheet.png" id="2_fxajo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cecyp3461darl" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder1.png" id="4_3s0gl"]
 [ext_resource type="Texture2D" uid="uid://ceoslyiduqoro" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder2.png" id="5_478vo"]
 [ext_resource type="FontFile" uid="uid://c60li4pcu0xe0" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="6_ynsru"]
+[ext_resource type="AudioStream" uid="uid://d0m1qyor7ds0l" path="res://00_Assets/01_SoundEffects/chomp (lowkey reused from galleria of guilt).wav" id="7_3s0gl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1rbg1"]
 animations = [{
@@ -273,6 +274,11 @@ _data = {
 &"exit": SubResource("Animation_478vo")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3s0gl"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("7_3s0gl")
+
 [node name="FeedMinigame" type="Node2D"]
 script = ExtResource("1_lehn0")
 
@@ -343,3 +349,7 @@ bbcode_enabled = true
 text = "[wave](Arrow keys)"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Chomp" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_3s0gl")
+pitch_scale = 1.1

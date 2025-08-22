@@ -56,8 +56,9 @@ func _physics_process(delta: float) -> void:
 		base_velocity.y = move_toward(base_velocity.y, 0, idle_friction.y * delta)
 	global_position += base_velocity * delta
 	
-	global_position.x = clamp(global_position.x, 0+sprite_offset.x/2., bounds.x-sprite_offset.x/2.)
-	global_position.y = clamp(global_position.y, 0+sprite_offset.y/2., bounds.y-sprite_offset.y/2.)
+	var mid = Vector2(640,360)
+	global_position.x = clamp(global_position.x, mid.x-bounds.x/2.+sprite_offset.x/2., mid.x+bounds.x/2.-sprite_offset.x/2.)
+	global_position.y = clamp(global_position.y, mid.y-bounds.y/2.+sprite_offset.y/2., mid.y+bounds.y/2.-sprite_offset.y/2.)
 	
 	if is_moving == true && !animation_player.is_playing():
 		animation_player.play("trail")

@@ -1,7 +1,7 @@
 extends Minigame
 
-const _HAND_SPEED = 150
-const _RETREAT_SPEED = 300
+const _HAND_SPEED = 500
+const _RETREAT_SPEED = 600
 
 @onready var mouth_marker: Marker2D = $Laika/MouthMarker
 @onready var food_marker: Marker2D = $Hand/FoodMarker
@@ -17,7 +17,7 @@ func _init() -> void:
 	_locks = 1
 
 func _ready() -> void:
-	#hand.modulate.a = 0
+	hand.modulate.a = 0
 	
 	_spawn_hand()
 
@@ -54,6 +54,7 @@ func _process(delta: float) -> void:
 func _laika_fed() -> void:
 	_hand_exists = false
 	_times_fed += 1
+	$Chomp.play()
 	
 	var t = create_tween()
 	t.tween_property(hand, "modulate:a", 0, 0.2)

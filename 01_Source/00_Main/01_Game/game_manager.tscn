@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dessid8kik7r8"]
+[gd_scene load_steps=12 format=3 uid="uid://dessid8kik7r8"]
 
 [ext_resource type="Script" uid="uid://v3dj5mt8ovw0" path="res://01_Source/00_Main/01_Game/game_manager.gd" id="1_gu7u4"]
 [ext_resource type="PackedScene" uid="uid://c31iito6ph7xe" path="res://01_Source/02_Cockpit/00_Level/cockpit_level.tscn" id="2_kcsw3"]
-[ext_resource type="PackedScene" uid="uid://dkr0c766kjsno" path="res://01_Source/03_Space/00_Level/space_level.tscn" id="3_kcsw3"]
 [ext_resource type="Texture2D" uid="uid://1nlclkyx5mch" path="res://00_Assets/00_Sprites/cockpit sprites/control_panel_default.png" id="3_pq62w"]
 [ext_resource type="Texture2D" uid="uid://cno1d0cmjxn5x" path="res://00_Assets/00_Sprites/cockpit sprites/control_panel_error_spritesheet.png" id="4_vfwyv"]
 
@@ -122,6 +121,66 @@ _data = {
 &"normal": SubResource("Animation_pq62w")
 }
 
+[sub_resource type="Animation" id="Animation_yxsk6"]
+resource_name = "trans"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ScreenContainer/SpaceContainer/SubViewport:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2i(1280, 720), Vector2i(585, 720)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-358, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6q6h6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ScreenContainer/SpaceContainer/SubViewport:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(585, 720)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6q6h6"]
+_data = {
+&"RESET": SubResource("Animation_6q6h6"),
+&"trans": SubResource("Animation_yxsk6")
+}
+
 [node name="GameManager" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_gu7u4")
@@ -224,4 +283,8 @@ handle_input_locally = false
 size = Vector2i(585, 720)
 render_target_update_mode = 4
 
-[node name="SpaceLevel" parent="Control/ScreenContainer/SpaceContainer/SubViewport" instance=ExtResource("3_kcsw3")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6q6h6")
+}
+autoplay = "trans"

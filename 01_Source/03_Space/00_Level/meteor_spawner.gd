@@ -15,6 +15,8 @@ var large_meteor_spawn_point: float = 585
 @onready var large_meteor_scene: PackedScene = preload("res://01_Source/03_Space/02_Enemies/big_meteor.tscn")
 
 func _physics_process(delta: float) -> void:
+	if get_parent().paused: return
+	
 	small_meteor_spawn_timer -= delta
 	if small_meteor_spawn_timer <= 0:
 		spawn_small_meteor()

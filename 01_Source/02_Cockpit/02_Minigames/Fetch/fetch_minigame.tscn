@@ -333,3 +333,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_tovhf")
 }
 autoplay = "enter"
+
+[node name="RunAway" type="AudioStreamPlayer" parent="."]
+
+[node name="Throw" type="AudioStreamPlayer" parent="."]

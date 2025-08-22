@@ -7,6 +7,7 @@ extends Node
 @onready var mouse: Node = $Mouse
 @onready var menu_music: AudioStreamPlayer = $MenuMusic
 @onready var game_music: AudioStreamPlayer = $GameMusic
+@onready var space: Node2D = $SpaceLevel
 
 var _current_node : Node
 var _settings_node : Node
@@ -52,6 +53,21 @@ func _create_title_screen() -> void:
 	add_child(_current_node)
 
 func _start_game() -> void:
+	remove_child(space)
+	
 	_current_node.queue_free()
 	_current_node = _game_manager_scene.instantiate()
+	_current_node.space = space
 	add_child(_current_node)
+	_start_playable()
+
+func _start_playable() -> void:
+	var t = create_tween()
+	t.tween_property(_current_music, "volume_linear", 0, 0.2)
+	
+	_current_music = game_music
+	_current_music.volume_linear = 0
+	_current_music.play()
+	
+	var t2 = create_tween()
+	t2.tween_property(_current_music, "volume_linear", 1, 0.2)

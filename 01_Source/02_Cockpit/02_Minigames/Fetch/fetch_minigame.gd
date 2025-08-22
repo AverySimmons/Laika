@@ -21,11 +21,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	handle_mouse(get_global_mouse_position(), Input.is_action_just_pressed("click"), Input.is_action_pressed("click"))
 	
-	if not _current_ball: return
-	
-	
+	Data.custom_mouse.emit_hearts = is_instance_valid(_current_ball)
 
 func _ball_thrown() -> void:
+	$Throw.play()
+	
 	_balls_left -= 1
 	if _balls_left == 0:
 		_spawn_letter_lock("FETCH!")
@@ -35,6 +35,8 @@ func _ball_thrown() -> void:
 		t.tween_property($ThrowLabel, "modulate:a", 0., 0.2)
 
 func _win() -> void:
+	$RunAway.play()
+	
 	animation_player.play("run_away")
 	await animation_player.animation_finished
 	
