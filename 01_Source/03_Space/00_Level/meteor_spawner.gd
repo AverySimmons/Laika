@@ -35,7 +35,6 @@ func spawn_small_meteor() -> void:
 	var meteor: Obstacle = small_meteor_scene.instantiate()
 	meteor.global_position = spawn_point
 	meteors.add_child(meteor)
-	await get_tree().create_timer(0.5).timeout
 	meteor.despawnable = true
 	pass
 
@@ -45,7 +44,6 @@ func spawn_big_meteor() -> void:
 	var meteor: Obstacle = large_meteor_scene.instantiate()
 	meteor.global_position = spawn_point
 	meteors.add_child(meteor)
-	await get_tree().create_timer(1.0).timeout
 	meteor.despawnable = true
 	pass
 	

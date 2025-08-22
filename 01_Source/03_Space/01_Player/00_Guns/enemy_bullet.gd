@@ -7,12 +7,20 @@ var velocity: Vector2
 var sprite_offset: Vector2
 
 @onready var player: SpacePlayer = Data.space_player
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+func _ready() -> void:
+	connect("area_entered", Callable(self, "_on_area_entered"))
+	pass
 
 func _physics_process(delta: float) -> void:
 	global_position +=  velocity * delta
 	
 	if !bounds.has_point(global_position):
 		despawn()
+	
+	if !animation_player.is_playing():
+		animation_player.play("move")
 	pass
 
 func shoot(direction: Vector2) -> void:

@@ -19,6 +19,7 @@ var is_moving: bool = false
 @onready var left_gun: Node2D = $LeftGun
 @onready var right_gun: Node2D = $RightGun
 var guns: Array
+var projectiles: Node
 
 @onready var bounds: Vector2 = Data.SPACE_SIZE
 
@@ -61,13 +62,13 @@ func _physics_process(delta: float) -> void:
 	if is_moving == true && !animation_player.is_playing():
 		animation_player.play("trail")
 	
-	#if Input.is_action_pressed("click"):
-		#handle_click(get_global_mouse_position())
+	if Input.is_action_pressed("click"):
+		handle_click(get_global_mouse_position())
 	pass
 
 func handle_click(position: Vector2) -> void:
 	for gun in guns:
-		gun.handle_click(position)
+		gun.handle_click(position, projectiles)
 	pass
 
 func take_damage() -> void:

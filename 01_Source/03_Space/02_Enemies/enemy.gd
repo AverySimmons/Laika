@@ -3,6 +3,11 @@ extends Area2D
 
 var hp: int
 var type: int
+var projectiles: Node
+
+func _ready() -> void:
+	connect("area_entered", Callable(self, "_on_area_entered"))
+	pass
 
 func _on_area_entered(area) -> void:
 	var player = area.owner
