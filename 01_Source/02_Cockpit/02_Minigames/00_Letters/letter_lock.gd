@@ -66,6 +66,7 @@ func _update_text() -> void:
 func _progress_queue() -> void:
 	_letter_queue.pop_front()
 	_frame_used = true
+	$Laser.play()
 	
 	_update_text()
 
