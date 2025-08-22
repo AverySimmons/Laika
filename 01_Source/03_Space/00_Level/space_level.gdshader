@@ -39,29 +39,31 @@ vec3 render_star(vec2 tile, vec2 uv, bool flickering) {
 void fragment() {
 	vec3 col = vec3(0);
 
-	vec2 nuv = vec2(UV.x * (size.x/size.y), UV.y); // new uv where 1,1 is always square in relation to 0,0
-
-	vec2 uv1 = vec2(nuv.x, nuv.y - TIME)*8.;
-	vec2 uv2 = vec2(nuv.x, nuv.y - TIME*.5)*12.;
-	vec2 uv3 = vec2(nuv.x, nuv.y - TIME*.2)*15.;
-	vec2 uv4 = vec2(nuv.x, nuv.y - TIME*.1)*19.;
-
-	vec2 tuv1 = floor(uv1);
-	vec2 tuv2 = floor(uv2);
-	vec2 tuv3 = floor(uv3);
-	vec2 tuv4 = floor(uv4);
-
-	uv1 = fract(uv1);
-	uv2 = fract(uv2);
-	uv3 = fract(uv3);
-	uv4 = fract(uv4);
-
-	col += render_star(tuv1, uv1, false);
-	col += render_star(tuv2, uv2, true);
-	col += render_star(tuv3, uv3, true);
-	col += render_star(tuv4, uv4, true);
+	//vec2 nuv = vec2(UV.x * (size.x/size.y), UV.y); // new uv where 1,1 is always square in relation to 0,0
+//
+	//vec2 uv1 = vec2(nuv.x, nuv.y - TIME)*8.;
+	//vec2 uv2 = vec2(nuv.x, nuv.y - TIME*.5)*12.;
+	//vec2 uv3 = vec2(nuv.x, nuv.y - TIME*.2)*15.;
+	//vec2 uv4 = vec2(nuv.x, nuv.y - TIME*.1)*19.;
+//
+	//vec2 tuv1 = floor(uv1);
+	//vec2 tuv2 = floor(uv2);
+	//vec2 tuv3 = floor(uv3);
+	//vec2 tuv4 = floor(uv4);
+//
+	//uv1 = fract(uv1);
+	//uv2 = fract(uv2);
+	//uv3 = fract(uv3);
+	//uv4 = fract(uv4);
+//
+	//col += render_star(tuv1, uv1, false);
+	//col += render_star(tuv2, uv2, true);
+	//col += render_star(tuv3, uv3, true);
+	//col += render_star(tuv4, uv4, true);
 
 	//col += render_star(vec2(0),nuv);
+	
+	 col += vec3(0.1, 0, .1);
 
 	COLOR.rgb = col;
 }
