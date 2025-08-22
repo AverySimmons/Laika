@@ -10,7 +10,7 @@ colors = PackedColorArray(0.446777, 0.446777, 0.446777, 1, 0.847474, 0.847474, 0
 [node name="Rocktrail" type="Node2D"]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(83, 49)
+position = Vector2(44, 57)
 amount = 25
 lifetime = 1.2
 emission_shape = 1
