@@ -324,7 +324,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("6_ynsru")
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "[wave]Feed"
+text = "[wave]Feed!"
 horizontal_alignment = 1
 vertical_alignment = 1
 

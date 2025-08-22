@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwm7mkowj1ken"]
+[gd_scene load_steps=13 format=3 uid="uid://cwm7mkowj1ken"]
 
 [ext_resource type="Script" uid="uid://b7oq3oq5158xi" path="res://01_Source/01_Menus/00_MainMenu/main_menu.gd" id="1_ifppw"]
 [ext_resource type="Texture2D" uid="uid://bkr4a8it5qtay" path="res://00_Assets/00_Sprites/menu sprites/title_text_spritesheet.png" id="2_mk2xf"]
@@ -80,6 +80,42 @@ _data = {
 &"default": SubResource("Animation_kpjxk")
 }
 
+[sub_resource type="Animation" id="Animation_y0dcv"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6hbmy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s4wxq"]
+_data = {
+&"RESET": SubResource("Animation_6hbmy"),
+&"start": SubResource("Animation_y0dcv")
+}
+
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_ifppw")
 
@@ -114,6 +150,18 @@ libraries = {
 }
 autoplay = "default"
 speed_scale = 0.6
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_s4wxq")
+}
+autoplay = "start"
 
 [connection signal="mouse_entered" from="StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="StartButton" to="." method="_on_start_button_mouse_exited"]

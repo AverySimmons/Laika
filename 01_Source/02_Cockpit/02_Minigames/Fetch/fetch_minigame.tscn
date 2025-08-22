@@ -1,0 +1,197 @@
+[gd_scene load_steps=15 format=3 uid="uid://db441fq426yg5"]
+
+[ext_resource type="Script" uid="uid://cni6tisojcw14" path="res://01_Source/02_Cockpit/02_Minigames/Fetch/fetch_minigame.gd" id="1_untm4"]
+[ext_resource type="Texture2D" uid="uid://dm7hjg85kvvnd" path="res://00_Assets/00_Sprites/cockpit sprites/laika_fetch_spritesheet.png" id="2_1eekk"]
+[ext_resource type="Texture2D" uid="uid://cecyp3461darl" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder1.png" id="3_0vglh"]
+[ext_resource type="PackedScene" uid="uid://bu0ykemdl1bvj" path="res://01_Source/02_Cockpit/02_Minigames/Fetch/tennis_ball.tscn" id="3_g7mcv"]
+[ext_resource type="Texture2D" uid="uid://ceoslyiduqoro" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder2.png" id="4_g7mcv"]
+[ext_resource type="FontFile" uid="uid://c60li4pcu0xe0" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="6_g7mcv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nyty4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0vglh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g7mcv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="Animation" id="Animation_1eekk"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laika:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Laika:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(337.5, 235)]
+}
+
+[sub_resource type="Animation" id="Animation_0vglh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laika:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Laika:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(337.5, 235)]
+}
+
+[sub_resource type="Animation" id="Animation_g7mcv"]
+resource_name = "run_away"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laika:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 2, 3, 2, 3, 2, 3, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Laika:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1.5, 1),
+"update": 0,
+"values": [Vector2(290, 294), Vector2(981, 281)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g7mcv"]
+_data = {
+&"RESET": SubResource("Animation_0vglh"),
+&"idle": SubResource("Animation_1eekk"),
+&"run_away": SubResource("Animation_g7mcv")
+}
+
+[sub_resource type="Animation" id="Animation_nyty4"]
+resource_name = "enter"
+
+[sub_resource type="Animation" id="Animation_lkv3p"]
+resource_name = "exit"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tovhf"]
+_data = {
+&"enter": SubResource("Animation_nyty4"),
+&"exit": SubResource("Animation_lkv3p")
+}
+
+[node name="FetchMinigame" type="Node2D"]
+script = ExtResource("1_untm4")
+
+[node name="Laika" type="Sprite2D" parent="."]
+position = Vector2(337.5, 235)
+texture = ExtResource("2_1eekk")
+hframes = 4
+
+[node name="TennisBalls" type="Node2D" parent="."]
+
+[node name="TennisBall" parent="TennisBalls" instance=ExtResource("3_g7mcv")]
+position = Vector2(487.5, 375)
+
+[node name="TennisBall2" parent="TennisBalls" instance=ExtResource("3_g7mcv")]
+position = Vector2(337.5, 375)
+
+[node name="TennisBall3" parent="TennisBalls" instance=ExtResource("3_g7mcv")]
+position = Vector2(187.5, 375)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.831373, 0.827451, 1, 1)
+position = Vector2(337.5, 235)
+sprite_frames = SubResource("SpriteFrames_nyty4")
+autoplay = "default"
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g7mcv")
+}
+autoplay = "idle"
+
+[node name="ThrowLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(400, 200)
+offset_left = 137.5
+offset_top = -29.0
+offset_right = 537.5
+offset_bottom = 171.0
+theme_override_colors/default_color = Color(0.964706, 0.188235, 0.686275, 1)
+theme_override_colors/font_outline_color = Color(0.270588, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("6_g7mcv")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[wave]Throw!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionsLabel" type="RichTextLabel" parent="ThrowLabel"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 200.0
+theme_override_colors/default_color = Color(0.964706, 0.188235, 0.686275, 1)
+theme_override_colors/font_outline_color = Color(0.270588, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("6_g7mcv")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[wave](Mouse)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FadePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tovhf")
+}
+autoplay = "enter"
