@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpcddwbjshsnt"]
+
+[sub_resource type="Gradient" id="Gradient_ao5gb"]
+offsets = PackedFloat32Array(0, 0.82, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_cf3it"]
+colors = PackedColorArray(0.446777, 0.446777, 0.446777, 1, 0.847474, 0.847474, 0.847474, 1)
+
+[node name="Rocktrail" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(83, 49)
+amount = 25
+lifetime = 1.2
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 50.0
+angular_velocity_max = 72.73
+linear_accel_min = -75.0
+linear_accel_max = 50.0
+scale_amount_min = 3.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_ao5gb")
+color_initial_ramp = SubResource("Gradient_cf3it")
