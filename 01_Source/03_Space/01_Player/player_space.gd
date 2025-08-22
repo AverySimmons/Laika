@@ -26,6 +26,8 @@ var guns: Array
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var trail: Sprite2D = $Trail
+
 func _ready() -> void:
 	# Adding all of the guns to guns array
 	guns.append(left_gun)
@@ -38,6 +40,8 @@ func _physics_process(delta: float) -> void:
 	movement_vector = Input.get_vector("left", "right", "up", "down")
 	if movement_vector != Vector2.ZERO:
 		is_moving = true
+		trail.visible = true
+		
 		if base_velocity.normalized().dot(movement_vector) < 0.:
 			base_velocity.x = move_toward(base_velocity.x, movement_vector.x * top_speed.x, reverse_acceleration.x * delta)
 			base_velocity.y = move_toward(base_velocity.y, movement_vector.y * top_speed.y, reverse_acceleration.y * delta)
@@ -46,15 +50,19 @@ func _physics_process(delta: float) -> void:
 			base_velocity.y = move_toward(base_velocity.y, movement_vector.y * top_speed.y, acceleration.y * delta)
 	else:
 		is_moving = false
+		trail.visible = false
 		base_velocity.x = move_toward(base_velocity.x, 0, idle_friction.x * delta)
 		base_velocity.y = move_toward(base_velocity.y, 0, idle_friction.y * delta)
 	global_position += base_velocity * delta
 	
-	global_position.x = clamp(global_position.x, 0+sprite_offset.x/2, 585-sprite_offset.x/2)
-	global_position.y = clamp(global_position.y, 0+sprite_offset.y/2, 720-sprite_offset.y/2)
+	global_position.x = clamp(global_position.x, 0+sprite_offset.x/2., bounds.x-sprite_offset.x/2.)
+	global_position.y = clamp(global_position.y, 0+sprite_offset.y/2., bounds.y-sprite_offset.y/2.)
 	
 	if is_moving == true && !animation_player.is_playing():
 		animation_player.play("trail")
+	
+	#if Input.is_action_pressed("click"):
+		#handle_click(get_global_mouse_position())
 	pass
 
 func handle_click(position: Vector2) -> void:

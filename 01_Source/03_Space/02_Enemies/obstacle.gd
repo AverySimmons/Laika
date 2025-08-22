@@ -7,6 +7,8 @@ var velocity: Vector2
 
 @onready var bounds: Rect2 = Rect2(Vector2.ZERO-sprite_offset/2, Data.SPACE_SIZE-sprite_offset/2)
 var sprite_offset: Vector2
+var despawnable: bool = false
+var despawnable_timer: float = 0.5
 
 @onready var hitbox: CollisionShape2D = $Hitbox
 @onready var hurtbox: CollisionShape2D = $Hurtbox.get_node("CollisionShape2D")
@@ -17,8 +19,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
-	if !bounds.has_point(global_position):
-		die()
+	if despawnable:
+		if !bounds.has_point(global_position):
+			die()
 	pass
 
 func _on_area_entered(area) -> void:
