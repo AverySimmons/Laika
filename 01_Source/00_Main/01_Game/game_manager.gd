@@ -36,7 +36,6 @@ func _cockpit_mouse_entered() -> void:
 	current_focus = COCKPIT
 
 func _space_mouse_entered() -> void:
-	Data.custom_mouse.cursor_type = Mouse.AIM
 	current_focus = SPACE
 
 func _handle_click() -> void:
