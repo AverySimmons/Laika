@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cl2655no4boj0"]
+[gd_scene load_steps=6 format=3 uid="uid://yn7k27is2bjm"]
 
 [ext_resource type="Script" uid="uid://cnmnmhklqj8i2" path="res://01_Source/03_Space/02_Enemies/enemy.gd" id="1_gqiql"]
-[ext_resource type="AudioStream" uid="uid://cilbu81kqxona" path="res://00_Assets/01_SoundEffects/hit1.wav" id="2_cncpl"]
+[ext_resource type="AudioStream" uid="uid://c81tdueu1rjit" path="res://00_Assets/01_SoundEffects/hit1.wav" id="2_cncpl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqiql"]
 
@@ -25,5 +25,5 @@ shape = SubResource("CircleShape2D_cncpl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="TakeDamage" type="AudioStreamPlayer2D" parent="."]
+[node name="TakeDamage" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_ad1e7")

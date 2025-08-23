@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c11jbgufxcsxp"]
+[gd_scene load_steps=4 format=3 uid="uid://cjcbxn3fm3umg"]
 
 [ext_resource type="Script" uid="uid://dcd7tonf472wa" path="res://00_Assets/03_ParticleEffects/rocktrail.gd" id="1_cf3it"]
 

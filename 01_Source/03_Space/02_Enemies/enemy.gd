@@ -9,7 +9,7 @@ var sprite: Sprite2D
 
 @onready var thruster_trail_scene: PackedScene = preload("res://00_Assets/03_ParticleEffects/thrusters.tscn")
 @onready var death_explosion_scene: PackedScene = preload("res://00_Assets/03_ParticleEffects/ship_explosion.tscn")
-@onready var take_dmg_sound: AudioStreamPlayer2D = $TakeDamage
+@onready var take_dmg_sound: AudioStreamPlayer = $TakeDamage
 var thruster_trail: Node2D
 var death_explosion: Node2D
 

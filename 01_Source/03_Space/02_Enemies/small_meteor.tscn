@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlsnggq4ril8f"]
 
 [ext_resource type="Script" uid="uid://5neb7kp52ato" path="res://01_Source/03_Space/02_Enemies/small_meteor.gd" id="1_alpoj"]
-[ext_resource type="Texture2D" uid="uid://bno1ekgubhwd7" path="res://00_Assets/00_Sprites/space sprites/new_smallrock.png" id="2_ilrt4"]
+[ext_resource type="Texture2D" uid="uid://dbcqygjpw6r5e" path="res://00_Assets/00_Sprites/space sprites/new_smallrock.png" id="2_ilrt4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ilrt4"]
 resource_local_to_scene = true

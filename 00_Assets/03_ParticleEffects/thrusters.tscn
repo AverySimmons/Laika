@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cey7y43jwwnff"]
 
-[ext_resource type="Script" uid="uid://dj7rtkh8bktlo" path="res://00_Assets/03_ParticleEffects/thrusters.gd" id="1_3k3ha"]
+[ext_resource type="Script" path="res://00_Assets/03_ParticleEffects/thrusters.gd" id="1_3k3ha"]
 
 [sub_resource type="Curve" id="Curve_rto3v"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.494382), 0.0, 0.0, 0, 0]

@@ -108,8 +108,8 @@ func respawn() -> void:
 	
 	for i in range(7):
 		sprite.modulate.a = 0.2
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 		sprite.modulate.a = 1.0
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 	invincible = false
 	pass

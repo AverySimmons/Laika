@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://uogy2ict6g3y"]
 
 [ext_resource type="Script" uid="uid://1867m57w3ukr" path="res://00_Assets/03_ParticleEffects/rock_explosion.gd" id="1_w5xmf"]
-[ext_resource type="AudioStream" uid="uid://btjb4o1phshwc" path="res://00_Assets/01_SoundEffects/boom2.wav" id="2_xlwro"]
+[ext_resource type="AudioStream" uid="uid://dmkvn5pfafjjy" path="res://00_Assets/01_SoundEffects/boom2.wav" id="2_xlwro"]
 
 [sub_resource type="Curve" id="Curve_7bfbp"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -36,5 +36,5 @@ scale_amount_curve = SubResource("Curve_7bfbp")
 color_ramp = SubResource("Gradient_w5xmf")
 color_initial_ramp = SubResource("Gradient_xlwro")
 
-[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_doouv")

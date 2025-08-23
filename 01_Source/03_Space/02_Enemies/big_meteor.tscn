@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwb2ypiyxmi8l"]
 
 [ext_resource type="Script" uid="uid://b38enkw0ulank" path="res://01_Source/03_Space/02_Enemies/big_meteor.gd" id="1_15cq6"]
-[ext_resource type="Texture2D" uid="uid://vera201kyy4k" path="res://00_Assets/00_Sprites/space sprites/new_boulder.png" id="2_1p6kw"]
+[ext_resource type="Texture2D" uid="uid://c0spwaj1ncekc" path="res://00_Assets/00_Sprites/space sprites/new_boulder.png" id="2_1p6kw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_15cq6"]
 resource_local_to_scene = true

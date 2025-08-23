@@ -47,11 +47,11 @@ texture = ExtResource("3_5cal0")
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("5_ts1jd")
 
-[node name="Shoot" type="AudioStreamPlayer2D" parent="Gun"]
+[node name="Shoot" type="AudioStreamPlayer" parent="Gun"]
 stream = SubResource("AudioStreamRandomizer_m3nya")
 
 [node name="Thruster" type="Node2D" parent="."]
 position = Vector2(0, -23)
 
-[node name="TakeDamage" type="AudioStreamPlayer2D" parent="."]
+[node name="TakeDamage" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_xk3wb")

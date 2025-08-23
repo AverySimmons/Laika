@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var particles: CPUParticles2D = $CPUParticles2D
-@onready var audio: AudioStreamPlayer2D = $Explosion
+@onready var audio: AudioStreamPlayer = $Explosion
 
 func _ready() -> void:
 	particles.emitting = false

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1e7mwa26e84f" path="res://01_Source/03_Space/02_Enemies/melee_enemy.gd" id="1_ognmw"]
 [ext_resource type="Texture2D" uid="uid://b186kwha0humf" path="res://00_Assets/00_Sprites/space sprites/enemyship2.png" id="2_7igh7"]
-[ext_resource type="AudioStream" uid="uid://cilbu81kqxona" path="res://00_Assets/01_SoundEffects/hit1.wav" id="3_hciok"]
+[ext_resource type="AudioStream" uid="uid://c81tdueu1rjit" path="res://00_Assets/01_SoundEffects/hit1.wav" id="3_hciok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7igh7"]
 size = Vector2(32, 42)
@@ -40,5 +40,5 @@ shape = SubResource("RectangleShape2D_hciok")
 [node name="Thrusters" type="Node2D" parent="."]
 position = Vector2(-0.3, -17)
 
-[node name="TakeDamage" type="AudioStreamPlayer2D" parent="."]
+[node name="TakeDamage" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_w3jp1")

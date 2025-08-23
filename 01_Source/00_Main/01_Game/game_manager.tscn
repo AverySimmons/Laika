@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dessid8kik7r8"]
 
 [ext_resource type="Script" uid="uid://v3dj5mt8ovw0" path="res://01_Source/00_Main/01_Game/game_manager.gd" id="1_gu7u4"]
-[ext_resource type="PackedScene" uid="uid://dsscg7vui2bdf" path="res://00_Assets/01_SoundEffects/cockpit_level.tscn" id="2_kcsw3"]
+[ext_resource type="PackedScene" uid="uid://dsscg7vui2bdf" path="res://01_Source/02_Cockpit/00_Level/cockpit_level.tscn" id="2_kcsw3"]
 [ext_resource type="Texture2D" uid="uid://1nlclkyx5mch" path="res://00_Assets/00_Sprites/cockpit sprites/control_panel_default.png" id="3_pq62w"]
 [ext_resource type="Texture2D" uid="uid://cno1d0cmjxn5x" path="res://00_Assets/00_Sprites/cockpit sprites/control_panel_error_spritesheet.png" id="4_vfwyv"]
 [ext_resource type="AudioStream" uid="uid://8hvout7ghx5a" path="res://00_Assets/01_SoundEffects/minigame_win.mp3" id="5_vfwyv"]
