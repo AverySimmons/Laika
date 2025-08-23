@@ -32,7 +32,7 @@ func spawn_wave() -> void:
 	for num in range(wave_size):
 		var enemy_type = randi_range(0, 1)
 		var enemy: Enemy = enemy_list[enemy_type].instantiate()
-		var location: Vector2 = Vector2(randf_range(85, 500), 0)
+		var location: Vector2 = Vector2(randf_range(437.5, 847.5), 0)
 		enemy.global_position = location
 		enemy.projectiles = projectiles
 		enemy.particles = particles

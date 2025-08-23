@@ -107,7 +107,6 @@ libraries = {
 }
 
 [node name="Trail" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-1, 47)
 scale = Vector2(0.1, 0.125)
 texture = ExtResource("4_5dqnv")

@@ -34,17 +34,17 @@ func spawn_small_meteor() -> void:
 	if spawn_point_x < 100:
 		spawn_point_y += 100-spawn_point_x
 		spawn_point_x = 0
-	var spawn_point: Vector2 = Vector2(spawn_point_x, spawn_point_y)
+	var spawn_point: Vector2 = Vector2(spawn_point_x+347.5, spawn_point_y)
 	var meteor: Obstacle = small_meteor_scene.instantiate()
 	meteor.global_position = spawn_point
 	meteor.particles = particles
 	meteors.add_child(meteor)
 	meteor.despawnable = true
 	pass
-
+var mid = Vector2(640, 585)
 func spawn_big_meteor() -> void:
 	large_meteor_spawn_timer = large_meteor_spawn_speed
-	var spawn_point: Vector2 = Vector2(randf_range(0, 585), 0)
+	var spawn_point: Vector2 = Vector2(randf_range(347.5, 932.5), 0)
 	var meteor: Obstacle = large_meteor_scene.instantiate()
 	meteor.global_position = spawn_point
 	meteor.particles = particles

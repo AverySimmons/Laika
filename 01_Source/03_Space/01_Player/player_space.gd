@@ -89,7 +89,7 @@ func take_damage() -> void:
 	explosion.global_position = global_position
 	particles.add_child(explosion)
 	explosion.explode()
-	if cur_lives <= 0:
+	if cur_lives < 0:
 		SignalBus.lose.emit()
 	SignalBus.take_damage.emit(cur_lives)
 	# Respawning - maybe find a clear spot at the bottom of the map or destroy everything at a set location and place it there

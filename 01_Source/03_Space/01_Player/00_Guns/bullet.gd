@@ -3,7 +3,8 @@ extends Area2D
 var speed: float = 1750
 var velocity: Vector2
 
-@onready var bounds: Rect2 = Rect2(Vector2.ZERO-sprite_offset/2., Data.SPACE_SIZE+sprite_offset/2.)
+var mid = Vector2(640,360)
+@onready var bounds: Rect2 = Rect2(mid-Data.SPACE_SIZE/2, mid+Data.SPACE_SIZE)
 var sprite_offset: Vector2 = Vector2(10, 20)
 @onready var ap: AnimationPlayer = $AnimationPlayer
 

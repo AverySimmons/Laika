@@ -5,7 +5,8 @@ var radius: float
 var hp: int
 var velocity: Vector2
 
-@onready var bounds: Rect2 = Rect2(Vector2.ZERO+Vector2(-100,-100), Data.SPACE_SIZE+Vector2(300, 300))
+var mid = Vector2(640,360)
+@onready var bounds: Rect2 = Rect2(mid-Data.SPACE_SIZE/2-Vector2(100, 100), mid+Data.SPACE_SIZE+Vector2(100, 100))
 var sprite_offset: Vector2
 var despawnable: bool = false
 var despawnable_timer: float = 0.5
