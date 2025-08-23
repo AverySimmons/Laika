@@ -94,7 +94,7 @@ func _start_playable() -> void:
 	t2.tween_property(_current_music, "volume_linear", 1, 0.2)
 
 func _player_death() -> void:
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.15).timeout
 	
 	get_tree().paused = true
 	

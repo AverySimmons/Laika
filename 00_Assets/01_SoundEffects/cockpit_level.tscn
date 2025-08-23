@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsscg7vui2bdf"]
+
+[ext_resource type="Script" uid="uid://bpygrfhgqxqm" path="res://01_Source/02_Cockpit/00_Level/cockpit_level.gd" id="1_e14mg"]
+[ext_resource type="Texture2D" uid="uid://824ouy8ddbxx" path="res://00_Assets/00_Sprites/cockpit sprites/cockpit_main_area_tableless.png" id="2_k3u1e"]
+[ext_resource type="PackedScene" uid="uid://svdfbsla1dl5" path="res://01_Source/02_Cockpit/01_Laika/laika.tscn" id="3_24mm5"]
+[ext_resource type="AudioStream" uid="uid://ccqxqtrvnoylj" path="res://00_Assets/01_SoundEffects/error2.mp3" id="4_a1wl4"]
+
+[node name="CockpitLevel" type="Node2D"]
+script = ExtResource("1_e14mg")
+
+[node name="Cockpit" type="Sprite2D" parent="."]
+position = Vector2(337.5, 235)
+texture = ExtResource("2_k3u1e")
+
+[node name="Laika" parent="." instance=ExtResource("3_24mm5")]
+position = Vector2(253, 279)
+
+[node name="Error" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_a1wl4")
+pitch_scale = 2.0

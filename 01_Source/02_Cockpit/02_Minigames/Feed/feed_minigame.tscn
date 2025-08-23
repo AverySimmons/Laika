@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://c68c0l4yow5k3"]
+[gd_scene load_steps=21 format=3 uid="uid://c68c0l4yow5k3"]
 
 [ext_resource type="Script" uid="uid://civdtmf0gkp3k" path="res://01_Source/02_Cockpit/02_Minigames/Feed/feed_minigame.gd" id="1_lehn0"]
 [ext_resource type="Texture2D" uid="uid://d1hq07ynjkdmw" path="res://00_Assets/00_Sprites/cockpit sprites/laika_eat_treat_spritesheet.png" id="2_fxajo"]
+[ext_resource type="Texture2D" uid="uid://cegglk21s2ekg" path="res://00_Assets/00_Sprites/cockpit sprites/heart.png" id="3_478vo"]
 [ext_resource type="Texture2D" uid="uid://cgwxkewwahsn6" path="res://00_Assets/00_Sprites/cockpit sprites/feeding_hand_sprite.png" id="3_ynsru"]
 [ext_resource type="Texture2D" uid="uid://cecyp3461darl" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder1.png" id="4_3s0gl"]
 [ext_resource type="Texture2D" uid="uid://ceoslyiduqoro" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder2.png" id="5_478vo"]
@@ -279,6 +280,9 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("7_3s0gl")
 
+[sub_resource type="Gradient" id="Gradient_1rbg1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="FeedMinigame" type="Node2D"]
 script = ExtResource("1_lehn0")
 
@@ -353,3 +357,20 @@ vertical_alignment = 1
 [node name="Chomp" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_3s0gl")
 pitch_scale = 1.1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(329.5, 273)
+emitting = false
+amount = 20
+texture = ExtResource("3_478vo")
+lifetime = 0.72
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 150.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 200.0
+initial_velocity_max = 350.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_1rbg1")

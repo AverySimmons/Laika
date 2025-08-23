@@ -23,6 +23,7 @@ func _set_minigame(minigame: PackedScene) -> void:
 	_minigame_scene = minigame
 	laika_blocking = true
 	laika_started_blocking.emit()
+	$Error.play()
 
 func _enter_minigame() -> void:
 	laika.pause()

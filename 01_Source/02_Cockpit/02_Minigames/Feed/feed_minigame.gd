@@ -55,6 +55,7 @@ func _laika_fed() -> void:
 	_hand_exists = false
 	_times_fed += 1
 	$Chomp.play()
+	$CPUParticles2D.emitting = true
 	
 	var t = create_tween()
 	t.tween_property(hand, "modulate:a", 0, 0.2)

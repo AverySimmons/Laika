@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2w47010mn38c"]
+[gd_scene load_steps=3 format=3 uid="uid://d1wwopgw24imp"]
 
-[ext_resource type="Texture2D" uid="uid://dbvhrucuww07l" path="res://00_Assets/00_Sprites/cockpit sprites/heart.png" id="1_47iqw"]
+[ext_resource type="Texture2D" uid="uid://cegglk21s2ekg" path="res://00_Assets/00_Sprites/cockpit sprites/heart.png" id="1_47iqw"]
 
 [sub_resource type="Gradient" id="Gradient_qbapj"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
