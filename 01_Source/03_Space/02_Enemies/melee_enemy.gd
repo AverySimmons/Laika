@@ -1,6 +1,6 @@
 extends Enemy
 
-var top_speed: Vector2 = Vector2(200, 300)
+var top_speed: Vector2 = Vector2(100, 150)
 var acceleration: Vector2 = Vector2(600, 900)
 var cur_velocity: Vector2
 

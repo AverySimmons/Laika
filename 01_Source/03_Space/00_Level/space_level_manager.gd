@@ -58,6 +58,7 @@ func _ready() -> void:
 	enemy_spawner.enemies = enemies
 	enemy_spawner.projectiles = projectiles
 	enemy_spawner.particles = particles
+	start_level()
 
 func start_level() -> void:
 	player = player_scene.instantiate()

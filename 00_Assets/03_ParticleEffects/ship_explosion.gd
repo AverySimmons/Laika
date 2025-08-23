@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var particles: CPUParticles2D = $CPUParticles2D
+@onready var audio: AudioStreamPlayer2D = $Explosion
 
 func _ready() -> void:
 	particles.emitting = false
@@ -8,5 +9,6 @@ func _ready() -> void:
 
 func explode() -> void:
 	particles.emitting = true
+	audio.play()
 	await get_tree().create_timer(particles.lifetime).timeout
 	queue_free()

@@ -91,13 +91,12 @@ func take_damage() -> void:
 	explosion.explode()
 	if cur_lives <= 0:
 		SignalBus.lose.emit()
-	else:
-		SignalBus.take_damage.emit(cur_lives)
+	SignalBus.take_damage.emit(cur_lives)
 	# Respawning - maybe find a clear spot at the bottom of the map or destroy everything at a set location and place it there
-		hide()
-		hurtbox.collision_layer = 0
-		hurtbox.collision_mask = 0
-		await get_tree().create_timer(1.5).timeout.connect(respawn)
+	hide()
+	hurtbox.collision_layer = 0
+	hurtbox.collision_mask = 0
+	await get_tree().create_timer(1.0).timeout.connect(respawn)
 	pass
 
 func respawn() -> void:
@@ -107,7 +106,7 @@ func respawn() -> void:
 	hurtbox.collision_layer = 8
 	hurtbox.collision_mask = 4
 	
-	for i in range(8):
+	for i in range(7):
 		sprite.modulate.a = 0.2
 		await get_tree().create_timer(0.2).timeout
 		sprite.modulate.a = 1.0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://byfy1bckj68ux"]
+[gd_scene load_steps=7 format=3 uid="uid://byfy1bckj68ux"]
 
 [ext_resource type="Script" uid="uid://cfhwjddb6df5w" path="res://00_Assets/03_ParticleEffects/ship_explosion.gd" id="1_1rrco"]
+[ext_resource type="AudioStream" uid="uid://dqikd1jpg7drr" path="res://00_Assets/01_SoundEffects/boom1.wav" id="2_grxsv"]
 
 [sub_resource type="Curve" id="Curve_7bfbp"]
 _data = [Vector2(0, 0.741573), 0.0, 0.0, 0, 0, Vector2(0.170455, 0.910112), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.135111, 0.0, 0, 0]
@@ -13,7 +14,12 @@ colors = PackedColorArray(1, 1, 1, 1, 0.94902, 0, 0, 1, 0.929412, 0.396078, 0.08
 [sub_resource type="Gradient" id="Gradient_x3li7"]
 colors = PackedColorArray(1, 0.567271, 0.389384, 1, 1, 1, 1, 1)
 
-[node name="RockExplosion" type="Node2D"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3hvj0"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_grxsv")
+
+[node name="RockExplosion2" type="Node2D"]
 script = ExtResource("1_1rrco")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -29,3 +35,6 @@ scale_amount_max = 15.0
 scale_amount_curve = SubResource("Curve_7bfbp")
 color_ramp = SubResource("Gradient_w5xmf")
 color_initial_ramp = SubResource("Gradient_x3li7")
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_3hvj0")

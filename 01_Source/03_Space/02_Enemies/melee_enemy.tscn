@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0j4flnplaxwp"]
+[gd_scene load_steps=7 format=3 uid="uid://c0j4flnplaxwp"]
 
 [ext_resource type="Script" uid="uid://c1e7mwa26e84f" path="res://01_Source/03_Space/02_Enemies/melee_enemy.gd" id="1_ognmw"]
 [ext_resource type="Texture2D" uid="uid://b186kwha0humf" path="res://00_Assets/00_Sprites/space sprites/enemyship2.png" id="2_7igh7"]
+[ext_resource type="AudioStream" uid="uid://cilbu81kqxona" path="res://00_Assets/01_SoundEffects/hit1.wav" id="3_hciok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7igh7"]
 size = Vector2(32, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hciok"]
 size = Vector2(33, 45)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w3jp1"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_hciok")
 
 [node name="MeleeEnemy" type="Area2D"]
 collision_layer = 0
@@ -33,3 +39,6 @@ shape = SubResource("RectangleShape2D_hciok")
 
 [node name="Thrusters" type="Node2D" parent="."]
 position = Vector2(-0.3, -17)
+
+[node name="TakeDamage" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_w3jp1")
