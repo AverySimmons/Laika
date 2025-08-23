@@ -4,6 +4,7 @@ extends CharacterBody2D
 # HP ===============================================================================================
 var max_lives: int = 3
 var cur_lives: int = 3
+var invincible: bool = false
 
 # Movement Variables ===============================================================================
 var top_speed: Vector2 = Vector2(700, 350)
@@ -20,6 +21,7 @@ var is_moving: bool = false
 @onready var right_gun: Node2D = $RightGun
 var guns: Array
 var projectiles: Node
+var particles: Node
 
 @onready var bounds: Vector2 = Data.SPACE_SIZE
 
@@ -28,6 +30,10 @@ var projectiles: Node
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var trail: Sprite2D = $Trail
+
+@onready var sprite: Sprite2D = $Sprite2D
+
+@onready var explosion_scene: PackedScene = preload("res://00_Assets/03_ParticleEffects/ship_explosion.tscn")
 
 func _ready() -> void:
 	# Adding all of the guns to guns array
@@ -74,10 +80,37 @@ func handle_click(pos: Vector2) -> void:
 	pass
 
 func take_damage() -> void:
+	if invincible:
+		return
+	invincible = true
 	cur_lives -= 1
 	# Explosion animation
+	var explosion: Node2D = explosion_scene.instantiate()
+	explosion.global_position = global_position
+	particles.add_child(explosion)
+	explosion.explode()
 	if cur_lives <= 0:
 		SignalBus.lose.emit()
-	SignalBus.take_damage.emit(cur_lives)
+	else:
+		SignalBus.take_damage.emit(cur_lives)
 	# Respawning - maybe find a clear spot at the bottom of the map or destroy everything at a set location and place it there
+		hide()
+		hurtbox.collision_layer = 0
+		hurtbox.collision_mask = 0
+		await get_tree().create_timer(1.5).timeout.connect(respawn)
+	pass
+
+func respawn() -> void:
+	invincible = true
+	global_position = Vector2(640, 590)
+	show()
+	hurtbox.collision_layer = 8
+	hurtbox.collision_mask = 4
+	
+	for i in range(8):
+		sprite.modulate.a = 0.2
+		await get_tree().create_timer(0.2).timeout
+		sprite.modulate.a = 1.0
+		await get_tree().create_timer(0.2).timeout
+	invincible = false
 	pass

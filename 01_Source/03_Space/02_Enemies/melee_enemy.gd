@@ -13,6 +13,7 @@ func _ready() -> void:
 	hp = 6
 	type = 0
 	thruster_trail.change_length(0.3)
+	sprite = $Sprite2D
 	pass
 
 func _process(delta: float) -> void:

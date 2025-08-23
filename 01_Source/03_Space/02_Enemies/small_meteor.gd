@@ -8,6 +8,9 @@ func _ready() -> void:
 	hitbox.shape.radius = radius
 	hurtbox.shape.radius = radius
 	sprite.scale = Vector2(radius/40., radius/40.)
+	trail.change_lifetime(0.6)
+	lt = 0.5
+	explosion_amt = 15
 	pass
 
 func _physics_process(delta: float) -> void:

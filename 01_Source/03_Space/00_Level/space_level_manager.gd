@@ -64,6 +64,7 @@ func start_level() -> void:
 	add_child(player)
 	player.global_position = Vector2(640, 590)
 	player.projectiles = projectiles
+	player.particles = particles
 	paused = false
 
 func handle_mouse(local_mouse_pos: Vector2, is_click: bool, is_held: bool) -> void:

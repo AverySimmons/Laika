@@ -11,7 +11,6 @@ var shooting_timer: float = 3
 @onready var movement_point: Node2D = $MovementPoint
 @onready var hitbox: CollisionShape2D = $Hitbox
 @onready var hurtbox: CollisionShape2D = $Hurtbox.get_node("CollisionShape2D")
-@onready var sprite: Sprite2D = $Sprite2D
 @onready var gun: Node2D = $Gun
 @onready var thrusters: Node2D = $Thruster
 
@@ -19,6 +18,7 @@ func _ready() -> void:
 	super._ready()
 	type = 1
 	hp = 4
+	sprite = $Sprite2D
 	pass
 
 func _physics_process(delta: float) -> void:
