@@ -1,9 +1,107 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf0gmeg6xtgv7"]
+[gd_scene load_steps=13 format=3 uid="uid://cf0gmeg6xtgv7"]
 
 [ext_resource type="Script" uid="uid://dayr77a62l8hq" path="res://01_Source/00_Main/00_Root/root_manager.gd" id="1_5i30j"]
 [ext_resource type="PackedScene" uid="uid://b3puxswcx2kae" path="res://01_Source/00_Main/00_Root/Mouse/mouse.tscn" id="2_lunfn"]
 [ext_resource type="AudioStream" uid="uid://6nwxiegdu63d" path="res://00_Assets/02_Music/menu_loop.wav" id="3_tw22u"]
 [ext_resource type="AudioStream" uid="uid://c44yc5f0bgr5r" path="res://00_Assets/02_Music/game_loop.wav" id="4_yyy8l"]
+[ext_resource type="AudioStream" uid="uid://n4udjy505mw4" path="res://00_Assets/01_SoundEffects/ship_ambience.wav" id="5_j0gmy"]
+[ext_resource type="FontFile" uid="uid://c60li4pcu0xe0" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="5_ri6ma"]
+
+[sub_resource type="Animation" id="Animation_t04aa"]
+resource_name = "enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2p6qn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j2hy5"]
+_data = {
+&"RESET": SubResource("Animation_2p6qn"),
+&"enter": SubResource("Animation_t04aa")
+}
+
+[sub_resource type="Animation" id="Animation_yyy8l"]
+resource_name = "darken"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameOverScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ri6ma"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameOverScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t04aa"]
+_data = {
+&"RESET": SubResource("Animation_ri6ma"),
+&"darken": SubResource("Animation_yyy8l")
+}
 
 [node name="RootManager" type="Node"]
 process_mode = 3
@@ -16,3 +114,60 @@ stream = ExtResource("3_tw22u")
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_yyy8l")
+
+[node name="ShipAmbience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_j0gmy")
+
+[node name="GameOverScreen" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(1, 0, 0.0166664, 0.133333)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameOverScreen"]
+custom_minimum_size = Vector2(1280, 500)
+offset_right = 1280.0
+offset_bottom = 500.0
+theme_override_colors/default_color = Color(0.931532, 0.435133, 1, 1)
+theme_override_colors/font_outline_color = Color(0.2805, 0, 0.33, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/normal_font = ExtResource("5_ri6ma")
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=5.0 connected=1]Game Over[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="RichTextLabel" parent="GameOverScreen"]
+custom_minimum_size = Vector2(1280, 500)
+offset_top = 179.0
+offset_right = 1280.0
+offset_bottom = 679.0
+theme_override_colors/default_color = Color(1, 0.650188, 0.741188, 1)
+theme_override_colors/font_outline_color = Color(0.2805, 0, 0.33, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/normal_font = ExtResource("5_ri6ma")
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "[shake rate=20.0 level=20 connected=1]Score: 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverAP" type="AnimationPlayer" parent="GameOverScreen"]
+libraries = {
+&"": SubResource("AnimationLibrary_j2hy5")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_t04aa")
+}

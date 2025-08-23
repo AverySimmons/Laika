@@ -1,7 +1,7 @@
 class_name Mouse
 extends Node
 
-enum {NORMAL, INTERACT, GRAB, AIM, AIM2}
+enum {NORMAL, INTERACT, GRAB, AIM, AIM2, BLOCKED}
 
 var cursor_type: int = NORMAL
 var emit_hearts = false
@@ -13,6 +13,7 @@ var _interact_cursor = preload("res://00_Assets/00_Sprites/cursor sprites/hand_c
 var _grab_cursor = preload("res://00_Assets/00_Sprites/cursor sprites/hand_cursor_grab.png").get_image()
 var _aim1_cursor = preload("res://00_Assets/00_Sprites/cursor sprites/spaceship_aim_cusor_1.png").get_image()
 var _aim2_cursor = preload("res://00_Assets/00_Sprites/cursor sprites/spaceship_aim_cusor_2.png").get_image()
+var _blocked_cursor = preload("res://00_Assets/00_Sprites/cursor sprites/spaceship_aim_disabled.png").get_image()
 
 var _last_cursor_image: Image
 
@@ -39,6 +40,9 @@ func _set_cursor() -> void:
 			hotspot = Vector2(16, 16)
 		AIM2:
 			cursor_image = _aim2_cursor
+			hotspot = Vector2(16, 16)
+		BLOCKED:
+			cursor_image = _blocked_cursor
 			hotspot = Vector2(16, 16)
 	
 	if cursor_image != _last_cursor_image:

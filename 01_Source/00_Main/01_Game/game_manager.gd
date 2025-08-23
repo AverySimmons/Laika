@@ -38,6 +38,7 @@ func _laika_start_blocking() -> void:
 
 func _minigame_won() -> void:
 	control_panel_ap.play("normal")
+	$MinigameWin.play()
 
 func _cockpit_mouse_entered() -> void:
 	current_focus = COCKPIT
@@ -55,6 +56,9 @@ func _handle_click() -> void:
 		var mouse_pos = get_global_mouse_position()
 		var local_mouse_pos = mouse_pos - space_container.global_position
 		space.handle_mouse(local_mouse_pos, is_click, is_held)
+		
+		if living_space.laika_blocking:
+			Data.custom_mouse.cursor_type = Mouse.BLOCKED
 	
 	else:
 		var is_click = Input.is_action_just_pressed("click")

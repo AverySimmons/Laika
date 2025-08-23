@@ -8,7 +8,13 @@ extends Node
 @onready var mouse: Node = $Mouse
 @onready var menu_music: AudioStreamPlayer = $MenuMusic
 @onready var game_music: AudioStreamPlayer = $GameMusic
-@onready var space: Node2D = $SpaceLevel
+@onready var animation_player: AnimationPlayer = $ColorRect/AnimationPlayer
+@onready var game_over_ap: AnimationPlayer = $GameOverScreen/GameOverAP
+@onready var score_label: RichTextLabel = $GameOverScreen/ScoreLabel
+@onready var ship_ambience: AudioStreamPlayer = $ShipAmbience
+
+
+@onready var space: Node2D
 
 var _current_node : Node
 var _settings_node : Node
@@ -16,6 +22,7 @@ var _settings_node : Node
 var _current_music : AudioStreamPlayer
 
 func _ready() -> void:
+	SignalBus.lose.connect(_player_death)
 	Data.custom_mouse = mouse
 	Data.custom_mouse.cursor_type = Mouse.INTERACT
 	
@@ -39,7 +46,7 @@ func _spawn_game() -> void:
 	_create_title_screen()
 
 func _enter_settings() -> void:
-	if _settings_node: return
+	if _settings_node or get_tree().paused: return
 	
 	_settings_node = _settings_scene.instantiate()
 	_settings_node.settings_closed.connect(_exit_settings)
@@ -67,6 +74,12 @@ func _start_game() -> void:
 	_current_node = _game_manager_scene.instantiate()
 	_current_node.space = space
 	add_child(_current_node)
+	
+	ship_ambience.volume_linear = 0
+	ship_ambience.play()
+	var t = create_tween()
+	t.tween_property(ship_ambience, "volume_linear", 1, 1)
+	
 	_start_playable()
 
 func _start_playable() -> void:
@@ -81,4 +94,38 @@ func _start_playable() -> void:
 	t2.tween_property(_current_music, "volume_linear", 1, 0.2)
 
 func _player_death() -> void:
-	pass
+	await get_tree().create_timer(0.2).timeout
+	
+	get_tree().paused = true
+	
+	Data.custom_mouse.cursor_type = Mouse.INTERACT
+	Data.custom_mouse.emit_hearts = false
+	
+	score_label.text = "[shake rate=20.0 level=20 connected=1]Score: " + str(Data.score)
+	
+	await get_tree().create_timer(0.2).timeout
+	
+	var t = create_tween()
+	t.tween_property(_current_music, "volume_linear", 0, 2)
+	
+	game_over_ap.play("enter")
+	await game_over_ap.animation_finished
+	
+	await get_tree().create_timer(2).timeout
+	
+	var t2 = create_tween()
+	t2.tween_property(ship_ambience, "volume_linear", 0, 1)
+	
+	animation_player.play("darken")
+	await animation_player.animation_finished
+	
+	_current_node.queue_free()
+	menu_music.stop()
+	game_music.stop()
+	ship_ambience.stop()
+	
+	_spawn_game()
+	get_tree().paused = false
+	
+	await get_tree().physics_frame
+	$ColorRect.modulate.a = 0

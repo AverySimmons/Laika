@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d00cxx6be72xg"]
+[gd_scene load_steps=8 format=3 uid="uid://d00cxx6be72xg"]
 
 [ext_resource type="Script" uid="uid://dhyuq66760pca" path="res://01_Source/02_Cockpit/02_Minigames/00_Letters/letter_lock.gd" id="1_ub6yc"]
 [ext_resource type="FontFile" uid="uid://c60li4pcu0xe0" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="2_5xews"]
-[ext_resource type="AudioStream" uid="uid://dqle7f2p1ev45" path="res://00_Assets/01_SoundEffects/laser2.wav" id="3_x4yht"]
+[ext_resource type="AudioStream" uid="uid://exrk1h8f0if8" path="res://00_Assets/01_SoundEffects/typing.wav" id="3_x4yht"]
 
 [sub_resource type="Animation" id="Animation_ub6yc"]
 resource_name = "Enter"
@@ -118,11 +118,6 @@ _data = {
 &"RESET": SubResource("Animation_x4yht")
 }
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nccqm"]
-random_pitch = 1.5
-streams_count = 1
-stream_0/stream = ExtResource("3_x4yht")
-
 [node name="LetterLock" type="Node2D"]
 script = ExtResource("1_ub6yc")
 
@@ -166,5 +161,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Type" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_nccqm")
-pitch_scale = 1.6
+stream = ExtResource("3_x4yht")
+volume_db = 5.0
+pitch_scale = 1.5

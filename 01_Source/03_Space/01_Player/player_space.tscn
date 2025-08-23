@@ -37,6 +37,10 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_5dqnv"]
+resource_name = "invincible_flash"
+step = 0.2
+
 [sub_resource type="Animation" id="Animation_fk4vd"]
 resource_name = "trail"
 length = 0.2
@@ -65,10 +69,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
-
-[sub_resource type="Animation" id="Animation_5dqnv"]
-resource_name = "invincible_flash"
-step = 0.2
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ysjl5"]
 _data = {

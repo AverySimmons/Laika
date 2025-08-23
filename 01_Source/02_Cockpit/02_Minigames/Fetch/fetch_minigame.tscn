@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://db441fq426yg5"]
+[gd_scene load_steps=18 format=3 uid="uid://db441fq426yg5"]
 
 [ext_resource type="Script" uid="uid://cni6tisojcw14" path="res://01_Source/02_Cockpit/02_Minigames/Fetch/fetch_minigame.gd" id="1_untm4"]
 [ext_resource type="Texture2D" uid="uid://dm7hjg85kvvnd" path="res://00_Assets/00_Sprites/cockpit sprites/laika_fetch_spritesheet.png" id="2_1eekk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bu0ykemdl1bvj" path="res://01_Source/02_Cockpit/02_Minigames/Fetch/tennis_ball.tscn" id="3_g7mcv"]
 [ext_resource type="Texture2D" uid="uid://ceoslyiduqoro" path="res://00_Assets/00_Sprites/cockpit sprites/laikaborder2.png" id="4_g7mcv"]
 [ext_resource type="FontFile" uid="uid://c60li4pcu0xe0" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="6_g7mcv"]
+[ext_resource type="AudioStream" uid="uid://dgpyu4jj13pn8" path="res://00_Assets/01_SoundEffects/food throw (straight up just the swing sound from galleria of guilt).wav" id="7_nyty4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nyty4"]
 animations = [{
@@ -114,6 +115,57 @@ _data = {
 &"run_away": SubResource("Animation_g7mcv")
 }
 
+[sub_resource type="Animation" id="Animation_tovhf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ThrowLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TennisBalls:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Laika:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_nyty4"]
 resource_name = "enter"
 length = 0.2
@@ -206,63 +258,17 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(1.5, 1.5)]
 }
 
-[sub_resource type="Animation" id="Animation_tovhf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ThrowLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TennisBalls:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Laika:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tovhf"]
 _data = {
 &"RESET": SubResource("Animation_tovhf"),
 &"enter": SubResource("Animation_nyty4"),
 &"exit": SubResource("Animation_lkv3p")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lkv3p"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("7_nyty4")
 
 [node name="FetchMinigame" type="Node2D"]
 script = ExtResource("1_untm4")
@@ -337,3 +343,4 @@ autoplay = "enter"
 [node name="RunAway" type="AudioStreamPlayer" parent="."]
 
 [node name="Throw" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_lkv3p")

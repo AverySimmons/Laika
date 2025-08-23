@@ -6,3 +6,5 @@ const SPACE_SIZE = Vector2(585, 720)
 
 var custom_mouse: Mouse
 var space_player: SpacePlayer
+
+var score = 0
