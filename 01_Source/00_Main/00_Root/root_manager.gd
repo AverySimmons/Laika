@@ -3,6 +3,7 @@ extends Node
 @onready var _main_menu_scene = preload("res://01_Source/01_Menus/00_MainMenu/main_menu.tscn")
 @onready var _game_manager_scene = preload("res://01_Source/00_Main/01_Game/game_manager.tscn")
 @onready var _settings_scene = preload("res://01_Source/01_Menus/01_Settings/settings_menu.tscn")
+@onready var _space_scene = preload("res://01_Source/03_Space/00_Level/space_level.tscn")
 
 @onready var mouse: Node = $Mouse
 @onready var menu_music: AudioStreamPlayer = $MenuMusic
@@ -15,20 +16,27 @@ var _settings_node : Node
 var _current_music : AudioStreamPlayer
 
 func _ready() -> void:
-	_create_title_screen()
 	Data.custom_mouse = mouse
 	Data.custom_mouse.cursor_type = Mouse.INTERACT
 	
+	_spawn_game()
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("settings"):
+		_enter_settings()
+
+func _spawn_game() -> void:
 	_current_music = menu_music
 	_current_music.volume_linear = 0
 	_current_music.play()
 	
 	var t = create_tween()
 	t.tween_property(_current_music, "volume_linear", 1, 0.5)
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("settings"):
-		_enter_settings()
+	
+	space = _space_scene.instantiate()
+	add_child(space)
+	
+	_create_title_screen()
 
 func _enter_settings() -> void:
 	if _settings_node: return
@@ -71,3 +79,6 @@ func _start_playable() -> void:
 	
 	var t2 = create_tween()
 	t2.tween_property(_current_music, "volume_linear", 1, 0.2)
+
+func _player_death() -> void:
+	pass

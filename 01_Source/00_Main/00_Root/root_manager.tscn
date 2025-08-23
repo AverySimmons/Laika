@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf0gmeg6xtgv7"]
+[gd_scene load_steps=5 format=3 uid="uid://cf0gmeg6xtgv7"]
 
 [ext_resource type="Script" uid="uid://dayr77a62l8hq" path="res://01_Source/00_Main/00_Root/root_manager.gd" id="1_5i30j"]
 [ext_resource type="PackedScene" uid="uid://b3puxswcx2kae" path="res://01_Source/00_Main/00_Root/Mouse/mouse.tscn" id="2_lunfn"]
-[ext_resource type="AudioStream" uid="uid://bbiojxpc4o6hn" path="res://00_Assets/02_Music/menu_loop.wav" id="3_tw22u"]
-[ext_resource type="AudioStream" uid="uid://dbfuhglbvs3wu" path="res://00_Assets/02_Music/game_loop.wav" id="4_yyy8l"]
-[ext_resource type="PackedScene" uid="uid://dkr0c766kjsno" path="res://01_Source/03_Space/00_Level/space_level.tscn" id="5_ri6ma"]
+[ext_resource type="AudioStream" uid="uid://6nwxiegdu63d" path="res://00_Assets/02_Music/menu_loop.wav" id="3_tw22u"]
+[ext_resource type="AudioStream" uid="uid://c44yc5f0bgr5r" path="res://00_Assets/02_Music/game_loop.wav" id="4_yyy8l"]
 
 [node name="RootManager" type="Node"]
 process_mode = 3
@@ -17,5 +16,3 @@ stream = ExtResource("3_tw22u")
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_yyy8l")
-
-[node name="SpaceLevel" parent="." instance=ExtResource("5_ri6ma")]
