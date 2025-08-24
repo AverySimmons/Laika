@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://1mg1lumugotd" path="res://00_Assets/00_Sprites/space sprites/enemy_projectile_spritesheet.png" id="2_v773x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v773x"]
-radius = 7.0
+radius = 14.0357
 
 [sub_resource type="Animation" id="Animation_204uj"]
 length = 0.001
@@ -24,6 +24,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_gqwa5"]
 resource_name = "move"
 length = 0.4
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -53,7 +54,8 @@ script = ExtResource("1_kktpg")
 shape = SubResource("CircleShape2D_v773x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
+modulate = Color(0.84461, 0.219389, 1, 1)
+position = Vector2(0, -4)
 texture = ExtResource("2_v773x")
 hframes = 2
 
@@ -61,3 +63,5 @@ hframes = 2
 libraries = {
 &"": SubResource("AnimationLibrary_tse2b")
 }
+autoplay = "move"
+speed_scale = 2.0

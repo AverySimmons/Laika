@@ -28,7 +28,7 @@ var particles: Node
 
 @onready var hurtbox: Area2D = $Hurtbox
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var trail_player: AnimationPlayer = $TrailPlayer
 
 @onready var trail: Sprite2D = $Trail
 
@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	movement_vector = Input.get_vector("left", "right", "up", "down")
 	if movement_vector != Vector2.ZERO:
 		is_moving = true
-		trail.visible = true
+		#trail.visible = true
 		
 		if base_velocity.normalized().dot(movement_vector) < 0.:
 			base_velocity.x = move_toward(base_velocity.x, movement_vector.x * top_speed.x, reverse_acceleration.x * delta)
@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 			base_velocity.y = move_toward(base_velocity.y, movement_vector.y * top_speed.y, acceleration.y * delta)
 	else:
 		is_moving = false
-		trail.visible = false
+		#trail.visible = false
 		base_velocity.x = move_toward(base_velocity.x, 0, idle_friction.x * delta)
 		base_velocity.y = move_toward(base_velocity.y, 0, idle_friction.y * delta)
 	global_position += base_velocity * delta
@@ -67,8 +67,14 @@ func _physics_process(delta: float) -> void:
 	global_position.x = clamp(global_position.x, mid.x-bounds.x/2.+sprite_offset.x/2., mid.x+bounds.x/2.-sprite_offset.x/2.)
 	global_position.y = clamp(global_position.y, mid.y-bounds.y/2.+sprite_offset.y/2., mid.y+bounds.y/2.-sprite_offset.y/2.)
 	
-	if is_moving == true && !animation_player.is_playing():
-		animation_player.play("trail")
+	var speed_amount = (base_velocity / top_speed).length() * (base_velocity.normalized().dot(Vector2.UP) / 2. + 0.5)
+	
+	trail.scale.y = 0.181 + 0.1 * speed_amount
+	trail.position.y = 77 + 13 * speed_amount
+	trail_player.speed_scale = 2. + speed_amount * 2.
+	
+	#if is_moving == true && !animation_player.is_playing():
+		#animation_player.play("trail")
 
 func handle_mouse(local_mouse_pos: Vector2, is_click: bool, is_held: bool) -> void:
 	if is_held:
@@ -76,8 +82,9 @@ func handle_mouse(local_mouse_pos: Vector2, is_click: bool, is_held: bool) -> vo
 		
 
 func handle_click(pos: Vector2) -> void:
+	if is_dead: return
 	for gun in guns:
-		gun.handle_click(pos, projectiles, projectiles)
+		gun.handle_click(pos, projectiles, particles)
 	pass
 
 func take_damage() -> void:
@@ -91,19 +98,20 @@ func take_damage() -> void:
 	explosion.global_position = global_position
 	particles.add_child(explosion)
 	explosion.explode()
+	hide()
+	hurtbox.collision_layer = 0
+	hurtbox.collision_mask = 0
 	SignalBus.take_damage.emit(cur_lives)
 	if cur_lives < 0:
 		SignalBus.lose.emit()
 		return
 	
 	# Respawning - maybe find a clear spot at the bottom of the map or destroy everything at a set location and place it there
-	hide()
-	hurtbox.collision_layer = 0
-	hurtbox.collision_mask = 0
 	await get_tree().create_timer(1.0).timeout.connect(respawn)
 	pass
 
 func respawn() -> void:
+	$Respawn.play()
 	is_dead = false
 	invincible = true
 	

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvjy6i1eggr0s"]
+[gd_scene load_steps=4 format=3 uid="uid://dvjy6i1eggr0s"]
 
 [ext_resource type="AudioStream" uid="uid://d25pvkgc68hdu" path="res://00_Assets/01_SoundEffects/boom3.wav" id="1_o2gxb"]
+[ext_resource type="Script" uid="uid://bn4q0rnw5vgn3" path="res://00_Assets/03_ParticleEffects/player_bullet_explosion.gd" id="1_pbf1h"]
 
 [sub_resource type="Curve" id="Curve_6gox1"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 1, 0]
@@ -8,8 +9,8 @@ point_count = 2
 
 [node name="PlayerBulletExplosion" type="CPUParticles2D"]
 emitting = false
-amount = 4
-lifetime = 0.15
+amount = 6
+lifetime = 0.25
 one_shot = true
 explosiveness = 0.9
 spread = 180.0
@@ -19,7 +20,8 @@ initial_velocity_max = 500.0
 scale_amount_min = 10.0
 scale_amount_max = 20.0
 scale_amount_curve = SubResource("Curve_6gox1")
-color = Color(0.116667, 1, 0, 1)
+color = Color(1, 0, 0.0166664, 1)
+script = ExtResource("1_pbf1h")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_o2gxb")

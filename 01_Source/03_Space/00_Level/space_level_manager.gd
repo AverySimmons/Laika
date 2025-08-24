@@ -60,6 +60,7 @@ func _ready() -> void:
 	enemy_spawner.particles = particles
 
 func start_level() -> void:
+	$UIAP.play("fade_in")
 	player = player_scene.instantiate()
 	add_child(player)
 	player.global_position = Vector2(640, 590)

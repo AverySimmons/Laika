@@ -30,7 +30,7 @@ func take_damage(damage: int) -> void:
 	take_dmg_sound.play()
 	if hp <= 0:
 		die()
-	modulate = Color(1, 0.5, 0.5)
+	modulate = Color(3, 1.7, 1.7)
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color(1, 1, 1)
 	pass

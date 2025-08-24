@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
 	if despawnable:
 		if !bounds.has_point(global_position):
+			trail.stop()
 			queue_free()
 	pass
 

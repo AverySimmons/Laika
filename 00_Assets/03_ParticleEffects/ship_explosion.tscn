@@ -9,10 +9,10 @@ point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_w5xmf"]
 offsets = PackedFloat32Array(0, 0.04, 0.2, 0.333333, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.94902, 0, 0, 1, 0.929412, 0.396078, 0.0823529, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0.966667, 0, 1, 1, 0.94902, 0, 0, 1, 0.929412, 0.396078, 0.0823529, 1, 0.968627, 0, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_x3li7"]
-colors = PackedColorArray(1, 0.567271, 0.389384, 1, 1, 1, 1, 1)
+colors = PackedColorArray(1, 0.567271, 0.389384, 1, 0.968627, 0, 1, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3hvj0"]
 random_pitch = 1.1

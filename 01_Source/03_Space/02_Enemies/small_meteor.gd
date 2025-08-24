@@ -11,8 +11,8 @@ func _ready() -> void:
 	trail.change_lifetime(0.6)
 	trail.change_color(Color("ff52f1"))
 	explosion_color = Color("ff40cf")
-	lt = 0.5
-	explosion_amt = 15
+	lt = 0.75
+	explosion_amt = 30
 	sprite.rotation = randf_range(0, TAU)
 	pass
 

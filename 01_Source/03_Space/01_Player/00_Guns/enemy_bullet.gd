@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed: float = 600
+var speed: float = 300
 var velocity: Vector2
 
 var mid = Vector2(640,360)
@@ -19,9 +19,6 @@ func _physics_process(delta: float) -> void:
 	
 	if !bounds.has_point(global_position):
 		despawn()
-	
-	if !animation_player.is_playing():
-		animation_player.play("move")
 	pass
 
 func shoot(direction: Vector2) -> void:

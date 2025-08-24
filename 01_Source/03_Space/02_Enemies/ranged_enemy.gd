@@ -5,8 +5,8 @@ var oval_radius: Vector2 = Vector2(75, 0) # 75, 40
 var current_angle: float = 0
 
 # Weapon stuff =====================================================================================
-var shooting_time: float = 3
-var shooting_timer: float = 3
+var shooting_time: float = 5
+var shooting_timer: float = randfn(shooting_time, 2.)
 
 @onready var movement_point: Node2D = $MovementPoint
 @onready var hitbox: CollisionShape2D = $Hitbox
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	shooting_timer -= delta
 	if shooting_timer <= 0:
 		gun.shoot(projectiles)
-		shooting_timer = shooting_time
+		shooting_timer = randfn(shooting_time, 2.)
 	pass
 
 func _process(delta: float) -> void:
@@ -43,7 +43,7 @@ func update_position() -> void:
 	hurtbox.position = offset
 	sprite.position = offset
 	gun.position = offset
-	thrusters.position = offset + Vector2(0, -23)
+	thrusters.position = offset + Vector2(0, -35)
 	return
 
 func _on_area_entered(area) -> void:

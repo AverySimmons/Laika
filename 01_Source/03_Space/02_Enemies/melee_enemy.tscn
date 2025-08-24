@@ -1,14 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0j4flnplaxwp"]
+[gd_scene load_steps=9 format=3 uid="uid://c0j4flnplaxwp"]
 
 [ext_resource type="Script" uid="uid://c1e7mwa26e84f" path="res://01_Source/03_Space/02_Enemies/melee_enemy.gd" id="1_ognmw"]
 [ext_resource type="Texture2D" uid="uid://b186kwha0humf" path="res://00_Assets/00_Sprites/space sprites/enemyship2.png" id="2_7igh7"]
+[ext_resource type="Shader" uid="uid://dhi6jo8w3pdfm" path="res://00_Assets/03_ParticleEffects/outline_shader.gdshader" id="2_w3jp1"]
 [ext_resource type="AudioStream" uid="uid://bnq43ao3wpuwc" path="res://00_Assets/01_SoundEffects/voop.wav" id="3_hciok"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7igh7"]
-size = Vector2(32, 42)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gyxvr"]
+shader = ExtResource("2_w3jp1")
+shader_parameter/thickness = 0.04
+shader_parameter/color = Color(0.5, 0, 3, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3jp1"]
+radius = 19.0263
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hciok"]
-size = Vector2(33, 45)
+size = Vector2(76, 90)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w3jp1"]
 random_pitch = 1.1
@@ -22,7 +29,9 @@ script = ExtResource("1_ognmw")
 metadata/_custom_type_script = "uid://cnmnmhklqj8i2"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+modulate = Color(0.4, 0, 3, 1)
+material = SubResource("ShaderMaterial_gyxvr")
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_7igh7")
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -30,15 +39,13 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_7igh7")
+shape = SubResource("CircleShape2D_w3jp1")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_hciok")
 
 [node name="Thrusters" type="Node2D" parent="."]
-position = Vector2(-0.3, -17)
+position = Vector2(0, -28)
 
 [node name="TakeDamage" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_w3jp1")

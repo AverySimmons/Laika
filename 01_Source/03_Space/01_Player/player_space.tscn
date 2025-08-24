@@ -1,23 +1,26 @@
 [gd_scene load_steps=13 format=3 uid="uid://dic3vnabysmkh"]
 
 [ext_resource type="Script" uid="uid://cavc2jjs13k2k" path="res://01_Source/03_Space/01_Player/player_space.gd" id="1_bfx4b"]
-[ext_resource type="Shader" uid="uid://dhi6jo8w3pdfm" path="res://00_Assets/03_ParticleEffects/outline_shader.gdshader" id="2_fk4vd"]
+[ext_resource type="Shader" uid="uid://3owsplqj38q0" path="res://01_Source/03_Space/01_Player/player_outline.gdshader" id="2_fk4vd"]
 [ext_resource type="Texture2D" uid="uid://c7i71lns6i3vf" path="res://00_Assets/00_Sprites/space sprites/laika_spaceship.png" id="2_goidg"]
 [ext_resource type="PackedScene" uid="uid://d8be01isfnsc" path="res://01_Source/03_Space/01_Player/00_Guns/gun.tscn" id="3_goidg"]
 [ext_resource type="Texture2D" uid="uid://cpt6kohj16ufy" path="res://00_Assets/00_Sprites/space sprites/spaceship_trail_spritesheet.png" id="4_5dqnv"]
+[ext_resource type="AudioStream" uid="uid://dgr2guwscdads" path="res://00_Assets/01_SoundEffects/respawn2.mp3" id="6_oi171"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oi171"]
 shader = ExtResource("2_fk4vd")
 shader_parameter/thickness = 0.02
-shader_parameter/color = Color(0, 0.96, 0.0799999, 1)
+shader_parameter/color = Color(0.96, 0, 0.0159998, 1)
 shader_parameter/alpha = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfx4b"]
 size = Vector2(88, 126)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5dqnv"]
+radius = 6.0
+height = 24.0
 
-[sub_resource type="Animation" id="Animation_oi171"]
+[sub_resource type="Animation" id="Animation_vi1ps"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -28,30 +31,15 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [0]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("Trail:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
-[sub_resource type="Animation" id="Animation_5dqnv"]
-resource_name = "invincible_flash"
-step = 0.2
-
-[sub_resource type="Animation" id="Animation_fk4vd"]
+[sub_resource type="Animation" id="Animation_ysjl5"]
 resource_name = "trail"
-length = 0.2
-step = 0.0667
+length = 1.333
+loop_mode = 1
+step = 0.333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,29 +47,16 @@ tracks/0/path = NodePath("Trail:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Trail:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0, 0.333, 0.666, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 1]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ysjl5"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dyoyt"]
 _data = {
-&"RESET": SubResource("Animation_oi171"),
-&"invincible_flash": SubResource("Animation_5dqnv"),
-&"trail": SubResource("Animation_fk4vd")
+&"RESET": SubResource("Animation_vi1ps"),
+&"trail": SubResource("Animation_ysjl5")
 }
 
 [node name="PlayerSpace" type="CharacterBody2D"]
@@ -107,18 +82,22 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, 14)
+position = Vector2(0, -31)
 shape = SubResource("CapsuleShape2D_5dqnv")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ysjl5")
-}
-
 [node name="Trail" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-1, 90)
-scale = Vector2(0.225, 0.281)
+position = Vector2(0, 77)
+scale = Vector2(0.225, 0.181)
 texture = ExtResource("4_5dqnv")
 hframes = 2
 vframes = 2
+
+[node name="TrailPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dyoyt")
+}
+autoplay = "trail"
+speed_scale = 2.0
+
+[node name="Respawn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_oi171")

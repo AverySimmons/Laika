@@ -7,7 +7,7 @@ var particles: Node
 # Wave Spawning ====================================================================================
 var wave_size: int = 2
 var wave_spawn_time: float = 8
-var wave_spawn_timer: float = 2
+var wave_spawn_timer: float = 0
 var time_between_enemies: float = 0.5
 
 @onready var ranged_enemy: PackedScene = preload("res://01_Source/03_Space/02_Enemies/ranged_enemy.tscn")
@@ -21,7 +21,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if get_parent().paused: return
-	return
 	
 	wave_spawn_timer -= delta
 	if wave_spawn_timer <= 0:
@@ -33,7 +32,7 @@ func spawn_wave() -> void:
 	for num in range(wave_size):
 		var enemy_type = randi_range(0, 1)
 		var enemy: Enemy = enemy_list[enemy_type].instantiate()
-		var location: Vector2 = Vector2(randf_range(437.5, 847.5), 0)
+		var location: Vector2 = Vector2(randf_range(437.5, 847.), -50)
 		enemy.global_position = location
 		enemy.projectiles = projectiles
 		enemy.particles = particles

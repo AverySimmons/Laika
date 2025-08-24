@@ -11,7 +11,7 @@ func _ready() -> void:
 	trail.change_size(radius)
 	trail.change_lifetime(1.8)
 	trail.change_amount(100)
-	trail.change_velocity_angle(90)
+	trail.change_velocity_angle(55)
 	trail.change_color(Color("8b47ff"))
 	explosion_color = Color("c830cf")
 	particle_rad = radius/2.
