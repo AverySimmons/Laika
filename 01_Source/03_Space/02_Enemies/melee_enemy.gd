@@ -1,7 +1,7 @@
 extends Enemy
 
-var top_speed: Vector2 = Vector2(60, 60)
-var acceleration: Vector2 = Vector2(200, 200)
+var top_speed: Vector2 = Vector2(50, 50)
+var acceleration: Vector2 = Vector2(150, 150)
 var cur_velocity: Vector2
 
 @onready var player: SpacePlayer = Data.space_player
@@ -11,7 +11,7 @@ var cur_velocity: Vector2
 
 func _ready() -> void:
 	super._ready()
-	hp = 4
+	hp = 5
 	type = 0
 	thruster_trail.change_length(0.3)
 	sprite = $Sprite2D

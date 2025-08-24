@@ -20,10 +20,10 @@ func _physics_process(delta: float) -> void:
 		return
 	var dir_to_player = (player.global_position - global_position).normalized()
 	cur_velocity += dir_to_player*acceleration*delta
-	print("Pre:", cur_velocity)
+	#print("Pre:", cur_velocity)
 	cur_velocity.x = clamp(cur_velocity.x, -top_speed.x, top_speed.x)
 	cur_velocity.y = clamp(cur_velocity.y, -top_speed.y, top_speed.y)
-	print("Post:", cur_velocity)
+	#print("Post:", cur_velocity)
 	var collision = move_and_collide(cur_velocity*delta)
 	if collision:
 		cur_velocity = cur_velocity.bounce(collision.get_normal())

@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://b2b0hxge0gw0m" path="res://01_Source/03_Space/00_Level/space_level.gd" id="1_xye4g"]
 [ext_resource type="Script" uid="uid://beugd3w1w232" path="res://01_Source/03_Space/00_Level/enemy_spawner.gd" id="3_viqam"]
 [ext_resource type="Script" uid="uid://cryhhxckvj0mx" path="res://01_Source/03_Space/00_Level/meteor_spawner.gd" id="5_403k3"]
-[ext_resource type="FontFile" uid="uid://c3n4p1fdstyrb" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="6_403k3"]
-[ext_resource type="Texture2D" uid="uid://hmkbmc8e8vgc" path="res://00_Assets/00_Sprites/space sprites/laika_hp_bw.png" id="7_5t12m"]
-[ext_resource type="Texture2D" uid="uid://ct08cwju3tn4r" path="res://00_Assets/00_Sprites/space sprites/laika_hp_color.png" id="7_fsysa"]
+[ext_resource type="FontFile" uid="uid://c60li4pcu0xe0" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="6_403k3"]
+[ext_resource type="Texture2D" uid="uid://da3qlppndcaku" path="res://00_Assets/00_Sprites/space sprites/laika_hp_bw.png" id="7_5t12m"]
+[ext_resource type="Texture2D" uid="uid://bqpsmiyp0y6mh" path="res://00_Assets/00_Sprites/space sprites/laika_hp_color.png" id="7_fsysa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xye4g"]
 shader = ExtResource("1_r8aci")

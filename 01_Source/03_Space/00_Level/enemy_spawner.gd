@@ -5,8 +5,8 @@ var projectiles: Node
 var particles: Node
 
 # Wave Spawning ====================================================================================
-var wave_size: int = 2
-var wave_spawn_time: float = 8
+var wave_size: int = 8
+var wave_spawn_time: float = 4
 var wave_spawn_timer: float = 0
 var time_between_enemies: float = 0.5
 
@@ -26,11 +26,14 @@ func _physics_process(delta: float) -> void:
 	wave_spawn_timer -= delta
 	if wave_spawn_timer <= 0:
 		spawn_wave()
-		wave_spawn_time -= wave_spawn_time * 0.015
+	
+	wave_spawn_time -= wave_spawn_time * 0.0035 * delta
 	pass
 
 func spawn_wave() -> void:
-	wave_spawn_timer = wave_spawn_time + time_between_enemies*wave_size
+	wave_size = randi_range(1, 3)
+	
+	wave_spawn_timer = randfn(wave_spawn_time*wave_size, 1.*wave_size)+ time_between_enemies*wave_size
 	for num in range(wave_size):
 		var enemy_type = randi_range(0, 1)
 		var enemy: Enemy = enemy_list[enemy_type].instantiate()
