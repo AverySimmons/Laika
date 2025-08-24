@@ -6,6 +6,7 @@ var type: int
 var projectiles: Node
 var particles: Node
 var sprite: Sprite2D
+var dying: bool = false
 
 var score = 0
 var score_size = 1
@@ -39,6 +40,9 @@ func take_damage(damage: int) -> void:
 	pass
 
 func die() -> void:
+	if dying:
+		return
+	dying = true
 	SignalBus.score_death.emit(global_position, score, score_size)
 	
 	thruster_trail.stop()

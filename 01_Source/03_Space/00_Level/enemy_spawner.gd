@@ -26,6 +26,7 @@ func _physics_process(delta: float) -> void:
 	wave_spawn_timer -= delta
 	if wave_spawn_timer <= 0:
 		spawn_wave()
+		wave_spawn_time -= wave_spawn_time * 0.0125
 	pass
 
 func spawn_wave() -> void:

@@ -16,6 +16,7 @@ var despawnable_timer: float = 0.5
 var particle_rad: float = 4
 
 var explosion_color = Color("white")
+var dying: bool = false
 
 @onready var hitbox: CollisionShape2D = $Hitbox
 @onready var hurtbox: CollisionShape2D = $Hurtbox.get_node("CollisionShape2D")
@@ -64,6 +65,9 @@ func take_damage(damage: int) -> void:
 	pass
 
 func die() -> void:
+	if dying:
+		return
+	dying = true
 	SignalBus.score_death.emit(global_position, score, score_size)
 	
 	trail.stop()
