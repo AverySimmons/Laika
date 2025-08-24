@@ -36,7 +36,7 @@ const _SLEEP_COOLDOWN_RANGE = Vector2(30, 40)
 var _local_position = Vector2(50,50)
 var _state = IDLE
 var _current_task: PackedScene
-var _new_task_timer = 10
+var _new_task_timer = 30
 var _last_task: PackedScene = null
 
 var _idle_timer = 0

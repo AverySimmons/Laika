@@ -3,6 +3,8 @@ extends Obstacle
 func _ready() -> void:
 	super._ready()
 	hp = 15
+	score = 150
+	score_size = 2
 	velocity = Vector2(0, 80)
 	radius = randf_range(80, 100)
 	hitbox.shape.radius = radius

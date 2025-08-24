@@ -77,6 +77,8 @@ func _physics_process(delta: float) -> void:
 	trail.scale.y = 0.181 + 0.1 * speed_amount
 	trail.position.y = 69 + 13 * speed_amount
 	trail_player.speed_scale = 2. + speed_amount * 2.
+	$Thrusters.volume_db = -10 + 5 * speed_amount
+	$Thrusters.pitch_scale = 3 + 0.5 * speed_amount
 	
 	#if is_moving == true && !animation_player.is_playing():
 		#animation_player.play("trail")

@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var score_pop_scene = preload("res://01_Source/03_Space/03_Score/score_popup.tscn")
+
 @onready var starlayer_1: CPUParticles2D = $bg/starlayer1
 @onready var starlayer_2: CPUParticles2D = $bg/starlayer2
 @onready var starlayer_3: CPUParticles2D = $bg/starlayer3
@@ -42,6 +44,8 @@ var paused = true
 var player: SpacePlayer
 
 func _ready() -> void:
+	SignalBus.score_death.connect(_create_score_popup)
+	
 	space_scale = 1280
 	
 	var s = space_scale / 585.
@@ -96,3 +100,29 @@ func adjust_player_lives(lives: float) -> void:
 	life1.visible = lives > 2
 	life2.visible = lives > 1
 	life3.visible = lives > 0
+
+func _create_score_popup(pos: Vector2, score: float, size: float) -> void:
+	var new_pop = score_pop_scene.instantiate()
+	new_pop.global_position = pos
+	new_pop.score = score
+	new_pop.size = size
+	$ScorePopups.add_child(new_pop)
+	
+	Data.score = clamp(Data.score + score, 0, 10000)
+	
+	var new_text = "Score: " + format_with_commas(int(Data.score))
+	
+	$UI/ScoreLabel.text = new_text
+
+func format_with_commas(value: int) -> String:
+	var str_value = str(value)
+	var result = ""
+	var count = 0
+	
+	for i in range(str_value.length() - 1, -1, -1):
+		result = str_value[i] + result
+		count += 1
+		if count % 3 == 0 and i != 0:
+			result = "," + result
+	
+	return result

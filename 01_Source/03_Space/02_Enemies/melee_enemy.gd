@@ -10,10 +10,12 @@ var cur_velocity: Vector2
 
 func _ready() -> void:
 	super._ready()
-	hp = 6
+	hp = 4
 	type = 0
 	thruster_trail.change_length(0.3)
 	sprite = $Sprite2D
+	score = 50
+	score_size = 1.25
 	pass
 
 func _process(delta: float) -> void:

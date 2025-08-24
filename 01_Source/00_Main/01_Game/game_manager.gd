@@ -26,20 +26,14 @@ func _ready() -> void:
 	
 	_connect_signals()
 	
-	#var t = create_tween()
-	#t.tween_property(space, "space_scale", 585, 1)
-	
 	await $AnimationPlayer.animation_finished
 	space.start_level()
 	SignalBus.start_game_music.emit()
-	
-	await get_tree().create_timer(5).timeout
-	game_won.emit()
 
 func _physics_process(_delta: float) -> void:
 	_handle_click()
 	
-	if Data.score > 10000 and not space.enemies.get_children() \
+	if Data.score >= 10000 and not space.enemies.get_children() \
 			and not space.meteors.get_children():
 		game_won.emit()
 

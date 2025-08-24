@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dic3vnabysmkh"]
+[gd_scene load_steps=14 format=3 uid="uid://dic3vnabysmkh"]
 
 [ext_resource type="Script" uid="uid://cavc2jjs13k2k" path="res://01_Source/03_Space/01_Player/player_space.gd" id="1_bfx4b"]
 [ext_resource type="Shader" uid="uid://3owsplqj38q0" path="res://01_Source/03_Space/01_Player/player_outline.gdshader" id="2_fk4vd"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d8be01isfnsc" path="res://01_Source/03_Space/01_Player/00_Guns/gun.tscn" id="3_goidg"]
 [ext_resource type="Texture2D" uid="uid://cpt6kohj16ufy" path="res://00_Assets/00_Sprites/space sprites/spaceship_trail_spritesheet.png" id="4_5dqnv"]
 [ext_resource type="AudioStream" uid="uid://dgr2guwscdads" path="res://00_Assets/01_SoundEffects/respawn2.mp3" id="6_oi171"]
+[ext_resource type="AudioStream" uid="uid://doo4k124xixv8" path="res://00_Assets/01_SoundEffects/thrusters_loop.wav" id="7_ysjl5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oi171"]
 shader = ExtResource("2_fk4vd")
@@ -101,3 +102,9 @@ speed_scale = 2.0
 
 [node name="Respawn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_oi171")
+
+[node name="Thrusters" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ysjl5")
+volume_db = -10.0
+pitch_scale = 3.0
+autoplay = true

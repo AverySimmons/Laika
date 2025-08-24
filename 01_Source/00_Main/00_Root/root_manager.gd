@@ -42,6 +42,7 @@ func _process(delta: float) -> void:
 		_enter_settings()
 
 func _spawn_game() -> void:
+	Data.score = 0
 	_current_music = menu_music
 	_current_music.volume_linear = 0
 	_current_music.play()
@@ -120,7 +121,7 @@ func _player_death() -> void:
 	Data.custom_mouse.cursor_type = Mouse.INTERACT
 	Data.custom_mouse.emit_hearts = false
 	
-	score_label.text = "[shake rate=20.0 level=20 connected=1]Score: " + str(Data.score)
+	score_label.text = "[shake rate=20.0 level=20 connected=1]Score: " + format_with_commas(int(Data.score))
 	
 	await get_tree().create_timer(0.2).timeout
 	
@@ -164,3 +165,16 @@ func _play_ending_video() -> void:
 	await get_tree().create_timer(10).timeout
 	
 	get_tree().quit()
+
+func format_with_commas(value: int) -> String:
+	var str_value = str(value)
+	var result = ""
+	var count = 0
+	
+	for i in range(str_value.length() - 1, -1, -1):
+		result = str_value[i] + result
+		count += 1
+		if count % 3 == 0 and i != 0:
+			result = "," + result
+	
+	return result

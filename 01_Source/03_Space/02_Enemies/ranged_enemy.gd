@@ -5,7 +5,7 @@ var oval_radius: Vector2 = Vector2(75, 0) # 75, 40
 var current_angle: float = 0
 
 # Weapon stuff =====================================================================================
-var shooting_time: float = 5
+var shooting_time: float = 6
 var shooting_timer: float = randfn(shooting_time, 2.)
 
 @onready var movement_point: Node2D = $MovementPoint
@@ -17,8 +17,10 @@ var shooting_timer: float = randfn(shooting_time, 2.)
 func _ready() -> void:
 	super._ready()
 	type = 1
-	hp = 4
+	hp = 3
 	sprite = $Sprite2D
+	score = 75
+	score_size = 1.5
 	pass
 
 func _physics_process(delta: float) -> void:

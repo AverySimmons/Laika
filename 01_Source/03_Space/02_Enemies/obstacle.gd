@@ -1,6 +1,9 @@
 class_name Obstacle
 extends Area2D
 
+var score = 0
+var score_size = 1
+
 var radius: float
 var hp: int
 var velocity: Vector2
@@ -61,6 +64,8 @@ func take_damage(damage: int) -> void:
 	pass
 
 func die() -> void:
+	SignalBus.score_death.emit(global_position, score, score_size)
+	
 	trail.stop()
 	explosion = explosion_scene.instantiate()
 	explosion.global_position = global_position

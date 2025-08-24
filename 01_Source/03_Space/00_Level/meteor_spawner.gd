@@ -17,6 +17,7 @@ var large_meteor_spawn_point: float = 585
 
 func _physics_process(delta: float) -> void:
 	if get_parent().paused: return
+	if Data.score >= 10000: return
 	
 	small_meteor_spawn_timer -= delta
 	if small_meteor_spawn_timer <= 0:

@@ -7,6 +7,9 @@ var projectiles: Node
 var particles: Node
 var sprite: Sprite2D
 
+var score = 0
+var score_size = 1
+
 @onready var thruster_trail_scene: PackedScene = preload("res://00_Assets/03_ParticleEffects/thrusters.tscn")
 @onready var death_explosion_scene: PackedScene = preload("res://00_Assets/03_ParticleEffects/ship_explosion.tscn")
 @onready var take_dmg_sound: AudioStreamPlayer = $TakeDamage
@@ -36,6 +39,8 @@ func take_damage(damage: int) -> void:
 	pass
 
 func die() -> void:
+	SignalBus.score_death.emit(global_position, score, score_size)
+	
 	thruster_trail.stop()
 	death_explosion = death_explosion_scene.instantiate()
 	death_explosion.global_position = sprite.global_position

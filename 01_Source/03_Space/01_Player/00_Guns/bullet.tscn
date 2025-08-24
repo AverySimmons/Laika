@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://buprmuboos7mv" path="res://00_Assets/00_Sprites/space sprites/player_laser_spritesheet.png" id="2_3pfcu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pfcu"]
-size = Vector2(6, 35)
+size = Vector2(11, 42)
 
 [sub_resource type="Animation" id="Animation_umvec"]
 length = 0.001
@@ -51,7 +51,7 @@ collision_mask = 4
 script = ExtResource("1_pxro5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
+position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_3pfcu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
