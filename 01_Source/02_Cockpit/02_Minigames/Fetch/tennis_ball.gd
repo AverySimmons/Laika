@@ -5,7 +5,7 @@ signal out_of_bounds()
 var vel = Vector2.ZERO
 
 const _BOUNDS_MIN = Vector2(-61,-61)
-const _BOUNDS_MAX = Vector2(675, 470) + Vector2(61,61)
+const _BOUNDS_MAX = Vector2(675, 470) + Vector2(61,61) / 2.5
 
 func _process(delta: float) -> void:
 	global_position += vel * delta

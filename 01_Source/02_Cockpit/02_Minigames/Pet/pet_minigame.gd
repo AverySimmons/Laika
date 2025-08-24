@@ -4,7 +4,7 @@ extends Minigame
 ## sound effects
 ## music
 
-const _NEEDED_MOUSE_DIST = 1500
+const _NEEDED_MOUSE_DIST = 1200
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var fade_player: AnimationPlayer = $FadePlayer

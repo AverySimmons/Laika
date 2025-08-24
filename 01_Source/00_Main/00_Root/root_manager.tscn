@@ -598,7 +598,7 @@ tracks/15/path = NodePath("Whine:playing")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(6.56667),
+"times": PackedFloat32Array(5.13333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -649,7 +649,7 @@ tracks/19/keys = {
 "times": PackedFloat32Array(10.0667, 10.9667, 11.5333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [-30.0, -5.0, -10.0]
+"values": [-30.0, -5.0, -17.0]
 }
 tracks/20/type = "value"
 tracks/20/imported = false

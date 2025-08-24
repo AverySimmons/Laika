@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvjy6i1eggr0s"]
+[gd_scene load_steps=5 format=3 uid="uid://dvjy6i1eggr0s"]
 
-[ext_resource type="AudioStream" uid="uid://d25pvkgc68hdu" path="res://00_Assets/01_SoundEffects/boom3.wav" id="1_o2gxb"]
 [ext_resource type="Script" uid="uid://bn4q0rnw5vgn3" path="res://00_Assets/03_ParticleEffects/player_bullet_explosion.gd" id="1_pbf1h"]
+[ext_resource type="AudioStream" uid="uid://dmkvn5pfafjjy" path="res://00_Assets/01_SoundEffects/boom2.wav" id="2_pbf1h"]
 
 [sub_resource type="Curve" id="Curve_6gox1"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 1, 0]
 point_count = 2
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ybixs"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("2_pbf1h")
 
 [node name="PlayerBulletExplosion" type="CPUParticles2D"]
 emitting = false
@@ -24,7 +29,7 @@ color = Color(1, 0, 0.0166664, 1)
 script = ExtResource("1_pbf1h")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_o2gxb")
-volume_db = -10.0
-pitch_scale = 3.0
+stream = SubResource("AudioStreamRandomizer_ybixs")
+volume_db = 4.0
+pitch_scale = 1.5
 autoplay = true

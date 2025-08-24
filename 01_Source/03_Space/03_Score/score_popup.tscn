@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://eld3anrtu4lp"]
+[gd_scene load_steps=11 format=3 uid="uid://eld3anrtu4lp"]
 
 [ext_resource type="Script" uid="uid://cunybb40graks" path="res://01_Source/03_Space/03_Score/score_popup.gd" id="1_jnu68"]
 [ext_resource type="FontFile" uid="uid://c60li4pcu0xe0" path="res://00_Assets/04_Fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf" id="2_bxais"]
+[ext_resource type="AudioStream" uid="uid://e6xt5nqsvaur" path="res://00_Assets/01_SoundEffects/arcade2.mp3" id="3_bxais"]
 
 [sub_resource type="Animation" id="Animation_mmn6e"]
 length = 0.001
@@ -150,6 +151,11 @@ _data = {
 &"flash": SubResource("Animation_jnu68")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ilqw6"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_bxais")
+
 [node name="ScorePopup" type="Node2D"]
 script = ExtResource("1_jnu68")
 
@@ -185,3 +191,8 @@ libraries = {
 }
 autoplay = "flash"
 speed_scale = 0.75
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ilqw6")
+volume_db = 3.0
+pitch_scale = 1.5
