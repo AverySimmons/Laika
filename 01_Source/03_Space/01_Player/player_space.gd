@@ -17,6 +17,8 @@ var sprite_offset: Vector2 = Vector2(300, 370) * 0.35
 var is_moving: bool = false
 var is_dead: bool = false
 
+var paused = false
+
 # Guns =============================================================================================
 @onready var left_gun: Node2D = $LeftGun
 @onready var right_gun: Node2D = $RightGun
@@ -37,6 +39,7 @@ var particles: Node
 @onready var explosion_scene: PackedScene = preload("res://00_Assets/03_ParticleEffects/ship_explosion.tscn")
 
 func _ready() -> void:
+	sprite.material.set_shader_parameter("alpha", 0)
 	# Adding all of the guns to guns array
 	guns.append(left_gun)
 	guns.append(right_gun)
@@ -44,6 +47,8 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	if paused: return
+	
 	# Movement part ================================================================================
 	movement_vector = Input.get_vector("left", "right", "up", "down")
 	if movement_vector != Vector2.ZERO:
@@ -70,11 +75,18 @@ func _physics_process(delta: float) -> void:
 	var speed_amount = (base_velocity / top_speed).length() * (base_velocity.normalized().dot(Vector2.UP) / 2. + 0.5)
 	
 	trail.scale.y = 0.181 + 0.1 * speed_amount
-	trail.position.y = 77 + 13 * speed_amount
+	trail.position.y = 69 + 13 * speed_amount
 	trail_player.speed_scale = 2. + speed_amount * 2.
 	
 	#if is_moving == true && !animation_player.is_playing():
 		#animation_player.play("trail")
+
+func unpause() -> void:
+	paused = false
+	create_tween().tween_method(_set_shader_alpha, 0., 1., 0.2)
+
+func _set_shader_alpha(val: float) -> void:
+	sprite.material.set_shader_parameter("alpha", val)
 
 func handle_mouse(local_mouse_pos: Vector2, is_click: bool, is_held: bool) -> void:
 	if is_held:
@@ -101,7 +113,6 @@ func take_damage() -> void:
 	hide()
 	hurtbox.collision_layer = 0
 	hurtbox.collision_mask = 0
-	SignalBus.take_damage.emit(cur_lives)
 	if cur_lives < 0:
 		SignalBus.lose.emit()
 		return
@@ -111,6 +122,7 @@ func take_damage() -> void:
 	pass
 
 func respawn() -> void:
+	SignalBus.change_player_lives.emit(cur_lives)
 	$Respawn.play()
 	is_dead = false
 	invincible = true

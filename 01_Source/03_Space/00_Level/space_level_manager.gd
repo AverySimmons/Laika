@@ -5,6 +5,10 @@ extends Node2D
 @onready var starlayer_3: CPUParticles2D = $bg/starlayer3
 @onready var starlayer_4: CPUParticles2D = $bg/starlayer4
 
+@onready var life1: Sprite2D = $UI/Life1/Sprite2D
+@onready var life2: Sprite2D = $UI/Life2/Sprite2D
+@onready var life3: Sprite2D = $UI/Life3/Sprite2D
+
 
 @export var space_scale = 1280:
 	set(val):
@@ -59,19 +63,36 @@ func _ready() -> void:
 	enemy_spawner.projectiles = projectiles
 	enemy_spawner.particles = particles
 
-func start_level() -> void:
-	$UIAP.play("fade_in")
+func spawn_player() -> void:
 	player = player_scene.instantiate()
-	add_child(player)
+	
 	player.global_position = Vector2(640, 590)
 	player.projectiles = projectiles
 	player.particles = particles
+	
+	add_child(player)
+
+func start_level() -> void:
+	$UIAP.play("fade_in")
+	await $UIAP.animation_finished
+	
+	
 	paused = false
+	player.unpause()
+	
+	SignalBus.change_player_lives.connect(adjust_player_lives)
 
 func handle_mouse(local_mouse_pos: Vector2, is_click: bool, is_held: bool) -> void:
+	if paused: return
+	
 	if is_held:
 		Data.custom_mouse.cursor_type = Mouse.AIM
 	else:
 		Data.custom_mouse.cursor_type = Mouse.AIM2
 	
 	player.handle_mouse(local_mouse_pos, is_click, is_held)
+
+func adjust_player_lives(lives: float) -> void:
+	life1.visible = lives > 2
+	life2.visible = lives > 1
+	life3.visible = lives > 0

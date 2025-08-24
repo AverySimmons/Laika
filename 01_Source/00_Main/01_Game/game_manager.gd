@@ -1,5 +1,11 @@
 extends Node2D
 
+signal game_won
+
+@export var space_scale = 1280:
+	set(val):
+		space.space_scale = space_scale
+
 @onready var cockpit_container: VBoxContainer = $Control/ScreenContainer/CockpitContainer
 @onready var living_space_container: SubViewportContainer = $Control/ScreenContainer/CockpitContainer/LivingSpaceContainer
 @onready var control_panel: TextureRect = $Control/ScreenContainer/CockpitContainer/ControlPanel
@@ -17,15 +23,25 @@ var current_focus = COCKPIT
 
 func _ready() -> void:
 	space_container.get_children()[0].add_child(space)
-	space.start_level()
 	
 	_connect_signals()
 	
-	var t = create_tween()
-	t.tween_property(space, "space_scale", 585, 1)
+	#var t = create_tween()
+	#t.tween_property(space, "space_scale", 585, 1)
+	
+	await $AnimationPlayer.animation_finished
+	space.start_level()
+	SignalBus.start_game_music.emit()
+	
+	await get_tree().create_timer(5).timeout
+	game_won.emit()
 
 func _physics_process(_delta: float) -> void:
 	_handle_click()
+	
+	if Data.score > 10000 and not space.enemies.get_children() \
+			and not space.meteors.get_children():
+		game_won.emit()
 
 func _connect_signals() -> void:
 	living_space.laika_started_blocking.connect(_laika_start_blocking)

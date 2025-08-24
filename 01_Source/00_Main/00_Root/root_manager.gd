@@ -12,9 +12,15 @@ extends Node
 @onready var game_over_ap: AnimationPlayer = $GameOverScreen/GameOverAP
 @onready var score_label: RichTextLabel = $GameOverScreen/ScoreLabel
 @onready var ship_ambience: AudioStreamPlayer = $ShipAmbience
+@onready var cutscene_ap: AnimationPlayer = $Cutscene/CutsceneAP
+@onready var cutscene: Node2D = $Cutscene
+@onready var video_stream_player: VideoStreamPlayer = $EndCutscene/VideoStreamPlayer
+@onready var ending_ap: AnimationPlayer = $EndCutscene/EndingAP
 
 
 @onready var space: Node2D
+
+var cutscene_has_played = false
 
 var _current_node : Node
 var _settings_node : Node
@@ -22,7 +28,10 @@ var _settings_node : Node
 var _current_music : AudioStreamPlayer
 
 func _ready() -> void:
+	video_stream_player.visible = false
+	
 	SignalBus.lose.connect(_player_death)
+	SignalBus.start_game_music.connect(_start_playable)
 	Data.custom_mouse = mouse
 	Data.custom_mouse.cursor_type = Mouse.INTERACT
 	
@@ -44,6 +53,8 @@ func _spawn_game() -> void:
 	add_child(space)
 	
 	_create_title_screen()
+	
+	cutscene.visible = false
 
 func _enter_settings() -> void:
 	if _settings_node or get_tree().paused: return
@@ -54,7 +65,7 @@ func _enter_settings() -> void:
 	get_tree().paused = true
 	
 	var t = create_tween()
-	t.tween_property(_current_music, "volume_linear", 0.5, 0.2)
+	t.tween_property(_current_music, "volume_linear", 0.25, 0.2)
 
 func _exit_settings() -> void:
 	get_tree().paused = false
@@ -68,30 +79,38 @@ func _create_title_screen() -> void:
 	add_child(_current_node)
 
 func _start_game() -> void:
+	if not cutscene_has_played:
+		cutscene_has_played = true
+		cutscene.visible = true
+		cutscene_ap.play("play")
+		await cutscene_ap.animation_finished
+	
 	remove_child(space)
 	
 	_current_node.queue_free()
 	_current_node = _game_manager_scene.instantiate()
 	_current_node.space = space
+	_current_node.game_won.connect(_game_won)
 	add_child(_current_node)
+	
+	space.spawn_player()
+	cutscene.visible = false
 	
 	ship_ambience.volume_linear = 0
 	ship_ambience.play()
 	var t = create_tween()
 	t.tween_property(ship_ambience, "volume_linear", 1, 1)
-	
-	_start_playable()
 
 func _start_playable() -> void:
 	var t = create_tween()
-	t.tween_property(_current_music, "volume_linear", 0, 0.2)
+	t.tween_property(_current_music, "volume_linear", 0, 1)
 	
 	_current_music = game_music
 	_current_music.volume_linear = 0
 	_current_music.play()
 	
 	var t2 = create_tween()
-	t2.tween_property(_current_music, "volume_linear", 1, 0.2)
+	t2.tween_property(_current_music, "volume_linear", 1, 2)
 
 func _player_death() -> void:
 	await get_tree().create_timer(0.5).timeout
@@ -129,3 +148,19 @@ func _player_death() -> void:
 	
 	await get_tree().physics_frame
 	$ColorRect.modulate.a = 0
+
+func _game_won() -> void:
+	get_tree().paused = true
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	create_tween().tween_property(_current_music, "volume_linear", 0, 2)
+	create_tween().tween_property(ship_ambience, "volume_linear", 0, 2)
+	create_tween().tween_property(menu_music, "volume_linear", 1, 2)
+	ending_ap.play("ending")
+
+func _play_ending_video() -> void:
+	video_stream_player.visible = true
+	video_stream_player.play()
+	await video_stream_player.finished
+	await get_tree().create_timer(10).timeout
+	
+	get_tree().quit()

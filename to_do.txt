@@ -1,0 +1,7 @@
+make intro cutscene
+make score text pop up and increase score
+wave scaling
+make lives decrease
+thruster ambience
+ending cutscene
+change enemy ai

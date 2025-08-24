@@ -17,7 +17,7 @@ shader_parameter/alpha = 1.0
 size = Vector2(88, 126)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5dqnv"]
-radius = 6.0
+radius = 5.0
 height = 24.0
 
 [sub_resource type="Animation" id="Animation_vi1ps"]
@@ -64,7 +64,7 @@ script = ExtResource("1_bfx4b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_oi171")
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_goidg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -72,21 +72,21 @@ shape = SubResource("RectangleShape2D_bfx4b")
 metadata/_edit_lock_ = true
 
 [node name="LeftGun" parent="." instance=ExtResource("3_goidg")]
-position = Vector2(-33, 0)
+position = Vector2(-29, 1)
 
 [node name="RightGun" parent="." instance=ExtResource("3_goidg")]
-position = Vector2(33, 0)
+position = Vector2(28, 1)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -31)
+position = Vector2(0, -26)
 shape = SubResource("CapsuleShape2D_5dqnv")
 
 [node name="Trail" type="Sprite2D" parent="."]
-position = Vector2(0, 77)
+position = Vector2(0, 69)
 scale = Vector2(0.225, 0.181)
 texture = ExtResource("4_5dqnv")
 hframes = 2
