@@ -20,7 +20,7 @@ extends Node
 
 @onready var space: Node2D
 
-var cutscene_has_played = true
+var cutscene_has_played = false
 
 var _current_node : Node
 var _settings_node : Node

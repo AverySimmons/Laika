@@ -7,7 +7,7 @@ var particles: Node
 # Wave Spawning ====================================================================================
 var wave_size: int = 8
 var wave_spawn_time: float = 4
-var wave_spawn_timer: float = 0
+var wave_spawn_timer: float = 12
 var time_between_enemies: float = 0.5
 
 @onready var ranged_enemy: PackedScene = preload("res://01_Source/03_Space/02_Enemies/ranged_enemy.tscn")
