@@ -6,6 +6,7 @@ var cur_velocity: Vector2
 
 @onready var player: SpacePlayer = Data.space_player
 @onready var thrusters: Node2D = $Thrusters
+@onready var movement: CharacterBody2D = $Movement
 
 
 func _ready() -> void:
@@ -19,18 +20,20 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	thruster_trail.change_emission_dir(Vector2(0, -1).rotated(cur_velocity.angle()))
+	thruster_trail.change_emission_dir(Vector2(0, -1).rotated(movement.cur_velocity.angle()))
 	thruster_trail.global_position = thrusters.global_position
 	pass
 
 func _physics_process(delta: float) -> void:
-	if player == null:
-		return
-	var dir_to_player = (player.global_position - global_position).normalized()
-	cur_velocity += dir_to_player*acceleration*delta
-	cur_velocity.clamp(-top_speed, top_speed)
-	rotation = 3*TAU/4. + cur_velocity.angle()
-	global_position += cur_velocity*delta
+	#if player == null:
+		#return
+	#var dir_to_player = (player.global_position - global_position).normalized()
+	#cur_velocity += dir_to_player*acceleration*delta
+	#cur_velocity.clamp(-top_speed, top_speed)
+	#global_position += cur_velocity*delta
+	
+	
+	#rotation = 3*TAU/4. + cur_velocity.angle()
 	pass
 
 func _on_area_entered(area) -> void:

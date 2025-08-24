@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0j4flnplaxwp"]
+[gd_scene load_steps=11 format=3 uid="uid://c0j4flnplaxwp"]
 
 [ext_resource type="Script" uid="uid://c1e7mwa26e84f" path="res://01_Source/03_Space/02_Enemies/melee_enemy.gd" id="1_ognmw"]
 [ext_resource type="Texture2D" uid="uid://b186kwha0humf" path="res://00_Assets/00_Sprites/space sprites/enemyship2.png" id="2_7igh7"]
-[ext_resource type="Shader" uid="uid://dhi6jo8w3pdfm" path="res://00_Assets/03_ParticleEffects/outline_shader.gdshader" id="2_w3jp1"]
-[ext_resource type="AudioStream" uid="uid://bnq43ao3wpuwc" path="res://00_Assets/01_SoundEffects/voop.wav" id="3_hciok"]
+[ext_resource type="Shader" path="res://00_Assets/03_ParticleEffects/outline_shader.gdshader" id="2_w3jp1"]
+[ext_resource type="AudioStream" uid="uid://t64eki87enao" path="res://00_Assets/01_SoundEffects/voop.wav" id="3_hciok"]
+[ext_resource type="Script" uid="uid://cykquajssfmwi" path="res://01_Source/03_Space/02_Enemies/movement.gd" id="5_gyxvr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gyxvr"]
 shader = ExtResource("2_w3jp1")
@@ -12,7 +13,7 @@ shader_parameter/color = Color(0.5, 0, 3, 1)
 shader_parameter/alpha = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w3jp1"]
-radius = 19.0263
+radius = 20.025
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hciok"]
 size = Vector2(76, 90)
@@ -21,6 +22,9 @@ size = Vector2(76, 90)
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("3_hciok")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vmqck"]
+radius = 40.0
 
 [node name="MeleeEnemy" type="Area2D"]
 collision_layer = 0
@@ -50,3 +54,11 @@ position = Vector2(0, -28)
 [node name="TakeDamage" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_w3jp1")
 volume_db = 8.0
+
+[node name="Movement" type="CharacterBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("5_gyxvr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement"]
+shape = SubResource("CircleShape2D_vmqck")
