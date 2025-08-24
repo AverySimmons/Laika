@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
 	if despawnable:
 		if !bounds.has_point(global_position):
-			die()
+			queue_free()
 	pass
 
 func _on_area_entered(area) -> void:

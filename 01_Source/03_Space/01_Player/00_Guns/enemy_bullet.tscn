@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://djtx42gjnsh6"]
+[gd_scene load_steps=7 format=3 uid="uid://dtxbd6c0x0e0h"]
 
 [ext_resource type="Script" uid="uid://dpcfunj7ed6et" path="res://01_Source/03_Space/01_Player/00_Guns/enemy_bullet.gd" id="1_kktpg"]
-[ext_resource type="Texture2D" uid="uid://dafjr8bobpqv7" path="res://00_Assets/00_Sprites/space sprites/enemy_projectile_spritesheet.png" id="2_v773x"]
+[ext_resource type="Texture2D" uid="uid://1mg1lumugotd" path="res://00_Assets/00_Sprites/space sprites/enemy_projectile_spritesheet.png" id="2_v773x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v773x"]
 radius = 7.0

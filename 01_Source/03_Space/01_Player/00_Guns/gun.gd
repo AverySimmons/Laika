@@ -4,7 +4,7 @@ var cooldown: float = 0.2
 var cooldown_timer: float = 0
 
 @onready var bullet_scene = preload("res://01_Source/03_Space/01_Player/00_Guns/bullet.tscn")
-@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio: AudioStreamPlayer = $AudioStreamPlayer2D
 
 func _physics_process(delta: float) -> void:
 	cooldown_timer = move_toward(cooldown_timer, 0, delta)

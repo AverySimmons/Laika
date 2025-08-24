@@ -27,3 +27,4 @@ shape = SubResource("CircleShape2D_cncpl")
 
 [node name="TakeDamage" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_ad1e7")
+pitch_scale = 0.7
