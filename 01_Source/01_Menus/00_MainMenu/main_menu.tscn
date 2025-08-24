@@ -218,6 +218,7 @@ autoplay = "start"
 
 [node name="Hover" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_y0dcv")
+volume_db = 4.0
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_kpjxk")
