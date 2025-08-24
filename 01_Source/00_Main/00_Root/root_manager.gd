@@ -151,6 +151,7 @@ func _player_death() -> void:
 	$ColorRect.modulate.a = 0
 
 func _game_won() -> void:
+	await get_tree().create_timer(3).timeout
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	create_tween().tween_property(_current_music, "volume_linear", 0, 2)

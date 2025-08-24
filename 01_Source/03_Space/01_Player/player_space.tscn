@@ -10,7 +10,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oi171"]
 shader = ExtResource("2_fk4vd")
-shader_parameter/thickness = 0.02
+shader_parameter/thickness = 0.03
 shader_parameter/color = Color(0.96, 0, 0.0159998, 1)
 shader_parameter/alpha = 1.0
 

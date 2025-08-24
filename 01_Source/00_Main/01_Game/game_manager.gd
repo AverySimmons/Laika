@@ -2,6 +2,8 @@ extends Node2D
 
 signal game_won
 
+var game_winning = false
+
 @export var space_scale = 1280:
 	set(val):
 		space.space_scale = space_scale
@@ -31,11 +33,13 @@ func _ready() -> void:
 	SignalBus.start_game_music.emit()
 
 func _physics_process(_delta: float) -> void:
+	
 	_handle_click()
 	
 	if Data.score >= 10000 and not space.enemies.get_children() \
-			and not space.meteors.get_children():
+			and not space.meteors.get_children() and not game_winning:
 		game_won.emit()
+		game_winning = true
 
 func _connect_signals() -> void:
 	living_space.laika_started_blocking.connect(_laika_start_blocking)
@@ -64,7 +68,7 @@ func _handle_click() -> void:
 		is_held = is_held and not living_space.laika_blocking
 		
 		var mouse_pos = get_global_mouse_position()
-		var local_mouse_pos = mouse_pos - space_container.global_position + Vector2(320,0)
+		var local_mouse_pos = mouse_pos - Vector2(347.5,0)
 		space.handle_mouse(local_mouse_pos, is_click, is_held)
 		
 		if living_space.laika_blocking:
