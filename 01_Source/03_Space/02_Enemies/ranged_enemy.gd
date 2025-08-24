@@ -19,7 +19,7 @@ func _ready() -> void:
 	type = 1
 	hp = 3
 	sprite = $Sprite2D
-	score = 75
+	score = 100
 	score_size = 1.5
 	pass
 

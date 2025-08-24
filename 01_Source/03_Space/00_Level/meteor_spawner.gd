@@ -27,8 +27,8 @@ func _physics_process(delta: float) -> void:
 	if large_meteor_spawn_timer <= 0:
 		spawn_big_meteor()
 	
-	small_meteor_spawn_speed = small_meteor_spawn_speed - small_meteor_spawn_speed * 0.0025 * delta
-	large_meteor_spawn_speed = large_meteor_spawn_speed - large_meteor_spawn_speed * 0.0025 * delta
+	small_meteor_spawn_speed = small_meteor_spawn_speed - small_meteor_spawn_speed * 0.0035 * delta # Buffed slightly from .0025 to .0035
+	large_meteor_spawn_speed = large_meteor_spawn_speed - large_meteor_spawn_speed * 0.0035 * delta
 
 func spawn_small_meteor() -> void:
 	small_meteor_spawn_timer = randfn(small_meteor_spawn_speed, 0.5) 

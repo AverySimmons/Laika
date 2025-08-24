@@ -15,7 +15,7 @@ func _ready() -> void:
 	type = 0
 	thruster_trail.change_length(0.3)
 	sprite = $Sprite2D
-	score = 50
+	score = 75
 	score_size = 1.25
 	pass
 
