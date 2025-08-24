@@ -1,12 +1,16 @@
 extends Area2D
 
-var speed: float = 1750
+var speed: float = 2000
 var velocity: Vector2
 
+var explosion_scene = preload("res://00_Assets/03_ParticleEffects/player_bullet_explosion.tscn")
+
 var mid = Vector2(640,360)
-@onready var bounds: Rect2 = Rect2(mid-Data.SPACE_SIZE/2, mid+Data.SPACE_SIZE)
+@onready var bounds: Rect2 = Rect2(mid-Data.SPACE_SIZE/2-Vector2.ONE*50, mid+Data.SPACE_SIZE+Vector2.ONE*50)
 var sprite_offset: Vector2 = Vector2(10, 20)
 @onready var ap: AnimationPlayer = $AnimationPlayer
+
+var particles: Node
 
 func _ready() -> void:
 	connect("area_entered", Callable(self, "_on_area_entered"))
@@ -18,8 +22,6 @@ func _physics_process(delta: float) -> void:
 	if !bounds.has_point(global_position):
 		despawn()
 	
-	if !ap.is_playing():
-		ap.play("move")
 	
 	pass
 
@@ -30,12 +32,17 @@ func shoot(position: Vector2) -> void:
 
 func _on_area_entered(area) -> void:
 	var obstacle = area.owner
-	print(obstacle)
 	if obstacle is Obstacle or obstacle is Enemy:
-		print("yes")
 		obstacle.take_damage(1)
-		despawn()
+		explode()
 	pass
+
+func explode() -> void:
+	var explosion = explosion_scene.instantiate()
+	explosion.global_position = global_position
+	particles.add_child(explosion)
+	explosion.emitting = true
+	queue_free()
 
 func despawn() -> void:
 	queue_free()

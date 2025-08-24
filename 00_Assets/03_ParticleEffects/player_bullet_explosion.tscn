@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvjy6i1eggr0s"]
+
+[ext_resource type="AudioStream" uid="uid://d25pvkgc68hdu" path="res://00_Assets/01_SoundEffects/boom3.wav" id="1_o2gxb"]
+
+[sub_resource type="Curve" id="Curve_6gox1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="PlayerBulletExplosion" type="CPUParticles2D"]
+emitting = false
+amount = 4
+lifetime = 0.15
+one_shot = true
+explosiveness = 0.9
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 500.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_6gox1")
+color = Color(0.116667, 1, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_o2gxb")
+volume_db = -10.0
+pitch_scale = 3.0
+autoplay = true

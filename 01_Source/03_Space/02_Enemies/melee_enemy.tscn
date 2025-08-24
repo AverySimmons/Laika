@@ -42,4 +42,4 @@ position = Vector2(-0.3, -17)
 
 [node name="TakeDamage" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_w3jp1")
-volume_db = 4.0
+volume_db = 8.0

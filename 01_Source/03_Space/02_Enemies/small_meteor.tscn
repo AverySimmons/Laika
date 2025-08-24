@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlsnggq4ril8f"]
+[gd_scene load_steps=7 format=3 uid="uid://dlsnggq4ril8f"]
 
 [ext_resource type="Script" uid="uid://5neb7kp52ato" path="res://01_Source/03_Space/02_Enemies/small_meteor.gd" id="1_alpoj"]
 [ext_resource type="Texture2D" uid="uid://dbcqygjpw6r5e" path="res://00_Assets/00_Sprites/space sprites/new_smallrock.png" id="2_ilrt4"]
+[ext_resource type="Shader" uid="uid://dhi6jo8w3pdfm" path="res://00_Assets/03_ParticleEffects/outline_shader.gdshader" id="2_o65il"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6s347"]
+shader = ExtResource("2_o65il")
+shader_parameter/thickness = 0.01
+shader_parameter/color = Color(0.843229, 0.391839, 1, 1)
+shader_parameter/alpha = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ilrt4"]
 resource_local_to_scene = true
@@ -9,6 +16,7 @@ radius = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o65il"]
 resource_local_to_scene = true
+radius = 14.0
 
 [node name="SmallMeteor" type="Area2D"]
 collision_layer = 0
@@ -16,12 +24,17 @@ collision_mask = 8
 script = ExtResource("1_alpoj")
 metadata/_custom_type_script = "uid://dhaw8kkdbem5y"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(1, 0.32, 0.943334, 1)
+material = SubResource("ShaderMaterial_6s347")
 position = Vector2(0, -30)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_ilrt4")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_ilrt4")
 
 [node name="Hurtbox" type="Area2D" parent="."]

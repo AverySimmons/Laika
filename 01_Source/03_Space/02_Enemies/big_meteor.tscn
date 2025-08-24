@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwb2ypiyxmi8l"]
+[gd_scene load_steps=7 format=3 uid="uid://bwb2ypiyxmi8l"]
 
 [ext_resource type="Script" uid="uid://b38enkw0ulank" path="res://01_Source/03_Space/02_Enemies/big_meteor.gd" id="1_15cq6"]
 [ext_resource type="Texture2D" uid="uid://c0spwaj1ncekc" path="res://00_Assets/00_Sprites/space sprites/new_boulder.png" id="2_1p6kw"]
+[ext_resource type="Shader" uid="uid://dhi6jo8w3pdfm" path="res://00_Assets/03_ParticleEffects/outline_shader.gdshader" id="2_tnomd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vuh7o"]
+shader = ExtResource("2_tnomd")
+shader_parameter/thickness = 0.03
+shader_parameter/color = Color(0.937333, 0.53, 1, 1)
+shader_parameter/alpha = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_15cq6"]
 resource_local_to_scene = true
@@ -17,10 +24,13 @@ script = ExtResource("1_15cq6")
 metadata/_custom_type_script = "uid://dhaw8kkdbem5y"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.40755, 0.3135, 0.57, 1)
+material = SubResource("ShaderMaterial_vuh7o")
 position = Vector2(-1, -4)
 texture = ExtResource("2_1p6kw")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_15cq6")
 
 [node name="Hurtbox" type="Area2D" parent="."]

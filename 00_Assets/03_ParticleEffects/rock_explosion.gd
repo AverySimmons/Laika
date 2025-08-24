@@ -17,3 +17,6 @@ func set_lifetime(lt: float, amt: int) -> void:
 	particles.lifetime = lt
 	particles.amount = amt
 	pass
+
+func set_color(color: Color) -> void:
+	particles.color = color

@@ -10,13 +10,14 @@ func _physics_process(delta: float) -> void:
 	cooldown_timer = move_toward(cooldown_timer, 0, delta)
 	pass
 
-func handle_click(position: Vector2, projectiles: Node) -> void:
+func handle_click(position: Vector2, projectiles: Node, particles: Node) -> void:
 	if cooldown_timer != 0:
 		return
 	audio.play()
 	cooldown_timer = cooldown
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = global_position
+	bullet.particles = particles
 	bullet.shoot(position)
 	projectiles.add_child(bullet)
 	pass

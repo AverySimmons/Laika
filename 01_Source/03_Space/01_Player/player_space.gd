@@ -7,14 +7,15 @@ var cur_lives: int = 3
 var invincible: bool = false
 
 # Movement Variables ===============================================================================
-var top_speed: Vector2 = Vector2(700, 350)
+var top_speed: Vector2 = Vector2(350, 200)
 var acceleration: Vector2 = top_speed / 0.1
 var reverse_acceleration: Vector2 = top_speed / 0.03
 var idle_friction: Vector2 = top_speed / 0.07
 var movement_vector: Vector2 = Vector2.ZERO
 var base_velocity: Vector2 = Vector2.ZERO
-var sprite_offset: Vector2 = Vector2(47, 65)
+var sprite_offset: Vector2 = Vector2(300, 370) * 0.35
 var is_moving: bool = false
+var is_dead: bool = false
 
 # Guns =============================================================================================
 @onready var left_gun: Node2D = $LeftGun
@@ -76,7 +77,7 @@ func handle_mouse(local_mouse_pos: Vector2, is_click: bool, is_held: bool) -> vo
 
 func handle_click(pos: Vector2) -> void:
 	for gun in guns:
-		gun.handle_click(pos, projectiles)
+		gun.handle_click(pos, projectiles, projectiles)
 	pass
 
 func take_damage() -> void:
@@ -84,14 +85,17 @@ func take_damage() -> void:
 		return
 	invincible = true
 	cur_lives -= 1
+	is_dead = true
 	# Explosion animation
 	var explosion: Node2D = explosion_scene.instantiate()
 	explosion.global_position = global_position
 	particles.add_child(explosion)
 	explosion.explode()
+	SignalBus.take_damage.emit(cur_lives)
 	if cur_lives < 0:
 		SignalBus.lose.emit()
-	SignalBus.take_damage.emit(cur_lives)
+		return
+	
 	# Respawning - maybe find a clear spot at the bottom of the map or destroy everything at a set location and place it there
 	hide()
 	hurtbox.collision_layer = 0
@@ -100,16 +104,21 @@ func take_damage() -> void:
 	pass
 
 func respawn() -> void:
+	is_dead = false
 	invincible = true
+	
 	global_position = Vector2(640, 590)
 	show()
 	hurtbox.collision_layer = 8
 	hurtbox.collision_mask = 4
 	
 	for i in range(7):
-		sprite.modulate.a = 0.2
+		modulate.a = 0.2
+		sprite.material.set_shader_parameter("alpha", 0.2)
 		await get_tree().create_timer(0.2, false).timeout
-		sprite.modulate.a = 1.0
+		modulate.a = 1.0
+		sprite.material.set_shader_parameter("alpha", 1.)
 		await get_tree().create_timer(0.2, false).timeout
 	invincible = false
+	
 	pass

@@ -21,6 +21,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if get_parent().paused: return
+	return
 	
 	wave_spawn_timer -= delta
 	if wave_spawn_timer <= 0:

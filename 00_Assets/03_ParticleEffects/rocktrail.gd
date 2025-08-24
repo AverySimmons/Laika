@@ -12,6 +12,15 @@ func stop() -> void:
 	queue_free()
 	pass
 
+func change_velocity_angle(angle: float) -> void:
+	particles.spread = angle
+
+func change_color(col: Color) -> void:
+	particles.color = col
+
+func change_amount(amt: float) -> void:
+	particles.amount = amt
+
 func change_size(rad: float) -> void:
 	particles.emission_sphere_radius = rad
 	pass

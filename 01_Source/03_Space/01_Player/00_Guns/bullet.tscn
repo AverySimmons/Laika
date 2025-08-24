@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://buprmuboos7mv" path="res://00_Assets/00_Sprites/space sprites/player_laser_spritesheet.png" id="2_3pfcu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pfcu"]
-size = Vector2(6, 17)
+size = Vector2(6, 35)
 
 [sub_resource type="Animation" id="Animation_umvec"]
 length = 0.001
@@ -24,6 +24,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_1g6jc"]
 resource_name = "move"
 length = 0.4
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -50,11 +51,13 @@ collision_mask = 4
 script = ExtResource("1_pxro5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_3pfcu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 2, 0, 1)
 position = Vector2(1, 1)
-scale = Vector2(0.301667, 0.315)
+scale = Vector2(0.604, 0.63)
 texture = ExtResource("2_3pfcu")
 hframes = 2
 
@@ -62,3 +65,5 @@ hframes = 2
 libraries = {
 &"": SubResource("AnimationLibrary_ja6nk")
 }
+autoplay = "move"
+speed_scale = 2.0

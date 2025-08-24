@@ -12,9 +12,11 @@ var despawnable: bool = false
 var despawnable_timer: float = 0.5
 var particle_rad: float = 4
 
+var explosion_color = Color("white")
+
 @onready var hitbox: CollisionShape2D = $Hitbox
 @onready var hurtbox: CollisionShape2D = $Hurtbox.get_node("CollisionShape2D")
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Node2D = $Sprite2D
 var trail: Node2D
 var explosion: Node2D
 var lt: float = 1.0
@@ -52,7 +54,7 @@ func take_damage(damage: int) -> void:
 	hp -= damage
 	if hp <= 0:
 		die()
-	modulate = Color(1, 0.5, 0.5)
+	modulate = Color(3, 1.7, 1.7)
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color(1, 1, 1)
 	pass
@@ -63,6 +65,7 @@ func die() -> void:
 	explosion.global_position = global_position
 	particles.add_child(explosion)
 	explosion.set_lifetime(lt, explosion_amt)
+	explosion.set_color(explosion_color)
 	explosion.explode()
 	queue_free()
 	pass

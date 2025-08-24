@@ -3,13 +3,13 @@ extends Node2D
 var meteors: Node
 var particles: Node
 # Small Meteor Spawning ============================================================================
-var small_meteor_spawn_speed: float = 1.0
-var small_meteor_spawn_timer: float = 1.0
+var small_meteor_spawn_speed: float = 4.0
+var small_meteor_spawn_timer: float = 4.0
 var small_meteor_spawn_point: float = 785
 
 # Large Meteor Spawning ============================================================================
-var large_meteor_spawn_speed: float = 5
-var large_meteor_spawn_timer: float = 5
+var large_meteor_spawn_speed: float = 10
+var large_meteor_spawn_timer: float = 10
 var large_meteor_spawn_point: float = 585
 
 @onready var small_meteor_scene: PackedScene = preload("res://01_Source/03_Space/02_Enemies/small_meteor.tscn")
@@ -25,10 +25,12 @@ func _physics_process(delta: float) -> void:
 	large_meteor_spawn_timer -= delta
 	if large_meteor_spawn_timer <= 0:
 		spawn_big_meteor()
-	pass
+	
+	small_meteor_spawn_speed = small_meteor_spawn_speed - small_meteor_spawn_speed * 0.0025 * delta
+	large_meteor_spawn_speed = large_meteor_spawn_speed - large_meteor_spawn_speed * 0.0025 * delta
 
 func spawn_small_meteor() -> void:
-	small_meteor_spawn_timer = small_meteor_spawn_speed
+	small_meteor_spawn_timer = randfn(small_meteor_spawn_speed, 0.5) 
 	var spawn_point_x: float = randf_range(0, 785)
 	var spawn_point_y: float = 0
 	if spawn_point_x < 100:
@@ -36,15 +38,15 @@ func spawn_small_meteor() -> void:
 		spawn_point_x = 0
 	var spawn_point: Vector2 = Vector2(spawn_point_x+347.5, spawn_point_y)
 	var meteor: Obstacle = small_meteor_scene.instantiate()
-	meteor.global_position = spawn_point
+	meteor.global_position = spawn_point - Vector2(0, 50)
 	meteor.particles = particles
 	meteors.add_child(meteor)
 	meteor.despawnable = true
 	pass
 var mid = Vector2(640, 585)
 func spawn_big_meteor() -> void:
-	large_meteor_spawn_timer = large_meteor_spawn_speed
-	var spawn_point: Vector2 = Vector2(randf_range(347.5, 932.5), 0)
+	large_meteor_spawn_timer = randfn(large_meteor_spawn_speed, 1.)
+	var spawn_point: Vector2 = Vector2(randf_range(347.5, 932.5), -100)
 	var meteor: Obstacle = large_meteor_scene.instantiate()
 	meteor.global_position = spawn_point
 	meteor.particles = particles
