@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dic3vnabysmkh"]
+[gd_scene load_steps=16 format=3 uid="uid://dic3vnabysmkh"]
 
 [ext_resource type="Script" uid="uid://cavc2jjs13k2k" path="res://01_Source/03_Space/01_Player/player_space.gd" id="1_bfx4b"]
 [ext_resource type="Shader" uid="uid://3owsplqj38q0" path="res://01_Source/03_Space/01_Player/player_outline.gdshader" id="2_fk4vd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cpt6kohj16ufy" path="res://00_Assets/00_Sprites/space sprites/spaceship_trail_spritesheet.png" id="4_5dqnv"]
 [ext_resource type="AudioStream" uid="uid://dgr2guwscdads" path="res://00_Assets/01_SoundEffects/respawn2.mp3" id="6_oi171"]
 [ext_resource type="AudioStream" uid="uid://doo4k124xixv8" path="res://00_Assets/01_SoundEffects/thrusters_loop.wav" id="7_ysjl5"]
+[ext_resource type="AudioStream" uid="uid://d0kawpikqe4i4" path="res://00_Assets/01_SoundEffects/arcade_ding.mp3" id="8_vi1ps"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oi171"]
 shader = ExtResource("2_fk4vd")
@@ -60,6 +61,10 @@ _data = {
 &"trail": SubResource("Animation_ysjl5")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysjl5"]
+radius = 36.0
+height = 144.0
+
 [node name="PlayerSpace" type="CharacterBody2D"]
 script = ExtResource("1_bfx4b")
 
@@ -108,3 +113,18 @@ stream = ExtResource("7_ysjl5")
 volume_db = -20.0
 pitch_scale = 3.0
 autoplay = true
+
+[node name="LifeUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_vi1ps")
+volume_db = 8.0
+pitch_scale = 1.2
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(0, 12)
+shape = SubResource("CapsuleShape2D_ysjl5")
+
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]

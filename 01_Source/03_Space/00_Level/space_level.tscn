@@ -140,6 +140,8 @@ color_initial_ramp = SubResource("Gradient_xye4g")
 
 [node name="Particles" type="Node" parent="."]
 
+[node name="LifeUps" type="Node" parent="."]
+
 [node name="Meteors" type="Node" parent="."]
 
 [node name="Enemies" type="Node" parent="."]

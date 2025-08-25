@@ -4,7 +4,7 @@ extends Minigame
 ## sound effects
 ## music
 
-const _NEEDED_MOUSE_DIST = 1200
+const _NEEDED_MOUSE_DIST = 1150
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var fade_player: AnimationPlayer = $FadePlayer
@@ -41,7 +41,7 @@ func handle_mouse(local_mouse_pos, is_click, is_held) -> void:
 		_mouse_dist += _last_mouse_position.distance_to(local_mouse_pos)
 		if _mouse_dist > _NEEDED_MOUSE_DIST:
 			_open_lock()
-			_spawn_letter_lock("GOOD GIRL!")
+			_spawn_letter_lock("GOOD GIRL")
 			Data.custom_mouse.emit_hearts = false
 			
 			var t = create_tween()

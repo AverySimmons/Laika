@@ -1,9 +1,11 @@
 extends Obstacle
 
+signal big_destroyed(pos: Vector2)
+
 func _ready() -> void:
 	super._ready()
 	hp = 15
-	score = 175
+	score = 200
 	score_size = 2
 	velocity = Vector2(0, 80)
 	radius = randf_range(80, 100)
@@ -28,3 +30,9 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(area) -> void:
 	super._on_area_entered(area)
 	pass
+
+func die() -> void:
+	if dying: return
+	big_destroyed.emit(global_position)
+	
+	super.die()

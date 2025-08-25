@@ -330,7 +330,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("6_g7mcv")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[wave](Mouse)"
+text = "[wave](Mouse click and drag)"
 horizontal_alignment = 1
 vertical_alignment = 1
 

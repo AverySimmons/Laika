@@ -53,5 +53,6 @@ func spawn_big_meteor() -> void:
 	meteor.particles = particles
 	meteors.add_child(meteor)
 	meteor.despawnable = true
+	meteor.big_destroyed.connect(get_parent().big_meteor_destroyed)
 	pass
 	

@@ -1,6 +1,9 @@
 extends Node2D
 
+var big_meteor_count = 0
+
 @onready var score_pop_scene = preload("res://01_Source/03_Space/03_Score/score_popup.tscn")
+@onready var health_up_scene = preload("res://01_Source/03_Space/03_Score/life_powerup.tscn")
 
 @onready var starlayer_1: CPUParticles2D = $bg/starlayer1
 @onready var starlayer_2: CPUParticles2D = $bg/starlayer2
@@ -75,6 +78,14 @@ func spawn_player() -> void:
 	player.particles = particles
 	
 	add_child(player)
+
+func big_meteor_destroyed(pos: Vector2) -> void:
+	big_meteor_count += 1
+	if big_meteor_count >= 3 and player.cur_lives < player.max_lives:
+		big_meteor_count = 0
+		var new_power_up = health_up_scene.instantiate()
+		new_power_up.global_position = pos
+		$LifeUps.call_deferred("add_child", new_power_up)
 
 func start_level() -> void:
 	$UIAP.play("fade_in")

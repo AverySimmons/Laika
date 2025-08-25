@@ -3,7 +3,7 @@ extends Obstacle
 func _ready() -> void:
 	super._ready()
 	hp = 2
-	score = 25
+	score = 75
 	score_size = 1.
 	velocity = determine_velocity()
 	radius = randf_range(20, 25)

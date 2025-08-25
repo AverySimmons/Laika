@@ -37,6 +37,7 @@ var particles: Node
 @onready var sprite: Sprite2D = $Sprite2D
 
 @onready var explosion_scene: PackedScene = preload("res://00_Assets/03_ParticleEffects/ship_explosion.tscn")
+@onready var life_up_particle_scene = preload("res://01_Source/03_Space/03_Score/life_up_explosion.tscn")
 
 func _ready() -> void:
 	sprite.material.set_shader_parameter("alpha", 0)
@@ -144,3 +145,14 @@ func respawn() -> void:
 	invincible = false
 	
 	pass
+
+
+func _on_pickup_area_area_entered(area: Area2D) -> void:
+	cur_lives += 1
+	SignalBus.change_player_lives.emit(cur_lives)
+	area.queue_free()
+	var new_life_up_particles = life_up_particle_scene.instantiate()
+	new_life_up_particles.global_position = area.global_position
+	particles.add_child(new_life_up_particles)
+	$LifeUp.play()
+	
